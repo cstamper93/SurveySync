@@ -6,15 +6,28 @@ public class JobCard {
 
     private int id;
     private int jobNumber;
+    private Date intakeDate;
     private String clientName;
     private String phoneNumber; // Change phone number data types?
     private String altPhoneNumber;
+    private String billingAddress;
+    private String billingTown;
+    private String billingState;
+    private String billingZip;
     private String clientEmail;
     private String altEmail;
+    private String propertyOwnerFirst;
+    private String propertyOwnerLast;
     private String jobAddress;
+    private String jobTown;
+    private String jobState;
+    private String jobZip;
     private String jobType;
+    private String jobDescription;
     private String jobStatus;
     private Date completeBy;
+
+    // add: deeds, maps, acreage, perimeter, new line length
 
     public JobCard(){}
 
@@ -106,4 +119,91 @@ public class JobCard {
         this.completeBy = completeBy;
     }
 
+    public Date getIntakeDate() {
+        return intakeDate;
+    }
+
+    public void setIntakeDate(Date intakeDate) {
+        this.intakeDate = intakeDate;
+    }
+
+    public String getBillingAddress() {
+        return billingAddress;
+    }
+
+    public void setBillingAddress(String billingAddress) {
+        this.billingAddress = billingAddress;
+    }
+
+    public String getBillingTown() {
+        return billingTown;
+    }
+
+    public void setBillingTown(String billingTown) {
+        this.billingTown = billingTown;
+    }
+
+    public String getBillingState() {
+        return billingState;
+    }
+
+    public void setBillingState(String billingState) {
+        this.billingState = billingState;
+    }
+
+    public String getBillingZip() {
+        return billingZip;
+    }
+
+    public void setBillingZip(String billingZip) {
+        this.billingZip = billingZip;
+    }
+
+    public String getPropertyOwnerFirst() {
+        return propertyOwnerFirst;
+    }
+
+    public void setPropertyOwnerFirst(String propertyOwnerFirst) {
+        this.propertyOwnerFirst = propertyOwnerFirst;
+    }
+
+    public String getPropertyOwnerLast() {
+        return propertyOwnerLast;
+    }
+
+    public void setPropertyOwnerLast(String propertyOwnerLast) {
+        this.propertyOwnerLast = propertyOwnerLast;
+    }
+
+    public String getJobTown() {
+        return jobTown;
+    }
+
+    public void setJobTown(String jobTown) {
+        this.jobTown = jobTown;
+    }
+
+    public String getJobState() {
+        return jobState;
+    }
+
+    public void setJobState(String jobState) {
+        this.jobState = jobState;
+    }
+
+    public String getJobZip() {
+        return jobZip;
+    }
+
+    public void setJobZip(String jobZip) {
+        this.jobZip = jobZip;
+    }
+
+    public String getJobDescription() {
+        return jobDescription;
+    }
+
+    public void setJobDescription(String jobDescription) {
+        this.jobDescription = jobDescription;
+    }
 }
