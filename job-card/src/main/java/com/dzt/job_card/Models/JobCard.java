@@ -22,12 +22,18 @@ public class JobCard {
     private String jobTown;
     private String jobState;
     private String jobZip;
+    private String deedBook; // since there can be letters in them
+    private String deedPage;
+    private String mapBook;
+    private String mapPage;
+    private int parcelPerimeter; // stores whole numbers from -2,147,483,648 to 2,147,483,647
+    private int newLinesLength; // if jobType is a division
     private String jobType;
     private String jobDescription;
     private String jobStatus;
     private Date completeBy;
 
-    // add: deeds, maps, acreage, perimeter, new line length
+    // add: acreage, perimeter, new line length
 
     public JobCard(){}
 
