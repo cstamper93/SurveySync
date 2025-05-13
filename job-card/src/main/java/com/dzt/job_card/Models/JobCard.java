@@ -28,12 +28,11 @@ public class JobCard {
     private String mapPage;
     private int parcelPerimeter; // stores whole numbers from -2,147,483,648 to 2,147,483,647
     private int newLinesLength; // if jobType is a division
+    private int acreage;
     private String jobType;
     private String jobDescription;
     private String jobStatus;
     private Date completeBy;
-
-    // add: acreage, perimeter, new line length
 
     public JobCard(){}
 
@@ -211,5 +210,61 @@ public class JobCard {
 
     public void setJobDescription(String jobDescription) {
         this.jobDescription = jobDescription;
+    }
+
+    public String getDeedBook() {
+        return deedBook;
+    }
+
+    public void setDeedBook(String deedBook) {
+        this.deedBook = deedBook;
+    }
+
+    public String getDeedPage() {
+        return deedPage;
+    }
+
+    public void setDeedPage(String deedPage) {
+        this.deedPage = deedPage;
+    }
+
+    public String getMapBook() {
+        return mapBook;
+    }
+
+    public void setMapBook(String mapBook) {
+        this.mapBook = mapBook;
+    }
+
+    public String getMapPage() {
+        return mapPage;
+    }
+
+    public void setMapPage(String mapPage) {
+        this.mapPage = mapPage;
+    }
+
+    public int getParcelPerimeter() {
+        return parcelPerimeter;
+    }
+
+    public void setParcelPerimeter(int parcelPerimeter) {
+        this.parcelPerimeter = parcelPerimeter;
+    }
+
+    public int getNewLinesLength() {
+        return newLinesLength;
+    }
+
+    public void setNewLinesLength(int newLinesLength) {
+        this.newLinesLength = newLinesLength;
+    }
+
+    public int getAcreage() {
+        return acreage;
+    }
+
+    public void setAcreage(int acreage) {
+        this.acreage = acreage;
     }
 }
