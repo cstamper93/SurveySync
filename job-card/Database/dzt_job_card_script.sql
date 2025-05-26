@@ -16,6 +16,24 @@ CREATE TABLE job_card(
     CONSTRAINT PK_job_card PRIMARY KEY(job_id)
 );
 
+CREATE TABLE client(
+    client_id SERIAL,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    company VARCHAR(100),
+    cell_phone_number VARCHAR(25),
+    home_phone_number VARCHAR(25),
+    work_phone_number VARCHAR(25),
+    billing_address VARCHAR(250),
+    billing_town VARCHAR(50),
+    billing_state VARCHAR(15),
+    billing_zip VARCHAR(15),
+    client_email VARCHAR(100),
+    alt_email VARCHAR(100),
+    client_notes VARCHAR(7000),
+    CONSTRAINT PK_client PRIMARY KEY(client_id)
+);
+
 CREATE TABLE field_entry(
     job_id INTEGER,
     job_number INTEGER,
