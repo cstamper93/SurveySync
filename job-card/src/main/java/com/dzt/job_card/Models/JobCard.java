@@ -1,111 +1,114 @@
 package com.dzt.job_card.Models;
 
+import java.time.LocalTime;
 import java.util.Date;
+import java.util.List;
 
 public class JobCard {
 
-    private int id;
-    private int jobNumber;
+    private int jobId;
+    private String prospectId;
+    private String activeJobId;
     private Date intakeDate;
-    private String clientName;
-    private String phoneNumber; // Change phone number data types?
-    private String altPhoneNumber;
-    private String billingAddress;
-    private String billingTown;
-    private String billingState;
-    private String billingZip;
-    private String clientEmail;
-    private String altEmail;
-    private String propertyOwnerFirst;
-    private String propertyOwnerLast;
-    private String jobAddress;
-    private String jobTown;
-    private String jobState;
-    private String jobZip;
-    private String deedBook; // since there can be letters in them
-    private String deedPage;
-    private String mapBook;
-    private String mapPage;
-    private int parcelPerimeter; // stores whole numbers from -2,147,483,648 to 2,147,483,647
-    private int newLinesLength; // if jobType is a division
-    private int acreage;
-    private String jobType;
+    private LocalTime intakeTime;
+    private List<Integer> clientIds; // lists will need extra data table
+    private List<Integer> propIds; // change
+    private int markLinesLength;
+    private List<String> jobType; // change
     private String jobDescription;
+    private String housePlanName;
     private String jobStatus;
     private Date completeBy;
 
-    public JobCard(){}
-
-    public int getId() {
-        return id;
+    public JobCard() {
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getJobId() {
+        return jobId;
     }
 
-    public int getJobNumber() {
-        return jobNumber;
+    public void setJobId(int jobId) {
+        this.jobId = jobId;
     }
 
-    public void setJobNumber(int jobNumber) {
-        this.jobNumber = jobNumber;
+    public String getProspectId() {
+        return prospectId;
     }
 
-    public String getClientName() {
-        return clientName;
+    public void setProspectId(String prospectId) {
+        this.prospectId = prospectId;
     }
 
-    public void setClientName(String clientName) {
-        this.clientName = clientName;
+    public String getActiveJobId() {
+        return activeJobId;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public void setActiveJobId(String activeJobId) {
+        this.activeJobId = activeJobId;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public Date getIntakeDate() {
+        return intakeDate;
     }
 
-    public String getAltPhoneNumber() {
-        return altPhoneNumber;
+    public void setIntakeDate(Date intakeDate) {
+        this.intakeDate = intakeDate;
     }
 
-    public void setAltPhoneNumber(String altPhoneNumber) {
-        this.altPhoneNumber = altPhoneNumber;
+    public LocalTime getIntakeTime() {
+        return intakeTime;
     }
 
-    public String getClientEmail() {
-        return clientEmail;
+    public void setIntakeTime(LocalTime intakeTime) {
+        this.intakeTime = intakeTime;
     }
 
-    public void setClientEmail(String clientEmail) {
-        this.clientEmail = clientEmail;
+    public List<Integer> getClientIds() {
+        return clientIds;
     }
 
-    public String getAltEmail() {
-        return altEmail;
+    public void setClientIds(List<Integer> clientIds) {
+        this.clientIds = clientIds;
     }
 
-    public void setAltEmail(String altEmail) {
-        this.altEmail = altEmail;
+    public List<Integer> getPropIds() {
+        return propIds;
     }
 
-    public String getJobAddress() {
-        return jobAddress;
+    public void setPropIds(List<Integer> propIds) {
+        this.propIds = propIds;
     }
 
-    public void setJobAddress(String jobAddress) {
-        this.jobAddress = jobAddress;
+    public int getMarkLinesLength() {
+        return markLinesLength;
     }
 
-    public String getJobType() {
+    public void setMarkLinesLength(int markLinesLength) {
+        this.markLinesLength = markLinesLength;
+    }
+
+    public List<String> getJobType() {
         return jobType;
     }
 
-    public void setJobType(String jobType) {
+    public void setJobType(List<String> jobType) {
         this.jobType = jobType;
+    }
+
+    public String getJobDescription() {
+        return jobDescription;
+    }
+
+    public void setJobDescription(String jobDescription) {
+        this.jobDescription = jobDescription;
+    }
+
+    public String getHousePlanName() {
+        return housePlanName;
+    }
+
+    public void setHousePlanName(String housePlanName) {
+        this.housePlanName = housePlanName;
     }
 
     public String getJobStatus() {
@@ -122,149 +125,5 @@ public class JobCard {
 
     public void setCompleteBy(Date completeBy) {
         this.completeBy = completeBy;
-    }
-
-    public Date getIntakeDate() {
-        return intakeDate;
-    }
-
-    public void setIntakeDate(Date intakeDate) {
-        this.intakeDate = intakeDate;
-    }
-
-    public String getBillingAddress() {
-        return billingAddress;
-    }
-
-    public void setBillingAddress(String billingAddress) {
-        this.billingAddress = billingAddress;
-    }
-
-    public String getBillingTown() {
-        return billingTown;
-    }
-
-    public void setBillingTown(String billingTown) {
-        this.billingTown = billingTown;
-    }
-
-    public String getBillingState() {
-        return billingState;
-    }
-
-    public void setBillingState(String billingState) {
-        this.billingState = billingState;
-    }
-
-    public String getBillingZip() {
-        return billingZip;
-    }
-
-    public void setBillingZip(String billingZip) {
-        this.billingZip = billingZip;
-    }
-
-    public String getPropertyOwnerFirst() {
-        return propertyOwnerFirst;
-    }
-
-    public void setPropertyOwnerFirst(String propertyOwnerFirst) {
-        this.propertyOwnerFirst = propertyOwnerFirst;
-    }
-
-    public String getPropertyOwnerLast() {
-        return propertyOwnerLast;
-    }
-
-    public void setPropertyOwnerLast(String propertyOwnerLast) {
-        this.propertyOwnerLast = propertyOwnerLast;
-    }
-
-    public String getJobTown() {
-        return jobTown;
-    }
-
-    public void setJobTown(String jobTown) {
-        this.jobTown = jobTown;
-    }
-
-    public String getJobState() {
-        return jobState;
-    }
-
-    public void setJobState(String jobState) {
-        this.jobState = jobState;
-    }
-
-    public String getJobZip() {
-        return jobZip;
-    }
-
-    public void setJobZip(String jobZip) {
-        this.jobZip = jobZip;
-    }
-
-    public String getJobDescription() {
-        return jobDescription;
-    }
-
-    public void setJobDescription(String jobDescription) {
-        this.jobDescription = jobDescription;
-    }
-
-    public String getDeedBook() {
-        return deedBook;
-    }
-
-    public void setDeedBook(String deedBook) {
-        this.deedBook = deedBook;
-    }
-
-    public String getDeedPage() {
-        return deedPage;
-    }
-
-    public void setDeedPage(String deedPage) {
-        this.deedPage = deedPage;
-    }
-
-    public String getMapBook() {
-        return mapBook;
-    }
-
-    public void setMapBook(String mapBook) {
-        this.mapBook = mapBook;
-    }
-
-    public String getMapPage() {
-        return mapPage;
-    }
-
-    public void setMapPage(String mapPage) {
-        this.mapPage = mapPage;
-    }
-
-    public int getParcelPerimeter() {
-        return parcelPerimeter;
-    }
-
-    public void setParcelPerimeter(int parcelPerimeter) {
-        this.parcelPerimeter = parcelPerimeter;
-    }
-
-    public int getNewLinesLength() {
-        return newLinesLength;
-    }
-
-    public void setNewLinesLength(int newLinesLength) {
-        this.newLinesLength = newLinesLength;
-    }
-
-    public int getAcreage() {
-        return acreage;
-    }
-
-    public void setAcreage(int acreage) {
-        this.acreage = acreage;
     }
 }

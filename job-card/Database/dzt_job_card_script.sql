@@ -3,36 +3,17 @@ BEGIN TRANSACTION;
 DROP TABLE IF EXISTS job_card, field_entry;
 
 CREATE TABLE job_card(
-    id SERIAL,
-    job_number INTEGER, --maybe serial?? Probs not but maybe they want to give it the next available job number...
+    job_id SERIAL,
+    prospect_id VARCHAR(100)
+    active_job_id INTEGER,
     intake_date DATE,
-    client_name VARCHAR(100),
-    phone_number VARCHAR(20),
-    alt_phone_number VARCHAR(20),
-    billing_address VARCHAR(200),
-    billing_town VARCHAR(100),
-    billing_state VARCHAR(50),
-    billing_zip VARCHAR(20),
-    client_email VARCHAR(150),
-    alt_email VARCHAR(150),
-    property_owner_first VARCHAR(100),
-    property_owner_last VARCHAR(100),
-    job_address VARCHAR(200),
-    job_town VARCHAR(100),
-    job_state VARCHAR(50),
-    job_zip VARCHAR(20),
-    deed_book VARCHAR(10),
-    deed_page VARCHAR(10),
-    map_book VARCHAR(10),
-    map_page VARCHAR(10),
-    parcel_perimeter INTEGER,
-    new_lines_length INTEGER,
-    acreage INTEGER,
-    job_type VARCHAR(50),
+    intake_time TIMESTAMP,
+    marked_lines_length INTEGER,
     job_description VARCHAR(7000),
+    house_plan_name VARCHAR(100),
     job_status VARCHAR(50),
     complete_by DATE,
-    CONSTRAINT PK_job_card PRIMARY KEY(id)
+    CONSTRAINT PK_job_card PRIMARY KEY(job_id)
 );
 
 CREATE TABLE field_entry(
