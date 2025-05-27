@@ -34,6 +34,49 @@ CREATE TABLE client(
     CONSTRAINT PK_client PRIMARY KEY(client_id)
 );
 
+CREATE TABLE job_card_client(
+    job_id INTEGER NOT NULL,
+    client_id INTEGER NOT NULL,
+    CONSTRAINT PK_job_card_client PRIMARY KEY(job_id, client_id),
+    CONSTRAINT FK_job_id FOREIGN KEY(job_id) REFERENCES job_card(job_id),
+    CONSTRAINT FK_client_id FOREIGN KEY(client_id) REFERENCES client(client_id)
+);
+
+CREATE TABLE property(
+    prop_id SERIAL,
+    owner_first_name VARCHAR(100),
+    owner_last_name VARCHAR(100),
+    address VARCHAR(250),
+    town VARCHAR(50),
+    state VARCHAR(15),
+    zip VARCHAR(15),
+    county VARCHAR(100),
+    deed_1 VARCHAR(25),
+    deed_2 VARCHAR(25),
+    deed_3 VARCHAR(25),
+    map_1 VARCHAR(25),
+    map_2 VARCHAR(25),
+    map_3 VARCHAR(25),
+    perimeter INTEGER,
+    acreage NUMERIC(5,2),
+    drive_time TIME,
+    subdivision VARCHAR(50),
+    pid VARCHAR(50),
+    pin VARCHAR(50),
+    township VARCHAR(100),
+    lot_num VARCHAR(15),
+    prop_notes VARCHAR(7000),
+    CONSTRAINT PK_property PRIMARY KEY(prop_id)
+);
+
+CREATE TABLE job_card_property(
+    job_id INTEGER NOT NULL,
+    prop_id INTEGER NOT NULL,
+    CONSTRAINT PK_job_card_property PRIMARY KEY(job_id, prop_id),
+    CONSTRAINT FK_job_id FOREIGN KEY(job_id) REFERENCES job_card(job_id),
+    CONSTRAINT FK_prop_id FOREIGN KEY(prop_id) REFERENCES property(prop_id)
+);
+
 CREATE TABLE field_entry(
     job_id INTEGER,
     job_number INTEGER,

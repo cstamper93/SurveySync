@@ -13,10 +13,14 @@ public class Property {
     private String state;
     private String zip;
     private String county;
-    private List<String> deed;
-    private List<String> map;
+    private String deed1;
+    private String deed2;
+    private String deed3;
+    private String map1;
+    private String map2;
+    private String map3;
     private int perimeter;
-    private int acreage;
+    private double acreage;
     private Time driveTime;
     private String subdivision;
     private String pid;
@@ -91,21 +95,54 @@ public class Property {
         this.county = county;
     }
 
-    public List<String> getDeed() {
-        return deed;
+    public String getDeed1() {
+        return deed1;
     }
 
-    public void setDeed(List<String> deed) {
-        this.deed = deed;
+    public void setDeed1(String deed1) {
+        this.deed1 = deed1;
     }
 
-    public List<String> getMap() {
-        return map;
+    public String getDeed2() {
+        return deed2;
     }
 
-    public void setMap(List<String> map) {
-        this.map = map;
+    public void setDeed2(String deed2) {
+        this.deed2 = deed2;
     }
+
+    public String getDeed3() {
+        return deed3;
+    }
+
+    public void setDeed3(String deed3) {
+        this.deed3 = deed3;
+    }
+
+    public void setMap1(String map1) {
+        this.map1 = map1;
+    }
+
+    public String getMap2() {
+        return map2;
+    }
+
+    public void setMap2(String map2) {
+        this.map2 = map2;
+    }
+
+    public String getMap3() {
+        return map3;
+    }
+
+    public void setMap3(String map3) {
+        this.map3 = map3;
+    }
+
+    public String getMap1() {
+        return map1;
+    }
+
 
     public int getPerimeter() {
         return perimeter;
@@ -115,7 +152,7 @@ public class Property {
         this.perimeter = perimeter;
     }
 
-    public int getAcreage() {
+    public double getAcreage() {
         return acreage;
     }
 
