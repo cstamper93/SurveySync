@@ -20,7 +20,7 @@ public class JdbcJobCardDao implements JobCardDao {
 
     @Override
     public JobCard createNewJobCard(JobCard jobCard) {
-        String sql = "INSERT INTO job_card (job_number, intake_date, client_name, phone_number, " +
+        String sql = "INSERT INTO job_card (prospect_id, active_job_id,                                 intake_date, client_name, phone_number, " +
                 "alt_phone_number, billing_address, billing_town, billing_state, billing_zip, client_email, alt_email," +
                 "property_owner_first, property_owner_last," +
                 " job_address, job_town, job_state, job_zip, deed_book, deed_page, map_book, map_page, parcel_perimeter, " +

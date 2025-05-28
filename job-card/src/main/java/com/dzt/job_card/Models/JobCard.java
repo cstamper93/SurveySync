@@ -11,10 +11,7 @@ public class JobCard {
     private String activeJobId;
     private Date intakeDate;
     private LocalTime intakeTime;
-    private List<Integer> clientIds; // lists will need extra data table
-    private List<Integer> propIds; // change
     private int markLinesLength;
-    private List<String> jobType; // change
     private String jobDescription;
     private String housePlanName;
     private String jobStatus;
@@ -63,36 +60,12 @@ public class JobCard {
         this.intakeTime = intakeTime;
     }
 
-    public List<Integer> getClientIds() {
-        return clientIds;
-    }
-
-    public void setClientIds(List<Integer> clientIds) {
-        this.clientIds = clientIds;
-    }
-
-    public List<Integer> getPropIds() {
-        return propIds;
-    }
-
-    public void setPropIds(List<Integer> propIds) {
-        this.propIds = propIds;
-    }
-
     public int getMarkLinesLength() {
         return markLinesLength;
     }
 
     public void setMarkLinesLength(int markLinesLength) {
         this.markLinesLength = markLinesLength;
-    }
-
-    public List<String> getJobType() {
-        return jobType;
-    }
-
-    public void setJobType(List<String> jobType) {
-        this.jobType = jobType;
     }
 
     public String getJobDescription() {

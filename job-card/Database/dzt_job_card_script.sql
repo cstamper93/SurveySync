@@ -77,6 +77,15 @@ CREATE TABLE job_card_property(
     CONSTRAINT FK_prop_id FOREIGN KEY(prop_id) REFERENCES property(prop_id)
 );
 
+CREATE TABLE job_note(
+    job_note_id SERIAL,
+    note_content VARCHAR(7000),
+    user_id INTEGER,
+    date_created DATE,
+    time_created TIME,
+    job_id INTEGER,
+);
+
 CREATE TABLE field_entry(
     job_id INTEGER,
     job_number INTEGER,
