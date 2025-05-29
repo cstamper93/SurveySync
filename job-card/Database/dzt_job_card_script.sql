@@ -12,7 +12,14 @@ CREATE TABLE job_card(
     job_description VARCHAR(7000),
     house_plan_name VARCHAR(100),
     job_status VARCHAR(50),
-    complete_by DATE,
+    ready_date DATE,
+    complete_by_date DATE,
+    contract_signed BOOLEAN,
+    contract_signed_date DATE,
+    letters_sent BOOLEAN,
+    letters_sent_date DATE,
+    is_plotted BOOLEAN,
+    plotted_by VARCHAR(50),
     CONSTRAINT PK_job_card PRIMARY KEY(job_id)
 );
 
@@ -84,6 +91,7 @@ CREATE TABLE job_note(
     date_created DATE,
     time_created TIME,
     job_id INTEGER,
+    CONSTRAINT PK_job_note PRIMARY KEY(job_note_id)
 );
 
 CREATE TABLE field_entry(

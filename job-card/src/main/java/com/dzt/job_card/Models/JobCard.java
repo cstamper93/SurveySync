@@ -1,8 +1,7 @@
 package com.dzt.job_card.Models;
 
-import java.time.LocalTime;
+import java.sql.Time;
 import java.util.Date;
-import java.util.List;
 
 public class JobCard {
 
@@ -10,12 +9,19 @@ public class JobCard {
     private String prospectId;
     private String activeJobId;
     private Date intakeDate;
-    private LocalTime intakeTime;
+    private Time intakeTime;
     private int markLinesLength;
     private String jobDescription;
     private String housePlanName;
     private String jobStatus;
-    private Date completeBy;
+    private Date readyDate;
+    private Date completeByDate;
+    private boolean contractSigned;
+    private Date contractSignedDate;
+    private boolean lettersSent;
+    private Date lettersSentDate;
+    private boolean isPlotted;
+    private String plottedBy;
 
     public JobCard() {
     }
@@ -52,11 +58,11 @@ public class JobCard {
         this.intakeDate = intakeDate;
     }
 
-    public LocalTime getIntakeTime() {
+    public Time getIntakeTime() {
         return intakeTime;
     }
 
-    public void setIntakeTime(LocalTime intakeTime) {
+    public void setIntakeTime(Time intakeTime) {
         this.intakeTime = intakeTime;
     }
 
@@ -92,11 +98,67 @@ public class JobCard {
         this.jobStatus = jobStatus;
     }
 
-    public Date getCompleteBy() {
-        return completeBy;
+    public Date getCompleteByDate() {
+        return completeByDate;
     }
 
-    public void setCompleteBy(Date completeBy) {
-        this.completeBy = completeBy;
+    public void setCompleteByDate(Date completeByDate) {
+        this.completeByDate = completeByDate;
+    }
+
+    public Date getReadyDate() {
+        return readyDate;
+    }
+
+    public void setReadyDate(Date readyDate) {
+        this.readyDate = readyDate;
+    }
+
+    public boolean isContractSigned() {
+        return contractSigned;
+    }
+
+    public void setContractSigned(boolean contractSigned) {
+        this.contractSigned = contractSigned;
+    }
+
+    public Date getContractSignedDate() {
+        return contractSignedDate;
+    }
+
+    public void setContractSignedDate(Date contractSignedDate) {
+        this.contractSignedDate = contractSignedDate;
+    }
+
+    public boolean isLettersSent() {
+        return lettersSent;
+    }
+
+    public void setLettersSent(boolean lettersSent) {
+        this.lettersSent = lettersSent;
+    }
+
+    public Date getLettersSentDate() {
+        return lettersSentDate;
+    }
+
+    public void setLettersSentDate(Date lettersSentDate) {
+        this.lettersSentDate = lettersSentDate;
+    }
+
+    public boolean isPlotted() {
+        return isPlotted;
+    }
+
+    public void setPlotted(boolean plotted) {
+        isPlotted = plotted;
+    }
+
+    public String getPlottedBy() {
+        return plottedBy;
+    }
+
+    public void setPlottedBy(String plottedBy) {
+        this.plottedBy = plottedBy;
     }
 }

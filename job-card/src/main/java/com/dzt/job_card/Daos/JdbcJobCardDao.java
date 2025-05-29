@@ -20,13 +20,14 @@ public class JdbcJobCardDao implements JobCardDao {
 
     @Override
     public JobCard createNewJobCard(JobCard jobCard) {
-        String sql = "INSERT INTO job_card (prospect_id, active_job_id,                                 intake_date, client_name, phone_number, " +
+        String sql = "INSERT INTO job_card (prospect_id, active_job_id, intake_date, client_name, phone_number, " +
                 "alt_phone_number, billing_address, billing_town, billing_state, billing_zip, client_email, alt_email," +
                 "property_owner_first, property_owner_last," +
                 " job_address, job_town, job_state, job_zip, deed_book, deed_page, map_book, map_page, parcel_perimeter, " +
                 "new_lines_length, acreage, job_type, job_description, job_status, complete_by) " +
                 "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?) " +
                 "RETURNING id;";
+        // include an insert for the lookup table?
         Integer newJobId = template.queryForObject(sql, Integer.class, jobCard.getJobNumber(), jobCard.getClientName(),
                 jobCard.getPhoneNumber(), jobCard.getAltPhoneNumber(), jobCard.getClientEmail(),
                 jobCard.getAltEmail(), jobCard.getJobAddress(), jobCard.getJobType(), jobCard.getJobStatus(),
@@ -123,35 +124,23 @@ public class JdbcJobCardDao implements JobCardDao {
     // Mapping method to help other methods that return a JobCard object and have to read from db
     private JobCard mapRowToJobCard(SqlRowSet rowSet) {
         JobCard jobCard = new JobCard();
-        jobCard.setId(rowSet.getInt("id"));
-        jobCard.setJobNumber(rowSet.getInt("job_number"));
+        jobCard.setJobId(rowSet.getInt("job_id"));
+        jobCard.setProspectId(rowSet.getString("prospect_id"));
+        jobCard.setActiveJobId(rowSet.getString("active_job_id"));
         jobCard.setIntakeDate(rowSet.getDate("intake_date"));
-        jobCard.setClientName(rowSet.getString("client_name"));
-        jobCard.setPhoneNumber(rowSet.getString("phone_number"));
-        jobCard.setAltPhoneNumber(rowSet.getString("alt_phone_number"));
-        jobCard.setBillingAddress(rowSet.getString("billing_address"));
-        jobCard.setBillingTown(rowSet.getString("billing_town"));
-        jobCard.setBillingState(rowSet.getString("billing_state"));
-        jobCard.setBillingZip(rowSet.getString("billing_zip"));
-        jobCard.setClientEmail(rowSet.getString("client_email"));
-        jobCard.setAltEmail(rowSet.getString("alt_email"));
-        jobCard.setPropertyOwnerFirst(rowSet.getString("property_owner_first"));
-        jobCard.setPropertyOwnerLast(rowSet.getString("property_owner_last"));
-        jobCard.setJobAddress(rowSet.getString("job_address"));
-        jobCard.setJobTown(rowSet.getString("job_town"));
-        jobCard.setJobState(rowSet.getString("job_state"));
-        jobCard.setJobZip(rowSet.getString("job_zip"));
-        jobCard.setDeedBook(rowSet.getString("deed_book"));
-        jobCard.setDeedPage(rowSet.getString("deed_page"));
-        jobCard.setMapBook(rowSet.getString("map_book"));
-        jobCard.setMapPage(rowSet.getString("map_page"));
-        jobCard.setParcelPerimeter(rowSet.getInt("parcel_perimeter"));
-        jobCard.setNewLinesLength(rowSet.getInt("new_lines_length"));
-        jobCard.setAcreage(rowSet.getInt("acreage"));
-        jobCard.setJobType(rowSet.getString("job_type"));
+        jobCard.setIntakeTime(rowSet.getTime("intake_time"));
+        jobCard.setMarkLinesLength(rowSet.getInt("marked_lines_length"));
         jobCard.setJobDescription(rowSet.getString("job_description"));
+        jobCard.setHousePlanName(rowSet.getString("house_plan_name"));
         jobCard.setJobStatus(rowSet.getString("job_status"));
-        jobCard.setCompleteBy(rowSet.getDate("complete_by"));
+        jobCard.setReadyDate(rowSet.getDate("ready_date"));
+        jobCard.setCompleteByDate(rowSet.getDate("complete_by_date"));
+        jobCard.setContractSigned(rowSet.getBoolean("contract_signed"));
+        jobCard.setContractSignedDate(rowSet.getDate("contract_signed_date"));
+        jobCard.setLettersSent(rowSet.getBoolean("letters_sent"));
+        jobCard.setLettersSentDate(rowSet.getDate("letters_sent_date"));
+        jobCard.setPlotted(rowSet.getBoolean("is_plotted"));
+        jobCard.setPlottedBy(rowSet.getString("plotted_by"));
         return jobCard;
     }
 }
