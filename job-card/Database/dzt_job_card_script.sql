@@ -84,6 +84,16 @@ CREATE TABLE job_card_property(
     CONSTRAINT FK_prop_id FOREIGN KEY(prop_id) REFERENCES property(prop_id)
 );
 
+CREATE TABLE job_type(
+    job_type_id SERIAL,
+    job_id INTEGER,
+    job_type VARCHAR(25),
+    price DOUBLE,
+    type_description VARCHAR(1000)
+    CONSTRAINT PK_job_type PRIMARY KEY(job_type_id),
+    CONSTRAINT FK_job_id FOREIGN KEY(job_id) REFERENCES job_card(job_id)
+);
+
 CREATE TABLE job_note(
     job_note_id SERIAL,
     note_content VARCHAR(7000),
