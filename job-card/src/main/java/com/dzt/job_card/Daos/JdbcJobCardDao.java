@@ -19,24 +19,37 @@ public class JdbcJobCardDao implements JobCardDao {
     }
 
     @Override
-    public JobCard createNewJobCard(JobCard jobCard) {
-        String sql = "INSERT INTO job_card (prospect_id, active_job_id, intake_date, client_name, phone_number, " +
-                "alt_phone_number, billing_address, billing_town, billing_state, billing_zip, client_email, alt_email," +
-                "property_owner_first, property_owner_last," +
-                " job_address, job_town, job_state, job_zip, deed_book, deed_page, map_book, map_page, parcel_perimeter, " +
-                "new_lines_length, acreage, job_type, job_description, job_status, complete_by) " +
-                "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?) " +
+    public JobCard createNewJobCard(JobCard jobCard, int clientId, int propertyId) {
+        // 5/29 - usually, a new job comes with a new client and property. So, why not make inserts for them as well?
+        // ACTUALLY, we can use the controller to call the client and other jdbc methods. Just contain it to
+        // job card for now
+        String jobCardSql = "INSERT INTO job_card (prospect_id, active_job_id, intake_date, intake_time, " +
+                "marked_lines_length, job_description, house_plan_name, job_status, ready_date, complete_by_date, " +
+                "contract_signed, contract_signed_date, letters_sent, letters_sent_date, is_plotted, " +
+                "plotted_by) " +
+                "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) " +
                 "RETURNING id;";
-        // include an insert for the lookup table?
-        Integer newJobId = template.queryForObject(sql, Integer.class, jobCard.getJobNumber(), jobCard.getClientName(),
-                jobCard.getPhoneNumber(), jobCard.getAltPhoneNumber(), jobCard.getClientEmail(),
-                jobCard.getAltEmail(), jobCard.getJobAddress(), jobCard.getJobType(), jobCard.getJobStatus(),
-                jobCard.getCompleteBy());
+        // include an insert for the lookup table(s)?
+        // Probably, since jobCard is the "central" object - makes more sense to do that here
+        Integer newJobId = template.queryForObject(jobCardSql, Integer.class, jobCard.getProspectId(),
+                jobCard.getActiveJobId(), jobCard.getIntakeDate(), jobCard.getIntakeTime(),
+                jobCard.getMarkLinesLength(), jobCard.getJobDescription(), jobCard.getHousePlanName(),
+                jobCard.getJobStatus(), jobCard.getReadyDate(), jobCard.getCompleteByDate(), jobCard.isContractSigned(),
+                jobCard.getContractSignedDate(), jobCard.isLettersSent(), jobCard.getLettersSentDate(),
+                jobCard.isPlotted(), jobCard.getPlottedBy());
 
-        return getCardById(newJobId); // Null pointer??
+        String jobCardClientSql = "INSERT INTO job_card_client (job_id, client_id) VALUES(?, ?);";
+        template.update(jobCardClientSql, jobCard.getJobId(), clientId);
+        // Do I need to us query for object instead? We shall see
+
+        String jobCardPropertySql = "INSERT INTO job_card_property (job_id, prop_id) VALUES (?, ?);";
+        template.update(jobCardPropertySql, jobCard.getJobId(), propertyId);
+
+        return getCardById(newJobId); // Null pointer?? How do I handle this particular one??
     }
 
     @Override
+    // 5/29 - fix to wrap in client, property, and jobtype (jobnotes too??)
     public JobCard getCardById(int id) {
         JobCard jobCard = null;
         String sql = "SELECT * FROM job_card WHERE id = ?;";
@@ -48,6 +61,8 @@ public class JdbcJobCardDao implements JobCardDao {
     }
 
     @Override
+    // 5/29 - probably need to update to wrap in property, client, and job type (and job notes??) using joins (yay!)
+    // GIVE OPTIONS TO RETURN FROM NEWEST TO OLDEST, OLDEST TO NEWEST, ALPHABETICAL BY CLIENT NAME, ETC ETC!?
     public List<JobCard> getAllJobCards() {
         List<JobCard> jobCardList = new ArrayList<>();
         String sql = "SELECT * FROM job_card;";
@@ -59,6 +74,7 @@ public class JdbcJobCardDao implements JobCardDao {
     }
 
     @Override
+    // edit to wrap in clients props types and notes
     public List<JobCard> filterByNumber(Integer jobNum) {
         List<JobCard> jobCardList = new ArrayList<>();
         String sql = "SELECT * FROM job_card WHERE job_number = ?;";
@@ -70,6 +86,7 @@ public class JdbcJobCardDao implements JobCardDao {
     }
 
     @Override
+    // edit to include all the things :)
     public List<JobCard> filterByName(String name) {
         List<JobCard> filteredList = new ArrayList<>();
         String sql = "SELECT * FROM job_card WHERE LOWER(client_name) LIKE LOWER(?);";
@@ -87,6 +104,7 @@ public class JdbcJobCardDao implements JobCardDao {
     }
 
     @Override
+    // edit to include all the things :)
     public List<JobCard> filterByType(String type) {
         List<JobCard> filteredCards = new ArrayList<>();
         String sql = "SELECT * FROM job_card WHERE job_type = ?;";
@@ -98,6 +116,7 @@ public class JdbcJobCardDao implements JobCardDao {
     }
 
     @Override
+    // edit join tables too
     public JobCard editJobCard(JobCard updatedCard) {
         String sql = "UPDATE job_card SET job_number = ?, client_name = ?, phone_number = ?, alt_phone_number = ?, " +
                 "client_email = ?, alt_email = ?, job_address = ?, job_type = ?, job_status = ?, complete_by = ? " +
@@ -111,6 +130,7 @@ public class JdbcJobCardDao implements JobCardDao {
     }
 
     @Override
+    // delete join rows too, and type and notes (but not properties or clients themselves!)
     public boolean deleteJobCard(int id) {
         boolean success = false;
         String sql = "DELETE FROM job_card WHERE id = ?;";

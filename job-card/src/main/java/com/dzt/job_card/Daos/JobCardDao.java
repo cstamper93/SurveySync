@@ -8,7 +8,7 @@ public interface JobCardDao {
 
     // CRUD: create, read, update, delete
 
-    JobCard createNewJobCard(JobCard jobCard);
+    JobCard createNewJobCard(JobCard jobCard, int clientId, int propertyId);
 
     JobCard getCardById(int id);
 
