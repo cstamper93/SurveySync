@@ -50,10 +50,12 @@ public class JdbcJobCardDao implements JobCardDao {
 
     @Override
     // 5/29 - fix to wrap in client, property, and jobtype (jobnotes too??)
+    // 6/3 - yes and contact - REVIEW JOINS
     public JobCard getCardById(int id) {
         JobCard jobCard = null;
-        String sql = "SELECT * FROM job_card WHERE id = ?;";
-        SqlRowSet results = template.queryForRowSet(sql, id);
+        String jobCardSql = "SELECT * FROM job_card WHERE id = ?;";
+
+        SqlRowSet results = template.queryForRowSet(jobCardSql, id);
         if(results.next()) {
             jobCard = mapRowToJobCard(results);
         }
