@@ -117,4 +117,16 @@ CREATE TABLE field_entry(
     CONSTRAINT FK_id_field_entry_job_card FOREIGN KEY (job_id) REFERENCES job_card(id)
 );
 
+CREATE TABLE contact(
+    date DATE,
+    time TIME,
+    user_id INTEGER,
+    job_id INTEGER,
+    method VARCHAR(25),
+    description VARCHAR(7000),
+    CONSTRAINT PK_contact PRIMARY KEY(date, time),
+    CONSTRAINT FK_user_id_user FOREIGN KEY(user_id) REFERENCES user(user_id),
+    CONSTRAINT FK_job_id_contact FOREIGN KEY(job_id) REFERENCES job_card(job_id)
+);
+
 COMMIT;
