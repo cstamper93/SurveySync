@@ -14,6 +14,7 @@ CREATE TABLE job_card(
     job_status VARCHAR(50),
     ready_date DATE,
     complete_by_date DATE,
+    contract_sent_date DATE,
     contract_signed BOOLEAN,
     contract_signed_date DATE,
     letters_sent BOOLEAN,
@@ -89,7 +90,8 @@ CREATE TABLE job_type(
     job_id INTEGER,
     job_type VARCHAR(25),
     price DOUBLE,
-    type_description VARCHAR(1000)
+    type_description VARCHAR(1000),
+    estimated_field_days INTEGER,
     CONSTRAINT PK_job_type PRIMARY KEY(job_type_id),
     CONSTRAINT FK_job_id FOREIGN KEY(job_id) REFERENCES job_card(job_id)
 );

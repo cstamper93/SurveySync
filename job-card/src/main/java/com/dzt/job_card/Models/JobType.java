@@ -7,6 +7,7 @@ public class JobType {
     private String jobType;
     private double price;
     private String typeDescription;
+    private int estimatedFieldDays;
 
     public JobType(){}
 
@@ -48,5 +49,13 @@ public class JobType {
 
     public void setTypeDescription(String typeDescription) {
         this.typeDescription = typeDescription;
+    }
+
+    public int getEstimatedFieldDays() {
+        return estimatedFieldDays;
+    }
+
+    public void setEstimatedFieldDays(int estimatedFieldDays) {
+        this.estimatedFieldDays = estimatedFieldDays;
     }
 }

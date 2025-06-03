@@ -16,6 +16,7 @@ public class JobCard {
     private String jobStatus;
     private Date readyDate;
     private Date completeByDate;
+    private Date contractSentDate;
     private boolean contractSigned;
     private Date contractSignedDate;
     private boolean lettersSent;
@@ -104,6 +105,14 @@ public class JobCard {
 
     public void setCompleteByDate(Date completeByDate) {
         this.completeByDate = completeByDate;
+    }
+
+    public Date getContractSentDate() {
+        return contractSentDate;
+    }
+
+    public void setContractSentDate(Date contractSentDate) {
+        this.contractSentDate = contractSentDate;
     }
 
     public Date getReadyDate() {

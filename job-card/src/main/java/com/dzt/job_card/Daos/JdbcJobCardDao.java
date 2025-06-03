@@ -25,7 +25,7 @@ public class JdbcJobCardDao implements JobCardDao {
         // job card for now
         String jobCardSql = "INSERT INTO job_card (prospect_id, active_job_id, intake_date, intake_time, " +
                 "marked_lines_length, job_description, house_plan_name, job_status, ready_date, complete_by_date, " +
-                "contract_signed, contract_signed_date, letters_sent, letters_sent_date, is_plotted, " +
+                "contract_sent_date, contract_signed, contract_signed_date, letters_sent, letters_sent_date, is_plotted, " +
                 "plotted_by) " +
                 "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) " +
                 "RETURNING id;";
@@ -34,8 +34,8 @@ public class JdbcJobCardDao implements JobCardDao {
         Integer newJobId = template.queryForObject(jobCardSql, Integer.class, jobCard.getProspectId(),
                 jobCard.getActiveJobId(), jobCard.getIntakeDate(), jobCard.getIntakeTime(),
                 jobCard.getMarkLinesLength(), jobCard.getJobDescription(), jobCard.getHousePlanName(),
-                jobCard.getJobStatus(), jobCard.getReadyDate(), jobCard.getCompleteByDate(), jobCard.isContractSigned(),
-                jobCard.getContractSignedDate(), jobCard.isLettersSent(), jobCard.getLettersSentDate(),
+                jobCard.getJobStatus(), jobCard.getReadyDate(), jobCard.getCompleteByDate(), jobCard.getContractSentDate(),
+                jobCard.isContractSigned(), jobCard.getContractSignedDate(), jobCard.isLettersSent(), jobCard.getLettersSentDate(),
                 jobCard.isPlotted(), jobCard.getPlottedBy());
 
         String jobCardClientSql = "INSERT INTO job_card_client (job_id, client_id) VALUES(?, ?);";
@@ -155,6 +155,7 @@ public class JdbcJobCardDao implements JobCardDao {
         jobCard.setJobStatus(rowSet.getString("job_status"));
         jobCard.setReadyDate(rowSet.getDate("ready_date"));
         jobCard.setCompleteByDate(rowSet.getDate("complete_by_date"));
+        jobCard.setContractSentDate(rowSet.getDate("contract_sent_date"));
         jobCard.setContractSigned(rowSet.getBoolean("contract_signed"));
         jobCard.setContractSignedDate(rowSet.getDate("contract_signed_date"));
         jobCard.setLettersSent(rowSet.getBoolean("letters_sent"));
