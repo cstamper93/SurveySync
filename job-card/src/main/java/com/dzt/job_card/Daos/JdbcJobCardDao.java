@@ -49,12 +49,13 @@ public class JdbcJobCardDao implements JobCardDao {
     }
 
     @Override
-    // 5/29 - fix to wrap in client, property, and jobtype (jobnotes too??)
+    // 5/29 - fix to wrap in client, property, job type, contact, job note
     // 6/3 - yes and contact - REVIEW JOINS
+    // Issue - we're returning JUST a jobCard object here - how do we send the associated client, prop, type, etc
+    // info with it? SOLUTION: WE CALL MULTIPLE METHODS IN THE CONTROLLER METHOD! WHOO!
     public JobCard getCardById(int id) {
         JobCard jobCard = null;
-        String jobCardSql = "SELECT * FROM job_card WHERE id = ?;";
-
+        String jobCardSql = "SELECT * FROM job_card WHERE job_id = ?;";
         SqlRowSet results = template.queryForRowSet(jobCardSql, id);
         if(results.next()) {
             jobCard = mapRowToJobCard(results);
@@ -77,65 +78,51 @@ public class JdbcJobCardDao implements JobCardDao {
 
     @Override
     // edit to wrap in clients props types and notes
-    public List<JobCard> filterByNumber(Integer jobNum) {
-        List<JobCard> jobCardList = new ArrayList<>();
-        String sql = "SELECT * FROM job_card WHERE job_number = ?;";
+    // not doing the above - just call other methods in controller class
+    public List<JobCard> filterProspectsByNumber(Integer jobNum) {
+        List<JobCard> prospectList = new ArrayList<>();
+        String sql = "SELECT * FROM job_card WHERE prospect_id = ?;";
         SqlRowSet results = template.queryForRowSet(sql,  jobNum);
         while(results.next()) {
-            jobCardList.add(mapRowToJobCard(results));
+            prospectList.add(mapRowToJobCard(results));
         }
-        return jobCardList;
+        return prospectList;
     }
 
     @Override
-    // edit to include all the things :)
-    public List<JobCard> filterByName(String name) {
-        List<JobCard> filteredList = new ArrayList<>();
-        String sql = "SELECT * FROM job_card WHERE LOWER(client_name) LIKE LOWER(?);";
-        String preparedStatement = "%" + name.toLowerCase() + "%";
-        SqlRowSet results = template.queryForRowSet(sql, preparedStatement);
+    public List<JobCard> filterActiveJobsByNumber(Integer activeJobNum) {
+        List<JobCard> activeJobsList = new ArrayList<>();
+        String sql = "SELECT * FROM job_card WHERE active_job_id = ?;";
+        SqlRowSet results = template.queryForRowSet(sql, activeJobNum);
         while(results.next()) {
-            filteredList.add(mapRowToJobCard(results));
+            activeJobsList.add(mapRowToJobCard(results));
         }
-
-        for(int i=0; i<filteredList.size(); i++) {
-            System.out.println(filteredList.get(i).getClientName());
-        }
-
-        return filteredList;
-    }
-
-    @Override
-    // edit to include all the things :)
-    public List<JobCard> filterByType(String type) {
-        List<JobCard> filteredCards = new ArrayList<>();
-        String sql = "SELECT * FROM job_card WHERE job_type = ?;";
-        SqlRowSet results = template.queryForRowSet(sql, type);
-        while(results.next()) {
-            filteredCards.add(mapRowToJobCard(results));
-        }
-        return filteredCards;
+        return activeJobsList;
     }
 
     @Override
     // edit join tables too
     public JobCard editJobCard(JobCard updatedCard) {
-        String sql = "UPDATE job_card SET job_number = ?, client_name = ?, phone_number = ?, alt_phone_number = ?, " +
-                "client_email = ?, alt_email = ?, job_address = ?, job_type = ?, job_status = ?, complete_by = ? " +
-                "WHERE id = ?;";
-        template.update(sql, updatedCard.getJobNumber(), updatedCard.getClientName(), updatedCard.getPhoneNumber(),
-                updatedCard.getAltPhoneNumber(), updatedCard.getClientEmail(), updatedCard.getAltEmail(),
-                updatedCard.getJobAddress(), updatedCard.getJobType(), updatedCard.getJobStatus(),
-                updatedCard.getCompleteBy(), updatedCard.getId());
+        String sql = "UPDATE job_card SET prospect_id = ?, active_job_id = ?, intake_date = ?, intake_time = ?, " +
+                "marked_lines_length = ?, job_description = ?, house_plan_name = ?, job_status = ?, ready_date = ?, " +
+                "complete_by_date = ?, contract_sent_date = ?, contract_signed = ?, contract_signed_date = ?, " +
+                "letters_sent = ?, letters_sent_date = ?, is_plotted = ?, plotted_by = ? " +
+                "WHERE job_id = ?;";
+        template.update(sql, updatedCard.getProspectId(), updatedCard.getActiveJobId(), updatedCard.getIntakeDate(),
+                updatedCard.getIntakeTime(), updatedCard.getMarkLinesLength(), updatedCard.getJobDescription(),
+                updatedCard.getHousePlanName(), updatedCard.getJobStatus(), updatedCard.getReadyDate(),
+                updatedCard.getCompleteByDate(), updatedCard.getContractSentDate(), updatedCard.isContractSigned(),
+                updatedCard.getContractSignedDate(), updatedCard.isLettersSent(), updatedCard.getLettersSentDate(),
+                updatedCard.isPlotted(), updatedCard.getPlottedBy(), updatedCard.getJobId());
 
-        return getCardById(updatedCard.getId());
+        return getCardById(updatedCard.getJobId());
     }
 
     @Override
     // delete join rows too, and type and notes (but not properties or clients themselves!)
     public boolean deleteJobCard(int id) {
         boolean success = false;
-        String sql = "DELETE FROM job_card WHERE id = ?;";
+        String sql = "DELETE FROM job_card WHERE job_id = ?;";
         int linesUpdated = template.update(sql, id);
         if(linesUpdated == 1) {
             success = true;

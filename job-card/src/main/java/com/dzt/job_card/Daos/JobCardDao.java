@@ -16,11 +16,9 @@ public interface JobCardDao {
 
     // add ways to filter job card searches (ex: getCardsBy...clientName, city, associated crew members, etc...)
 
-    List<JobCard> filterByNumber(Integer jobNum);
+    List<JobCard> filterProspectsByNumber(Integer jobNum);
 
-    List<JobCard> filterByName(String name);
-
-    List<JobCard> filterByType(String type); // change type to FS, EPS, Division, Recombination, Construction, Other
+    List<JobCard> filterActiveJobsByNumber(Integer activeJobNum);
 
     JobCard editJobCard(JobCard updatedCard);
 
