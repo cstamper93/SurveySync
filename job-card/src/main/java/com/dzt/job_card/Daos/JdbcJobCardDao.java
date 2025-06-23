@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -128,6 +129,27 @@ public class JdbcJobCardDao implements JobCardDao {
             success = true;
         }
         return success;
+    }
+
+    // 6/22/25 - ADD:
+    // filter by status (DONE), contract sent, contract signed, letters sent, is plotted (sort by asc)
+
+    @Override
+    public List<JobCard> filterByStatus(String status) {
+        List<JobCard> filteredJobs = new ArrayList<>();
+        String sql = "SELECT * FROM job_card WHERE job_status = ? " +
+                "ORDER BY job_id;";
+        SqlRowSet results = template.queryForRowSet(sql, status);
+        while(results.next()) {
+            filteredJobs.add(mapRowToJobCard(results));
+        }
+        return filteredJobs;
+    }
+
+    @Override
+    public List<JobCard> filterByContractSent(Date contractSentDate) {
+        List<JobCard> filteredJobs = new ArrayList<>();
+        return null;
     }
 
     // Mapping method to help other methods that return a JobCard object and have to read from db

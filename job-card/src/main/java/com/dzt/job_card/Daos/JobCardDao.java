@@ -2,6 +2,7 @@ package com.dzt.job_card.Daos;
 
 import com.dzt.job_card.Models.JobCard;
 
+import java.util.Date;
 import java.util.List;
 
 public interface JobCardDao {
@@ -23,5 +24,9 @@ public interface JobCardDao {
     JobCard editJobCard(JobCard updatedCard);
 
     boolean deleteJobCard(int id);
+
+    List<JobCard> filterByStatus(String status);
+
+    List<JobCard> filterByContractSent(Date contractSentDate);
 
 }
