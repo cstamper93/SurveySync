@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -17,9 +18,9 @@ public class JobCardController {
     JobCardDao jobCardDao;
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("add-card")
-    public JobCard addJobCard(@RequestBody JobCard card) {
-        JobCard newCard = jobCardDao.createNewJobCard(card);
+    @PostMapping("add-card/{clientId}/{propertyId}")
+    public JobCard addJobCard(@RequestBody JobCard card, @PathVariable int clientId, int propertyId) {
+        JobCard newCard = jobCardDao.createNewJobCard(card, clientId, propertyId);
         if(newCard == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to create new card");
         } else {
@@ -37,20 +38,15 @@ public class JobCardController {
         return jobCardDao.getAllJobCards();
     }
 
-    @GetMapping("/job-cards-by-num/{jobNum}")
-    public List<JobCard> filterCardsByNumber(@PathVariable Integer jobNum) {
-        return jobCardDao.filterByNumber(jobNum);
+    @GetMapping("/job-cards-by-num/{prospectNum}")
+    public List<JobCard> filterCardsByNumber(@PathVariable Integer prospectNum) {
+        return jobCardDao.filterProspectsByNumber(prospectNum);
     }
 
     // Should I pass in another way to hide client names??
-    @GetMapping("/job-cards-by-name/{name}")
-    public List<JobCard> filterCardsByName(@PathVariable String name) {
-        return jobCardDao.filterByName(name);
-    }
-
-    @GetMapping("/job-cards-by-type/{type}")
-    public List<JobCard> filterCardsByType(@PathVariable String type) {
-        return jobCardDao.filterByType(type);
+    @GetMapping("/active-cards-by-num/{num}")
+    public List<JobCard> filterActiveJobsByNumber(@PathVariable Integer num) {
+        return jobCardDao.filterActiveJobsByNumber(num);
     }
 
     @PutMapping("/job-cards") // you can put methods in same endpoint w/diff http requests
@@ -60,12 +56,22 @@ public class JobCardController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "card not found");
         } else {
             return updatedCard;
-            }
+        }
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/job-cards/{id}") // throw exception here??
     public boolean deleteCard(@PathVariable int id) {
         return jobCardDao.deleteJobCard(id);
+    }
+
+    @GetMapping("/jobs-by-status/{status}")
+    public List<JobCard> filterByStatus(@PathVariable String status) {
+        return jobCardDao.filterByStatus(status);
+    }
+
+    @GetMapping("/contract-sent/{date}")
+    public List<JobCard> filterByContractSent(@PathVariable Date date) {
+        return jobCardDao.filterByContractSent(date);
     }
 }

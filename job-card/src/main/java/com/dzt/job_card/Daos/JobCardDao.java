@@ -29,4 +29,10 @@ public interface JobCardDao {
 
     List<JobCard> filterByContractSent(Date contractSentDate);
 
+    List<JobCard> filterByContractSignedNoLetters();
+
+    List<JobCard> filterByLettersSentNotPlotted();
+
+    List<JobCard> filterByIsPlotted();
+
 }

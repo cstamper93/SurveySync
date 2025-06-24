@@ -69,7 +69,7 @@ public class JdbcJobCardDao implements JobCardDao {
     // GIVE OPTIONS TO RETURN FROM NEWEST TO OLDEST, OLDEST TO NEWEST, ALPHABETICAL BY CLIENT NAME, ETC ETC!?
     public List<JobCard> getAllJobCards() {
         List<JobCard> jobCardList = new ArrayList<>();
-        String sql = "SELECT * FROM job_card;";
+        String sql = "SELECT * FROM job_card ORDER BY intake_date;";
         SqlRowSet results = template.queryForRowSet(sql);
         while(results.next()) {
             jobCardList.add(mapRowToJobCard(results));
@@ -120,19 +120,16 @@ public class JdbcJobCardDao implements JobCardDao {
     }
 
     @Override
-    // delete join rows too, and type and notes (but not properties or clients themselves!)
+    // delete join rows too, and type and notes (but not properties or clients themselves!) (DONE 6/23)
     public boolean deleteJobCard(int id) {
         boolean success = false;
-        String sql = "DELETE FROM job_card WHERE job_id = ?;";
+        String sql = "DELETE FROM job_card, job_card_client, job_card_property WHERE job_id = ?;";
         int linesUpdated = template.update(sql, id);
         if(linesUpdated == 1) {
             success = true;
         }
         return success;
     }
-
-    // 6/22/25 - ADD:
-    // filter by status (DONE), contract sent, contract signed, letters sent, is plotted (sort by asc)
 
     @Override
     public List<JobCard> filterByStatus(String status) {
@@ -146,10 +143,52 @@ public class JdbcJobCardDao implements JobCardDao {
         return filteredJobs;
     }
 
+    // 6/23/25 - remove Date param??
     @Override
     public List<JobCard> filterByContractSent(Date contractSentDate) {
         List<JobCard> filteredJobs = new ArrayList<>();
-        return null;
+        String sql = "SELECT * FROM job_card WHERE contract_sent_date IS NOT NULL " +
+                "ORDER BY contract_sent_date;";
+        SqlRowSet results = template.queryForRowSet(sql);
+        while(results.next()) {
+            filteredJobs.add(mapRowToJobCard(results));
+        }
+        return filteredJobs;
+    }
+
+    @Override
+    public List<JobCard> filterByContractSignedNoLetters() {
+        List<JobCard> filteredJobs = new ArrayList<>();
+        String sql = "SELECT * FROM job_card WHERE contract_signed = TRUE AND letters_sent = FALSE " +
+                "ORDER BY complete_by_date;";
+        SqlRowSet results = template.queryForRowSet(sql);
+        while(results.next()) {
+            filteredJobs.add(mapRowToJobCard(results));
+        }
+        return filteredJobs;
+    }
+
+    @Override
+    public List<JobCard> filterByLettersSentNotPlotted() {
+        List<JobCard> filteredJobs = new ArrayList<>();
+        String sql = "SELECT * FROM job_card WHERE letters_sent = TRUE AND is_plotted = FALSE " +
+                "ORDER BY complete_by_date;";
+        SqlRowSet results = template.queryForRowSet(sql);
+        while(results.next()) {
+            filteredJobs.add(mapRowToJobCard(results));
+        }
+        return filteredJobs;
+    }
+
+    @Override
+    public List<JobCard> filterByIsPlotted() {
+        List<JobCard> jobsReadyForField = new ArrayList<>();
+        String sql = "SELECT * FROM job_card WHERE is_plotted = TRUE ORDER BY complete_by_date;";
+        SqlRowSet results = template.queryForRowSet(sql);
+        while(results.next()) {
+            jobsReadyForField.add(mapRowToJobCard(results));
+        }
+        return jobsReadyForField;
     }
 
     // Mapping method to help other methods that return a JobCard object and have to read from db
