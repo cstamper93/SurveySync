@@ -15,8 +15,6 @@ public interface JobCardDao {
 
     List<JobCard> getAllJobCards();
 
-    // add ways to filter job card searches (ex: getCardsBy...clientName, city, associated crew members, etc...)
-
     List<JobCard> filterProspectsByNumber(Integer jobNum);
 
     List<JobCard> filterActiveJobsByNumber(Integer activeJobNum);

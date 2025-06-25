@@ -123,9 +123,13 @@ public class JdbcJobCardDao implements JobCardDao {
     // delete join rows too, and type and notes (but not properties or clients themselves!) (DONE 6/23)
     public boolean deleteJobCard(int id) {
         boolean success = false;
-        String sql = "DELETE FROM job_card, job_card_client, job_card_property WHERE job_id = ?;";
-        int linesUpdated = template.update(sql, id);
-        if(linesUpdated == 1) {
+        String jobCardSql = "DELETE FROM job_card, job_card_client, job_card_property WHERE job_id = ?;";
+        String jobCardClientSql = "DELETE FROM job_card_client WHERE job_id = ?;";
+        String jobCardPropertySql = "DELETE FROM job_card_property WHERE job_id = ?;";
+        int jobCardUpdated = template.update(jobCardSql, id);
+        int clientUpdated = template.update(jobCardClientSql, id);
+        int propertyUpdated = template.update(jobCardPropertySql, id);
+        if(jobCardUpdated == 1 && clientUpdated == 1 && propertyUpdated == 1) {
             success = true;
         }
         return success;
