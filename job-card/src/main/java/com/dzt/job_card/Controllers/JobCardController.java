@@ -74,4 +74,20 @@ public class JobCardController {
     public List<JobCard> filterByContractSent(@PathVariable Date date) {
         return jobCardDao.filterByContractSent(date);
     }
+
+    @GetMapping("/contract-signed")
+    public List<JobCard> filterByContractSignedNoLetters() {
+        return jobCardDao.filterByContractSignedNoLetters();
+    }
+
+    @GetMapping("/letters-sent")
+    public List<JobCard> filterByLettersSentNotPlotted() {
+        return jobCardDao.filterByLettersSentNotPlotted();
+    }
+
+    @GetMapping("/plotted")
+    public List<JobCard> filterByIsPlotted() {
+        return jobCardDao.filterByIsPlotted();
+    }
+
 }
