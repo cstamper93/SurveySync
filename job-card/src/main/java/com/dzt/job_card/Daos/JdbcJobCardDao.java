@@ -123,7 +123,7 @@ public class JdbcJobCardDao implements JobCardDao {
     // delete join rows too, and type and notes (but not properties or clients themselves!) (DONE 6/23)
     public boolean deleteJobCard(int id) {
         boolean success = false;
-        String jobCardSql = "DELETE FROM job_card, job_card_client, job_card_property WHERE job_id = ?;";
+        String jobCardSql = "DELETE FROM job_card WHERE job_id = ?;";
         String jobCardClientSql = "DELETE FROM job_card_client WHERE job_id = ?;";
         String jobCardPropertySql = "DELETE FROM job_card_property WHERE job_id = ?;";
         int jobCardUpdated = template.update(jobCardSql, id);
@@ -193,6 +193,19 @@ public class JdbcJobCardDao implements JobCardDao {
             jobsReadyForField.add(mapRowToJobCard(results));
         }
         return jobsReadyForField;
+    }
+
+    @Override
+    public List<JobCard> getJobsByClient(int clientId) {
+        List<JobCard> allClientJobs = new ArrayList<>();
+        String sql = "SELECT * FROM job_card jc " +
+                "JOIN job_card_client cc ON cc.job_id=jc.job_id " +
+                "WHERE client_id = ?;";
+        SqlRowSet results = template.queryForRowSet(sql, clientId);
+        while (results.next()) {
+            allClientJobs.add(mapRowToJobCard(results));
+        }
+        return allClientJobs;
     }
 
     // Mapping method to help other methods that return a JobCard object and have to read from db

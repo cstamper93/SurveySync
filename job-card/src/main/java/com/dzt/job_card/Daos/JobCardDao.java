@@ -33,4 +33,6 @@ public interface JobCardDao {
 
     List<JobCard> filterByIsPlotted();
 
+    List<JobCard> getJobsByClient(int clientId);
+
 }

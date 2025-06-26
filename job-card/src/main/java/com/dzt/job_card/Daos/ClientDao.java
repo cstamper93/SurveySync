@@ -1,6 +1,7 @@
 package com.dzt.job_card.Daos;
 
 import com.dzt.job_card.Models.Client;
+import com.dzt.job_card.Models.JobCard;
 
 import java.util.List;
 
@@ -15,6 +16,5 @@ public interface ClientDao {
     Client editClient(Client updatedClient);
 
     boolean deleteClient(int clientId);
-
 
 }
