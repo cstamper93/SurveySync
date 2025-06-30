@@ -90,4 +90,9 @@ public class JobCardController {
         return jobCardDao.filterByIsPlotted();
     }
 
+    @GetMapping("/clients-jobs/{clientId}")
+    public List<JobCard> getJobsByClient(int clientId) {
+        return jobCardDao.getJobsByClient(clientId);
+    }
+
 }
