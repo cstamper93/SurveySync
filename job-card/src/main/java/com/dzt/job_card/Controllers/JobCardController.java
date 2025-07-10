@@ -19,7 +19,7 @@ public class JobCardController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("add-card/{clientId}/{propertyId}")
-    public JobCard addJobCard(@RequestBody JobCard card, @PathVariable int clientId, int propertyId) {
+    public JobCard addJobCard(@RequestBody JobCard card, @PathVariable int clientId, @PathVariable int propertyId) {
         JobCard newCard = jobCardDao.createNewJobCard(card, clientId, propertyId);
         if(newCard == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to create new card");
@@ -28,7 +28,7 @@ public class JobCardController {
         }
     }
 
-    @GetMapping("/job-cards/{id}")
+    @GetMapping("/job-card/{id}")
     public JobCard getCardById(@PathVariable int id) {
         return jobCardDao.getCardById(id);
     }
