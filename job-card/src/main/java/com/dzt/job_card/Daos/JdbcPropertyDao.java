@@ -65,12 +65,29 @@ public class JdbcPropertyDao implements PropertyDao {
 
     @Override
     public Property editProperty(Property property) {
-        return null;
+        String sql = "UPDATE property SET owner_first_name = ?, owner_last_name = ?, address = ?, town = ?, " +
+                "state = ?, zip = ?, county = ?, deed_1 = ?, deed_2 = ?, deed_3 = ?, map_1 = ?, map_2 = ?, " +
+                "map_3 = ? perimeter = ?, acreage = ?, drive_time = ?, subdivision = ?, pid = ?, pin = ?, " +
+                "township = ?, lot_num = ?, prop_notes = ? WHERE prop_id = ?;";
+        template.update(sql, property.getOwnerFirstName(), property.getOwnerLastName(), property.getAddress(),
+                property.getTown(), property.getState(), property.getZip(), property.getCounty(), property.getDeed1(),
+                property.getDeed2(), property.getDeed3(), property.getMap1(), property.getMap2(), property.getMap3(),
+                property.getPerimeter(), property.getAcreage(), property.getDriveTime(), property.getSubdivision(),
+                property.getPid(), property.getPin(), property.getTownship(), property.getLotNum(),
+                property.getPropNotes());
+
+        return getPropertyById(property.getPropId());
     }
 
     @Override
     public boolean deleteProperty(int propId) {
-        return false;
+        boolean success = false;
+        String sql = "DELETE FROM property WHERE prop_id = ?;";
+        int linesUpdated = template.update(sql, propId);
+        if(linesUpdated == 1) {
+            success = true;
+        }
+        return success;
     }
 
     private Property mapRowToProperty(SqlRowSet rowSet) {
