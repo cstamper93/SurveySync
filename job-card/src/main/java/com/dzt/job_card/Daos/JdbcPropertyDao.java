@@ -6,6 +6,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -30,7 +31,11 @@ public class JdbcPropertyDao implements PropertyDao {
                 property.getAcreage(), property.getDriveTime(), property.getSubdivision(), property.getPid(),
                 property.getPin(), property.getTownship(), property.getLotNum(), property.getPropNotes());
 
-        return null;
+        if(newPropId == null) {
+            throw new NullPointerException("newPropId returned null pointer...sorry.");
+        } else {
+            return getPropertyById(newPropId);
+        }
     }
 
     @Override
@@ -39,13 +44,22 @@ public class JdbcPropertyDao implements PropertyDao {
         String sql = "SELECT * FROM property WHERE prop_id = ?;";
         SqlRowSet result = template.queryForRowSet(sql, propId);
         if(result.next()) {
-            //property = mapRowToProperty(result);
+            property = mapRowToProperty(result);
         }
-        return null;
+        if(property == null) {
+            throw new NullPointerException("Oops! Property is null...");
+        } else {
+            return property;
+        }
     }
 
     @Override
     public List<Property> getPropertiesByJob(int jobId) {
+        List<Property> properties = new ArrayList<>();
+        String sql = "SELECT * FROM property " +
+                "JOIN job_card_property ON property.prop_id = job_card_property.prop_id " +
+                "WHERE job_id = ?;";
+        SqlRowSet results = template.queryForRowSet(sql, jobId);
         return null;
     }
 
@@ -60,6 +74,30 @@ public class JdbcPropertyDao implements PropertyDao {
     }
 
     private Property mapRowToProperty(SqlRowSet rowSet) {
-        return null;
+        Property property = new Property();
+        property.setPropId(rowSet.getInt("prop_id"));
+        property.setOwnerFirstName(rowSet.getString("owner_first_name"));
+        property.setOwnerLastName(rowSet.getString("owner_last_name"));
+        property.setAddress(rowSet.getString("address"));
+        property.setTown(rowSet.getString("town"));
+        property.setState(rowSet.getString("state"));
+        property.setZip(rowSet.getString("zip"));
+        property.setCounty(rowSet.getString("county"));
+        property.setDeed1(rowSet.getString("deed_1"));
+        property.setDeed2(rowSet.getString("deed_2"));
+        property.setDeed3(rowSet.getString("deed_3"));
+        property.setMap1(rowSet.getString("map_1"));
+        property.setMap2(rowSet.getString("map_2"));
+        property.setMap3(rowSet.getString("map_3"));
+        property.setPerimeter(rowSet.getInt("perimeter"));
+        property.setAcreage(rowSet.getInt("acreage"));
+        property.setDriveTime(rowSet.getTime("drive_time"));
+        property.setSubdivision(rowSet.getString("subdivision"));
+        property.setPid(rowSet.getString("pid"));
+        property.setPin(rowSet.getString("pin"));
+        property.setTownship(rowSet.getString("township"));
+        property.setLotNum(rowSet.getString("lot_num"));
+        property.setPropNotes(rowSet.getString("prop_notes"));
+        return property;
     }
 }
