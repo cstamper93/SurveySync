@@ -4,7 +4,7 @@ public class JobType {
 
     private int jobTypeId;
     private int jobId;
-    private String jobType;
+    private String jobType; // division, eps, fs, alta, recomb, etc etc
     private double price;
     private String typeDescription;
     private int estimatedFieldDays;
