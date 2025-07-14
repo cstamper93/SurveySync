@@ -50,10 +50,6 @@ public class JdbcJobCardDao implements JobCardDao {
     }
 
     @Override
-    // 5/29 - fix to wrap in client, property, job type, contact, job note
-    // 6/3 - yes and contact - REVIEW JOINS
-    // Issue - we're returning JUST a jobCard object here - how do we send the associated client, prop, type, etc
-    // info with it? SOLUTION: WE CALL MULTIPLE METHODS IN THE CONTROLLER METHOD! WHOO!
     public JobCard getCardById(int id) {
         JobCard jobCard = null;
         String jobCardSql = "SELECT * FROM job_card WHERE job_id = ?;";
