@@ -64,12 +64,19 @@ public class JdbcJobTypeDao implements JobTypeDao {
 
     @Override
     public boolean deleteJobType(int id) {
-        return false;
+        boolean success = false;
+        String sql = "DELETE FROM job_type WHERE job_type_id = ?;";
+        int linesUpdated = template.update(sql, id);
+        if(linesUpdated == 1) {
+            success = true;
+        }
+        return success;
     }
 
     @Override
     public void deleteJobTypesByJob(int jobId) {
-
+        String sql = "DELETE FROM job_type WHERE job_id = ?;";
+        template.update(sql, jobId);
     }
 
     private JobType mapRowToJobType(SqlRowSet rs) {
