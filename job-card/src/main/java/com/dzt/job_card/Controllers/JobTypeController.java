@@ -1,0 +1,34 @@
+package com.dzt.job_card.Controllers;
+
+import com.dzt.job_card.Daos.JobTypeDao;
+import com.dzt.job_card.Models.JobType;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@CrossOrigin
+public class JobTypeController {
+
+    @Autowired
+    JobTypeDao jobTypeDao;
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/add-job-type")
+    public JobType addJobType(@RequestBody JobType jobType) {
+        return jobTypeDao.addJobType(jobType);
+    }
+
+    @GetMapping("/job-type/{id}")
+    public JobType getJobTypeById(@PathVariable int id) {
+        return jobTypeDao.getJobTypeById(id);
+    }
+
+    @GetMapping("/job-types/{id}")
+    public List<JobType> getJobTypesByJob(@PathVariable int id) {
+        return jobTypeDao.getJobTypesByJob(id);
+    }
+
+}
