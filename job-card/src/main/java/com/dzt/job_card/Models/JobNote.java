@@ -6,7 +6,7 @@ import java.util.Date;
 public class JobNote {
 
     private int noteId;
-    private int noteContent;
+    private String noteContent;
     private int userId;
     private Date dateCreated;
     private Time timeCreated;
@@ -22,11 +22,11 @@ public class JobNote {
         this.noteId = noteId;
     }
 
-    public int getNoteContent() {
+    public String getNoteContent() {
         return noteContent;
     }
 
-    public void setNoteContent(int noteContent) {
+    public void setNoteContent(String noteContent) {
         this.noteContent = noteContent;
     }
 
