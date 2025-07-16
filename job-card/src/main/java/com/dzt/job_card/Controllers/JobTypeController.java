@@ -31,4 +31,21 @@ public class JobTypeController {
         return jobTypeDao.getJobTypesByJob(id);
     }
 
+    @PutMapping("/job-type")
+    public JobType editJobType(@RequestBody JobType jobType) {
+        return jobTypeDao.editJobType(jobType);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/job-type/{id}")
+    public boolean deleteJobType(@PathVariable int id) {
+        return jobTypeDao.deleteJobType(id);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/job-type-job/{id}")
+    public void deleteJobTypesByJob(@PathVariable int id) {
+        jobTypeDao.deleteJobTypesByJob(id);
+    }
+
 }
