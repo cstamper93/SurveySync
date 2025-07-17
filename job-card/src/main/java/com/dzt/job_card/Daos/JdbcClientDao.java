@@ -4,11 +4,13 @@ import com.dzt.job_card.Models.Client;
 import com.dzt.job_card.Models.JobCard;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class JdbcClientDao implements ClientDao {
 
     private final JdbcTemplate template;

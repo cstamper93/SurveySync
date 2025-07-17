@@ -4,11 +4,13 @@ import com.dzt.job_card.Models.JobType;
 import org.springframework.boot.autoconfigure.batch.BatchProperties;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class JdbcJobTypeDao implements JobTypeDao {
 
     private final JdbcTemplate template;

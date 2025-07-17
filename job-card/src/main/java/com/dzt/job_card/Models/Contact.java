@@ -9,6 +9,7 @@ public class Contact {
     private Time time;
     private int userId;
     private int jobId;
+    private int clientId;
     private String method;
     private String description;
 
@@ -44,6 +45,14 @@ public class Contact {
 
     public void setJobId(int jobId) {
         this.jobId = jobId;
+    }
+
+    public int getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(int clientId) {
+        this.clientId = clientId;
     }
 
     public String getMethod() {

@@ -3,11 +3,13 @@ package com.dzt.job_card.Daos;
 import com.dzt.job_card.Models.JobNote;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class JdbcJobNoteDao implements JobNoteDao {
 
     private final JdbcTemplate template;

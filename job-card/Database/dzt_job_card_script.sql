@@ -124,6 +124,7 @@ CREATE TABLE contact(
     time TIME,
     user_id INTEGER,
     job_id INTEGER,
+    client_id INTEGER,
     method VARCHAR(25),
     description VARCHAR(7000),
     CONSTRAINT PK_contact PRIMARY KEY(date, time),
