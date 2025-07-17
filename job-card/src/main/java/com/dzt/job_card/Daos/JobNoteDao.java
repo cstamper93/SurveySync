@@ -16,6 +16,6 @@ public interface JobNoteDao {
 
     boolean deleteNote(int id);
 
-    boolean deleteNotesByJob(int jobId);
+    int deleteNotesByJob(int jobId);
 
 }

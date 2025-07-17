@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
 import java.util.List;
 
 public class JdbcJobNoteDao implements JobNoteDao {
@@ -42,22 +43,40 @@ public class JdbcJobNoteDao implements JobNoteDao {
 
     @Override
     public List<JobNote> getAllNotesByJob(int jobId) {
-        return null;
+        List<JobNote> notes = new ArrayList<>();
+        String sql = "SELECT * FROM job_note WHERE job_id = ?";
+        SqlRowSet results = template.queryForRowSet(sql, jobId);
+        while(results.next()) {
+            notes.add(mapRowToJobNote(results));
+        }
+        return notes;
     }
 
     @Override
     public JobNote editNote(JobNote jobNote) {
-        return null;
+        String sql = "UPDATE job_note SET job_note_id = ?, note_content = ?, user_id = ?, date_created = ? " +
+                "time_created = ?, job_id = ?;";
+        template.update(sql, jobNote.getNoteId(), jobNote.getNoteContent(), jobNote.getUserId(),
+                jobNote.getDateCreated(), jobNote.getTimeCreated(), jobNote.getJobId());
+        return getNoteById(jobNote.getNoteId());
     }
 
     @Override
     public boolean deleteNote(int id) {
-        return false;
+        boolean success = false;
+        String sql = "DELETE * FROM job_note WHERE job_note_id = ?;";
+        int linesUpdated = template.update(sql, id);
+        if(linesUpdated == 1) {
+            success = true;
+        }
+        return success;
     }
 
     @Override
-    public boolean deleteNotesByJob(int jobId) {
-        return false;
+    public int deleteNotesByJob(int jobId) {
+        String sql = "DELETE * FROM job_note WHERE job_id = ?;";
+        int linesUpdated = template.update(sql, jobId);
+        return linesUpdated;
     }
 
     private JobNote mapRowToJobNote(SqlRowSet rs) {
