@@ -120,6 +120,7 @@ CREATE TABLE field_entry(
 );
 
 CREATE TABLE contact(
+    contact_id SERIAL,
     date DATE,
     time TIME,
     user_id INTEGER,
@@ -127,7 +128,7 @@ CREATE TABLE contact(
     client_id INTEGER,
     method VARCHAR(25),
     description VARCHAR(7000),
-    CONSTRAINT PK_contact PRIMARY KEY(date, time),
+    CONSTRAINT PK_contact PRIMARY KEY(contact_id),
     CONSTRAINT FK_user_id_user FOREIGN KEY(user_id) REFERENCES user(user_id),
     CONSTRAINT FK_job_id_contact FOREIGN KEY(job_id) REFERENCES job_card(job_id)
 );

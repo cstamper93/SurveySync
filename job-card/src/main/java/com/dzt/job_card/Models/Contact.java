@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class Contact {
 
+    private int contactId;
     private Date date;
     private Time time;
     private int userId;
@@ -14,6 +15,14 @@ public class Contact {
     private String description;
 
     public Contact(){}
+
+    public int getContactId() {
+        return contactId;
+    }
+
+    public void setContactId(int contactId) {
+        this.contactId = contactId;
+    }
 
     public Date getDate() {
         return date;

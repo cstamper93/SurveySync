@@ -24,8 +24,8 @@ public class JdbcContactDao implements ContactDao {
     public Contact addContact(Contact contact) {
         Contact newContact = new Contact();
         String sql = "INSERT INTO contact (date, time, user_id, job_id, client_id, method, description) " +
-                "VALUES(?, ?, ?, ?, ?, ?, ?);";
-        template.update(sql, contact.getDate(), contact.getTime(), contact.getUserId(), contact.getJobId(),
+                "VALUES(?, ?, ?, ?, ?, ?, ?) RETURNING contact_id;";
+        Integer newId = template.update(sql, Integer.class, contact.getDate(), contact.getTime(), contact.getUserId(), contact.getJobId(),
                 contact.getClientId(), contact.getMethod(), contact.getDescription());
         return null;
     }
@@ -78,4 +78,18 @@ public class JdbcContactDao implements ContactDao {
     public int deleteContactsByJob(int jobId) {
         return 0;
     }
+
+    private Contact mapRowToContact(SqlRowSet rs) {
+        Contact contact = new Contact();
+        contact.setContactId(rs.getInt("contact_id"));
+        contact.setDate(rs.getDate("date"));
+        contact.setTime(rs.getTime("time"));
+        contact.setUserId(rs.getInt("user_id"));
+        contact.setJobId(rs.getInt("job_id"));
+        contact.setClientId(rs.getInt("client_id"));
+        contact.setMethod(rs.getString("method"));
+        contact.setDescription(rs.getString("description"));
+        return contact;
+    }
+
 }
