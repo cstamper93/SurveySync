@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -27,56 +28,105 @@ public class JdbcContactDao implements ContactDao {
                 "VALUES(?, ?, ?, ?, ?, ?, ?) RETURNING contact_id;";
         Integer newId = template.update(sql, Integer.class, contact.getDate(), contact.getTime(), contact.getUserId(), contact.getJobId(),
                 contact.getClientId(), contact.getMethod(), contact.getDescription());
-        return null;
-    }
 
-    // 7/16 - add mapping method
+        return getContactById(newId);
+    }
 
     @Override
-    public Contact getContactByDateTime(Date date, Time time) {
-        String sql = "SELECT * FROM contact WHERE date = ? AND time = ?;";
-
-        return null;
+    public Contact getContactById(int id) {
+        Contact contact = new Contact();
+        String sql = "SELECT * FROM contact WHERE contact_id = ?;";
+        SqlRowSet result = template.queryForRowSet(sql, id);
+        if (result.next()) {
+            contact = mapRowToContact(result);
+        }
+        return contact;
     }
 
+
+    // Should this ever be used?? This List could become quite large!
     @Override
     public List<Contact> getAllContacts() {
-        return null;
+        List<Contact> contacts = new ArrayList<>();
+        String sql = "SELECT * FROM contact ORDER BY date AND time;";
+        SqlRowSet results = template.queryForRowSet(sql);
+        while(results.next()) {
+            contacts.add(mapRowToContact(results));
+        }
+        return contacts;
     }
 
     @Override
     public List<Contact> getContactsByJob(int jobId) {
-        return null;
+        List<Contact> contacts = new ArrayList<>();
+        String sql = "SELECT * FROM contact WHERE job_id = ?;";
+        SqlRowSet results = template.queryForRowSet(sql, jobId);
+        while(results.next()) {
+            contacts.add(mapRowToContact(results));
+        }
+        return contacts;
     }
 
     @Override
     public List<Contact> getContactsByClient(int clientId) {
-        return null;
+        List<Contact> contacts = new ArrayList<>();
+        String sql = "SELECT * FROM contact WHERE client_id = ?;";
+        SqlRowSet results = template.queryForRowSet(sql, clientId);
+        while(results.next()) {
+            contacts.add(mapRowToContact(results));
+        }
+        return contacts;
     }
 
     @Override
     public List<Contact> getContactsByUser(int userId) {
-        return null;
+        List<Contact> contacts = new ArrayList<>();
+        String sql = "SELECT * FROM contact WHERE user_id = ?;";
+        SqlRowSet results = template.queryForRowSet(sql, userId);
+        while(results.next()) {
+            contacts.add(mapRowToContact(results));
+        }
+        return contacts;
     }
 
     @Override
     public List<Contact> getContactsByDate(Date date) {
-        return null;
+        List<Contact> contacts = new ArrayList<>();
+        String sql = "SELECT * FROM contact WHERE date = ?;";
+        SqlRowSet results = template.queryForRowSet(sql, date);
+        while(results.next()) {
+            contacts.add(mapRowToContact(results));
+        }
+        return contacts;
     }
 
     @Override
     public Contact editContact(Contact contact) {
-        return null;
+        String sql = "UPDATE contact SET date = ?, time = ?, user_id = ?, job_id = ?, client_id = ?, " +
+                "method = ?, description = ? WHERE contact_id = ?;";
+        template.update(sql, contact.getContactId(), contact.getDate(), contact.getTime(), contact.getUserId(),
+                contact.getJobId(), contact.getClientId(), contact.getMethod(), contact.getDescription(),
+                contact.getClientId());
+
+        return getContactById(contact.getContactId());
     }
 
     @Override
-    public boolean deleteContact(Date date, Time time) {
-        return false;
+    public boolean deleteContact(int id) {
+        boolean success = false;
+        String sql = "DELETE * FROM contact WHERE contact_id = ?;";
+        int lineUpdated = template.update(sql, id);
+        if(lineUpdated == 1) {
+            success = true;
+        }
+        return success;
     }
 
     @Override
     public int deleteContactsByJob(int jobId) {
-        return 0;
+        String sql = "DELETE * FROM contact WHERE job_id = ?;";
+        int linesUpdated = template.update(sql, jobId);
+        return linesUpdated;
     }
 
     private Contact mapRowToContact(SqlRowSet rs) {

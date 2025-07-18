@@ -10,7 +10,7 @@ public interface ContactDao {
 
     Contact addContact(Contact contact);
 
-    Contact getContactByDateTime(Date date, Time time);
+    Contact getContactById(int id);
 
     List<Contact> getAllContacts();
 
@@ -24,7 +24,7 @@ public interface ContactDao {
 
     Contact editContact(Contact contact);
 
-    boolean deleteContact(Date date, Time time);
+    boolean deleteContact(int id);
 
     int deleteContactsByJob(int jobId);
 
