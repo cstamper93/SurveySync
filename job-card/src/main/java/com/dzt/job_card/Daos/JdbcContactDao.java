@@ -92,7 +92,7 @@ public class JdbcContactDao implements ContactDao {
     @Override
     public List<Contact> getContactsByDate(Date date) {
         List<Contact> contacts = new ArrayList<>();
-        String sql = "SELECT * FROM contact WHERE date = ?;";
+        String sql = "SELECT * FROM contact WHERE date = ? ORDER BY date DESC;";
         SqlRowSet results = template.queryForRowSet(sql, date);
         while(results.next()) {
             contacts.add(mapRowToContact(results));
