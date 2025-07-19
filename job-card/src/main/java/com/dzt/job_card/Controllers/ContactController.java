@@ -57,4 +57,16 @@ public class ContactController {
         return contactDao.editContact(contact);
     }
 
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @DeleteMapping("/contact-single/{id}")
+    public boolean deleteContact(@PathVariable int id) {
+        return contactDao.deleteContact(id);
+    }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @DeleteMapping("contact-job/{jobId}")
+    public int deleteContactByJob(@PathVariable int jobId) {
+        return contactDao.deleteContactsByJob(jobId);
+    }
+
 }
