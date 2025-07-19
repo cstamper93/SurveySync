@@ -1,6 +1,7 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS job_card, field_entry;
+DROP TABLE IF EXISTS job_card, client, job_card_client, property, job_card_property,
+job_type, job_note, field_entry, contact, users;
 
 CREATE TABLE job_card(
     job_id SERIAL,
@@ -89,7 +90,7 @@ CREATE TABLE job_type(
     job_type_id SERIAL,
     job_id INTEGER,
     job_type VARCHAR(25),
-    price DOUBLE,
+    price DOUBLE PRECISION,
     type_description VARCHAR(1000),
     estimated_field_days INTEGER,
     CONSTRAINT PK_job_type PRIMARY KEY(job_type_id),
@@ -116,7 +117,7 @@ CREATE TABLE field_entry(
     hours_worked INTEGER,
     minutes_worked INTEGER,
     CONSTRAINT PK_field_entry PRIMARY KEY(job_id, entry_date, crew_name_1),
-    CONSTRAINT FK_id_field_entry_job_card FOREIGN KEY (job_id) REFERENCES job_card(id)
+    CONSTRAINT FK_id_field_entry_job_card FOREIGN KEY (job_id) REFERENCES job_card(job_id)
 );
 
 CREATE TABLE contact(
@@ -129,8 +130,17 @@ CREATE TABLE contact(
     method VARCHAR(25),
     description VARCHAR(7000),
     CONSTRAINT PK_contact PRIMARY KEY(contact_id),
-    CONSTRAINT FK_user_id_user FOREIGN KEY(user_id) REFERENCES user(user_id),
+    CONSTRAINT FK_user_id_users FOREIGN KEY(user_id) REFERENCES users(user_id),
     CONSTRAINT FK_job_id_contact FOREIGN KEY(job_id) REFERENCES job_card(job_id)
+);
+
+CREATE TABLE users(
+    user_id SERIAL,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    password_hash VARCHAR(200) NOT NULL,
+    roll VARCHAR(50) NOT NULL,
+    CONSTRAINT PK_users PRIMARY KEY(user_id)
 );
 
 COMMIT;
