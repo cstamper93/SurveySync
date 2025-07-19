@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS job_card, field_entry;
 
 CREATE TABLE job_card(
     job_id SERIAL,
-    prospect_id VARCHAR(100)
+    prospect_id VARCHAR(100),
     active_job_id VARCHAR(25),
     intake_date DATE,
     intake_time TIMESTAMP,
