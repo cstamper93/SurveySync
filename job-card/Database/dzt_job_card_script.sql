@@ -120,6 +120,15 @@ CREATE TABLE field_entry(
     CONSTRAINT FK_id_field_entry_job_card FOREIGN KEY (job_id) REFERENCES job_card(job_id)
 );
 
+CREATE TABLE users(
+    user_id SERIAL,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    password_hash VARCHAR(200) NOT NULL,
+    roll VARCHAR(50) NOT NULL,
+    CONSTRAINT PK_users PRIMARY KEY(user_id)
+);
+
 CREATE TABLE contact(
     contact_id SERIAL,
     date DATE,
@@ -132,15 +141,6 @@ CREATE TABLE contact(
     CONSTRAINT PK_contact PRIMARY KEY(contact_id),
     CONSTRAINT FK_user_id_users FOREIGN KEY(user_id) REFERENCES users(user_id),
     CONSTRAINT FK_job_id_contact FOREIGN KEY(job_id) REFERENCES job_card(job_id)
-);
-
-CREATE TABLE users(
-    user_id SERIAL,
-    first_name VARCHAR(50),
-    last_name VARCHAR(50),
-    password_hash VARCHAR(200) NOT NULL,
-    roll VARCHAR(50) NOT NULL,
-    CONSTRAINT PK_users PRIMARY KEY(user_id)
 );
 
 COMMIT;
