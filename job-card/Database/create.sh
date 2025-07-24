@@ -1,6 +1,6 @@
 #!/bin/zsh
 export PGPASSWORD='postgres1'
-export PGPORT=15432
+export PGPORT=5433
 BASEDIR=$(dirname $0)
 DATABASE=dzt_job_card_db
 psql -U postgres -f "$BASEDIR/dropdb.sql" &&
