@@ -25,7 +25,7 @@ public class JdbcJobTypeDao implements JobTypeDao {
                 "estimated_field_days VALUES(?, ?, ?, ?, ?) " +
                 "RETURNING job_type_id;";
         Integer newId = template.queryForObject(sql, Integer.class, jobType.getJobId(), jobType.getJobType(),
-                jobType.getPrice(), jobType.getTypeDescription(), jobType.getEstimatedFieldDays());
+                jobType.getPrice(), jobType.getTypeDescription(), jobType.getEstimatedFieldHours());
         if(newId == null) {
             throw new NullPointerException("New job type was not created :0");
         } else {
@@ -60,7 +60,7 @@ public class JdbcJobTypeDao implements JobTypeDao {
         String sql = "UPDATE job_type SET job_type_id = ?, job_id = ?, job_type = ?, price = ?, " +
                 "type_description = ?, estimated_field_days = ?;";
         template.update(sql, jobType.getJobTypeId(), jobType.getJobId(), jobType.getJobType(), jobType.getPrice(),
-                jobType.getTypeDescription(), jobType.getEstimatedFieldDays());
+                jobType.getTypeDescription(), jobType.getEstimatedFieldHours());
         return getJobTypeById(jobType.getJobTypeId());
     }
 
@@ -88,7 +88,7 @@ public class JdbcJobTypeDao implements JobTypeDao {
         jobType.setJobType(rs.getString("job_type"));
         jobType.setPrice(rs.getDouble("price"));
         jobType.setTypeDescription(rs.getString("type_description"));
-        jobType.setEstimatedFieldDays(rs.getInt("estimated_field_days"));
+        jobType.setEstimatedFieldHours(rs.getInt("estimated_field_days"));
         return jobType;
     }
 }

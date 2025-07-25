@@ -7,7 +7,7 @@ public class JobType {
     private String jobType; // division, eps, fs, alta, recomb, etc etc
     private double price;
     private String typeDescription;
-    private int estimatedFieldDays;
+    private int estimatedFieldHours;
 
     public JobType(){}
 
@@ -51,11 +51,11 @@ public class JobType {
         this.typeDescription = typeDescription;
     }
 
-    public int getEstimatedFieldDays() {
-        return estimatedFieldDays;
+    public int getEstimatedFieldHours() {
+        return estimatedFieldHours;
     }
 
-    public void setEstimatedFieldDays(int estimatedFieldDays) {
-        this.estimatedFieldDays = estimatedFieldDays;
+    public void setEstimatedFieldHours(int estimatedFieldHours) {
+        this.estimatedFieldHours = estimatedFieldHours;
     }
 }

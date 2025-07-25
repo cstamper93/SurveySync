@@ -6,7 +6,7 @@ import java.util.Date;
 public class JobCard {
 
     private int jobId;
-    private String prospectId;
+    private int prospectId;
     private String activeJobId;
     private Date intakeDate;
     private Time intakeTime;
@@ -25,6 +25,9 @@ public class JobCard {
     private String plottedBy;
 
     public JobCard() {
+        this.contractSigned = false;
+        this.lettersSent = false;
+        this.isPlotted = false;
     }
 
     public int getJobId() {
@@ -35,11 +38,11 @@ public class JobCard {
         this.jobId = jobId;
     }
 
-    public String getProspectId() {
+    public int getProspectId() {
         return prospectId;
     }
 
-    public void setProspectId(String prospectId) {
+    public void setProspectId(int prospectId) {
         this.prospectId = prospectId;
     }
 

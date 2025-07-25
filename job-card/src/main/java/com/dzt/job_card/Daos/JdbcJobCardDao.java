@@ -208,7 +208,7 @@ public class JdbcJobCardDao implements JobCardDao {
     private JobCard mapRowToJobCard(SqlRowSet rowSet) {
         JobCard jobCard = new JobCard();
         jobCard.setJobId(rowSet.getInt("job_id"));
-        jobCard.setProspectId(rowSet.getString("prospect_id"));
+        jobCard.setProspectId(rowSet.getInt("prospect_id"));
         jobCard.setActiveJobId(rowSet.getString("active_job_id"));
         jobCard.setIntakeDate(rowSet.getDate("intake_date"));
         jobCard.setIntakeTime(rowSet.getTime("intake_time"));

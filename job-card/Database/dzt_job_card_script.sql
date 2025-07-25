@@ -5,10 +5,10 @@ job_type, job_note, field_entry, contact, users;
 
 CREATE TABLE job_card(
     job_id SERIAL,
-    prospect_id VARCHAR(100),
+    prospect_id SERIAL,
     active_job_id VARCHAR(25),
     intake_date DATE,
-    intake_time TIMESTAMP,
+    intake_time TIME,
     marked_lines_length INTEGER,
     job_description VARCHAR(7000),
     house_plan_name VARCHAR(100),
@@ -88,11 +88,11 @@ CREATE TABLE job_card_property(
 
 CREATE TABLE job_type(
     job_type_id SERIAL,
-    job_id INTEGER,
+    job_id INTEGER NOT NULL,
     job_type VARCHAR(25),
     price DOUBLE PRECISION,
     type_description VARCHAR(1000),
-    estimated_field_days INTEGER,
+    estimated_field_hours INTEGER,
     CONSTRAINT PK_job_type PRIMARY KEY(job_type_id),
     CONSTRAINT FK_job_id FOREIGN KEY(job_id) REFERENCES job_card(job_id)
 );
