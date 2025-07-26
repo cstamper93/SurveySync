@@ -23,7 +23,7 @@ public class JdbcClientDao implements ClientDao {
         String sql = "INSERT INTO client (first_name, last_name, company, cell_phone_number, home_phone_number, " +
                 "work_phone_number, billing_address, billing_town, billing_state, billing_zip, client_email, " +
                 "alt_email, client_notes) " +
-                "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id;";
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id;";
         Integer newClientId = template.queryForObject(sql, Integer.class, client.getFirstName(), client.getLastName(),
                 client.getCompany(), client.getCellPhoneNumber(), client.getHomePhoneNumber(),
                 client.getWorkPhoneNumber(), client.getBillingAddress(), client.getBillingTown(),
