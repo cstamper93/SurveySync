@@ -17,7 +17,7 @@ public class ClientController {
     ClientDao clientDao;
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("add-client")
+    @PostMapping("/add-client")
     public Client addNewClient(@RequestBody Client client) {
         Client newClient = clientDao.createNewClient(client);
         if(newClient == null) {
@@ -27,12 +27,12 @@ public class ClientController {
         }
     }
 
-    @GetMapping("client/{id}")
+    @GetMapping("/client/{id}")
     public Client getClientById(@PathVariable int id) {
         return clientDao.getClientById(id);
     }
 
-    @GetMapping("clients")
+    @GetMapping("/clients")
     public List<Client> getAllClients() {
         return clientDao.getAllClients();
     }
@@ -49,7 +49,7 @@ public class ClientController {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("client/{id}")
+    @DeleteMapping("/client/{id}")
     public boolean deleteClient(@PathVariable int id) {
         return clientDao.deleteClient(id);
     }
