@@ -4,7 +4,7 @@
     <form class="prospect-form">
 
         <h2>Client Details</h2>
-        <div class="flex-group">
+        <div class="flex-row">
         <div class="flex-group">
         <label for="firstName"
         class="input-label"
@@ -126,10 +126,10 @@
         placeholder="Billing Zip"
         />
         </div>
-        <label for="clientNotes"
-        class="input-label"
-        >Client Notes: </label>
-        <textarea class="input-box"
+
+        <h3>Client Notes</h3>
+        <button class="add-note-btn">Add Note</button>
+        <textarea v-if="addNote" class="input-box"
         id="clientNotes"
         cols="30"
         rows="10"
@@ -137,6 +137,8 @@
         ></textarea>
 
         <h2>Job Details</h2>
+
+        <button class="new-prospect-btn" type="submit">Add Prospect</button>
     </form>
   </div>
 </template>
@@ -191,12 +193,28 @@ export default {
   .input-box {
     margin-left: auto;
     margin-right: auto;
-    width: 20%;
+    width: 200px;
     margin-bottom: 15px;
+  }
+
+  .flex-row {
+    display: flex;
   }
 
   .flex-group {
     display: flex;
     flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .billing-info {
+    margin-bottom: 15px;
+  }
+
+  button {
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
   }
 </style>
