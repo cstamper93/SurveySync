@@ -164,12 +164,12 @@
         cols="30"
         rows="10"
         placeholder="Put client notes here"
-        v-model="newClient.firstName"
+        v-model="newClient.clientNotes"
         ></textarea>
 
         <h2>Job Details</h2>
 
-        <button class="new-prospect-btn" type="submit">Add Prospect</button>
+        <button class="new-prospect-btn" type="submit">+Add Prospect</button>
     </form>
   </div>
 </template>
@@ -203,6 +203,7 @@ export default {
       ClientService.addClient(this.newClient).then((response) => {
         if (response.status === 201) {
           alert('New client added.')
+          this.$router.go()
         }
       })
     }
@@ -257,4 +258,5 @@ export default {
     margin-left: auto;
     margin-right: auto;
   }
+
 </style>

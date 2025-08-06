@@ -8,5 +8,9 @@ export default {
 
   addClient (client) {
     return http.post('/add-client', client)
+  },
+
+  getAllClients () {
+    return http.get('/clients')
   }
 }
