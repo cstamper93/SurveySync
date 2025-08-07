@@ -1,7 +1,16 @@
 <template>
   <div class="component-container">
     <div class="client-card">
-      <h2 class="client-name">{{ client.firstName }} {{ client.lastName }}</h2>
+      <div class="title-row-container">
+        <h3>Name</h3>
+        <h3>Phone</h3>
+        <h3>Email</h3>
+      </div>
+      <div class="clients-list">
+        <p class="client-name">{{ client.firstName }} {{ client.lastName }}</p>
+        <p>{{ client.cellPhoneNumber }}</p>
+        <p>{{ client.clientEmail }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -25,5 +34,22 @@ export default {
 </script>
 
 <style>
+.client-card {
+  margin-left: 10px;
+  margin-right: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: solid black 2px;
+  border-radius: 2px;
+}
 
+.title-row-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.clients-list {
+  display: flex;
+  justify-content: space-between;
+}
 </style>

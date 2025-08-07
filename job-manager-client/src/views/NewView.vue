@@ -4,6 +4,7 @@
     <form class="prospect-form" @submit.prevent="addClient">
 
         <h2>Client Details</h2>
+
         <div class="flex-row">
         <div class="flex-group">
 
@@ -167,6 +168,191 @@
         v-model="newClient.clientNotes"
         ></textarea>
 
+        <h2>Property Details</h2>
+
+        <label for="ownerFirstName"
+        class="input-label"
+        >Owner First Name: </label>
+        <input type="text"
+        id="ownerFirstName"
+        class="input-box"
+        v-model="newProperty.ownerFirstName" />
+
+        <label for="ownerLastname"
+        class="input-label"
+        >Owner Last Name: </label>
+        <input type="text"
+        id="ownerLastName"
+        class="input-box"
+        v-model="newProperty.ownerLastName" />
+
+        <label for="address"
+        class="input-label"
+        >Property Address: </label>
+        <input type="text"
+        id="address"
+        class="input-box"
+        v-model="newProperty.address" />
+
+        <label for="town"
+        class="input-label"
+        >Town: </label>
+        <input type="text"
+        id="town"
+        class="input-box"
+        v-model="newProperty.town" />
+
+        <label for="state"
+        class="input-label"
+        >State: </label>
+        <input type="text"
+        id="state"
+        class="input-box"
+        v-model="newProperty.state" />
+
+        <label for="zip"
+        class="input-label"
+        >Zip: </label>
+        <input type="text"
+        id="zip"
+        class="input-box"
+        v-model="newProperty.zip" />
+
+        <label for="county"
+        class="input-label"
+        >County: </label>
+        <input type="text"
+        id="county"
+        class="input-box"
+        v-model="newProperty.county" />
+
+        <label for="subdivision"
+        class="input-label"
+        >Subdivision: </label>
+        <input type="text"
+        id="subdivision"
+        class="input-box"
+        v-model="newProperty.subdivision" />
+
+        <label for="lotNum"
+        class="input-label"
+        >Lot: </label>
+        <input type="text"
+        id="lotNum"
+        class="input-box"
+        v-model="newProperty.lotNum" />
+
+        <label for="deed1"
+        class="input-label"
+        >Deed 1: </label>
+        <input type="text"
+        id="deed1"
+        class="input-box"
+        v-model="newProperty.deed1" />
+
+        <label for="map1"
+        class="input-label"
+        >Map 1: </label>
+        <input type="text"
+        id="map1"
+        class="input-box"
+        v-model="newProperty.map1" />
+
+        <label for="deed2"
+        class="input-label"
+        >Deed 2: </label>
+        <input type="text"
+        id="deed2"
+        class="input-box"
+        v-model="newProperty.deed2" />
+
+        <label for="map2"
+        class="input-label"
+        >Map 2: </label>
+        <input type="text"
+        id="map2"
+        class="input-box"
+        v-model="newProperty.map2" />
+
+        <label for="deed3"
+        class="input-label"
+        >Deed 3: </label>
+        <input type="text"
+        id="deed3"
+        class="input-box"
+        v-model="newProperty.deed3" />
+
+        <label for="map3"
+        class="input-label"
+        >Map 3: </label>
+        <input type="text"
+        id="map3"
+        class="input-box"
+        v-model="newProperty.map3" />
+
+        <label for="perimeter"
+        class="input-label"
+        >Perimeter: </label>
+        <input type="number"
+        id="perimeter"
+        class="input-box"
+        placeholder="ex: 500"
+        v-model="newProperty.perimeter" />
+        <p>ft</p>
+
+        <label for="acreage"
+        class="input-label"
+        >Acreage: </label>
+        <input type="number"
+        id="acreage"
+        class="input-box"
+        placeholder="ex: 1.5"
+        v-model="newProperty.acreage" />
+        <p>acres</p>
+
+        <label for="driveTime"
+        class="input-label"
+        >Drive Time: </label>
+        <input type="time"
+        id="driveTime"
+        class="input-box"
+        v-model="newProperty.driveTime" />
+
+        <label for="pid"
+        class="input-label"
+        >Parcel ID: </label>
+        <input type="text"
+        id="pid"
+        class="input-box"
+        v-model="newProperty.pid" />
+
+        <label for="pin"
+        class="input-label"
+        >PIN / REID: </label>
+        <input type="text"
+        id="pin"
+        class="input-box"
+        v-model="newProperty.pin" />
+
+        <label for="township"
+        class="input-label"
+        >Township: </label>
+        <input type="text"
+        id="township"
+        class="input-box"
+        v-model="newProperty.township" />
+
+        <h3>Property Notes</h3>
+        <button class="add-note-btn" v-if="!addPropNote" @click="addPropNote = !addPropNote">Add Note</button>
+        <button class="add-note-btn" v-if="addPropNote" @click="addPropNote = !addPropNote">Cancel</button>
+        <textarea v-if="addPropNote" class="input-box"
+        id="propNotes"
+        cols="30"
+        rows="10"
+        placeholder="Put property notes here"
+        v-model="newProperty.propNotes"
+        ></textarea>
+
         <h2>Job Details</h2>
 
         <button class="new-prospect-btn" type="submit">+Add Prospect</button>
@@ -195,7 +381,32 @@ export default {
         altEmail: null,
         clientNotes: null
       },
-      addNote: false
+      addNote: false,
+      newProperty: {
+        ownerFirstName: null,
+        ownerLastName: null,
+        address: null,
+        town: null,
+        state: 'NC',
+        zip: null,
+        county: null,
+        deed1: null,
+        deed2: null,
+        deed3: null,
+        map1: null,
+        map2: null,
+        map3: null,
+        perimeter: null,
+        acreage: null,
+        driveTime: null,
+        subdivision: null,
+        pid: null,
+        pin: null,
+        township: null,
+        lotNum: null,
+        propNotes: null
+      },
+      addPropNote: false
     }
   },
   methods: {

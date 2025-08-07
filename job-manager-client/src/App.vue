@@ -5,6 +5,7 @@
       <li>User Profile</li>
       <li><router-link to="/new-prospect">+New</router-link></li>
       <li><router-link to="/">Prospects</router-link></li>
+      <li><router-link to="/clients">Clients</router-link></li>
       <li>Active Jobs</li>
       <li>Declined/Archived</li>
     </ul>
