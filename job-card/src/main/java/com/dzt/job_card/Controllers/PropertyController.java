@@ -16,28 +16,28 @@ public class PropertyController {
     PropertyDao propertyDao;
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("add-property")
+    @PostMapping("/add-property")
     public Property addNewProperty(@RequestBody Property property) {
         return propertyDao.addNewProperty(property);
     }
 
-    @GetMapping("property/{id}")
+    @GetMapping("/property/{id}")
     public Property getPropertyById(@PathVariable int id) {
         return propertyDao.getPropertyById(id);
     }
 
-    @GetMapping("properties/{id}")
+    @GetMapping("/properties/{id}")
     public List<Property> getPropertiesByJob(@PathVariable int jobId) {
         return propertyDao.getPropertiesByJob(jobId);
     }
 
-    @PutMapping("property")
+    @PutMapping("/property")
     public Property fixProperty(@RequestBody Property fixedProperty) {
         return propertyDao.editProperty(fixedProperty);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("property/{id}")
+    @DeleteMapping("/property/{id}")
     public boolean removeProperty(@PathVariable int id) {
         return propertyDao.deleteProperty(id);
     }

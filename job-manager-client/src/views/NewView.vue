@@ -170,6 +170,8 @@
 
         <h2>Property Details</h2>
 
+        <div class="property-location">
+        <div class="owner-name">
         <label for="ownerFirstName"
         class="input-label"
         >Owner First Name: </label>
@@ -178,14 +180,16 @@
         class="input-box"
         v-model="newProperty.ownerFirstName" />
 
-        <label for="ownerLastname"
+        <label for="ownerLastName"
         class="input-label"
         >Owner Last Name: </label>
         <input type="text"
         id="ownerLastName"
         class="input-box"
         v-model="newProperty.ownerLastName" />
+        </div>
 
+        <div class="flex-column">
         <label for="address"
         class="input-label"
         >Property Address: </label>
@@ -201,7 +205,9 @@
         id="town"
         class="input-box"
         v-model="newProperty.town" />
+        </div>
 
+        <div class="state-zip-county">
         <label for="state"
         class="input-label"
         >State: </label>
@@ -225,6 +231,8 @@
         id="county"
         class="input-box"
         v-model="newProperty.county" />
+        </div>
+        </div>
 
         <label for="subdivision"
         class="input-label"
@@ -362,6 +370,7 @@
 
 <script>
 import ClientService from '../Services/ClientService.js'
+import PropertyService from '../Services/PropertyService.js'
 export default {
   name: 'NewView',
   data () {
@@ -417,6 +426,14 @@ export default {
           this.$router.go()
         }
       })
+    },
+    addProperty () {
+      PropertyService.addProperty(this.newProperty).then((response) => {
+        if (response.status === 201) {
+          alert('New property added.')
+          this.$router.go()
+        }
+      })
     }
   }
 
@@ -468,6 +485,44 @@ export default {
     width: 150px;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .owner-name {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .property-location {
+    display: flex;
+    justify-content: space-around;
+    margin-left: 10rem;
+    margin-right: 10rem;
+  }
+
+  .state-zip-county {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .flex-row {
+    display: flex;
+  }
+
+  .flex-column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #state {
+    width: 25px;
+  }
+
+  #zip {
+    width: 50px;
+  }
+
+  #county {
+    width: 80px;
   }
 
 </style>
