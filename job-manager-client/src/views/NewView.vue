@@ -45,16 +45,18 @@
         <div class="flex-group">
         <label for="cellPhoneNumber"
         class="input-label"
-        >Cell Phone Number: </label>
+        >Phone: </label>
         <input
         type="text"
         id="cellPhoneNumber"
         class="input-box"
-        placeholder="Cell Phone Number"
+        placeholder="Phone"
         v-model="newClient.cellPhoneNumber"
         />
+        <button class="add-phone-btn"
+        @click.prevent="addPhone = !addPhone">+Add Phone</button>
 
-        <label for="homePhoneNumber"
+        <!-- <label for="homePhoneNumber"
         class="input-label"
         >Home Phone Number: </label>
         <input
@@ -67,14 +69,14 @@
 
         <label for="workPhoneNumber"
         class="input-label"
-        >Work Phone Number: </label>
+        >Phone: </label>
         <input
         type="text"
         id="workPhoneNumber"
         class="input-box"
         placeholder="Work Phone Number"
         v-model="newClient.workPhoneNumber"
-        />
+        /> -->
         </div>
 
         <div class="flex-group">
@@ -88,8 +90,10 @@
         placeholder="Email Address"
         v-model="newClient.clientEmail"
         />
+        <button class="add-email-btn"
+        @click.prevent="addEmail = !addEmail ">+Add Email</button>
 
-        <label for="altEmail"
+        <!-- <label for="altEmail"
         class="input-label"
         >Alternate Email Address: </label>
         <input
@@ -98,12 +102,16 @@
         class="input-box"
         placeholder="Alternate Email"
         v-model="newClient.altEmail"
-        />
+        /> -->
         </div>
         </div>
 
-        <h3>Billing Info</h3>
-        <div class="billing-info">
+        <button class="add-billing-btn" v-if="!addBilling"
+        @click.prevent="addBilling = !addBilling">+ Add Billing Info</button>
+        <button class="hide-billing-btn" v-if="addBilling"
+        @click.prevent="addBilling = !addBilling">- Hide Billing Info</button>
+
+        <div v-if="addBilling" class="billing-info">
         <div class="billing-field">
         <label for="billingAddress"
         class="input-label"
@@ -157,8 +165,7 @@
         </div>
         </div>
 
-        <h3>Client Notes</h3>
-        <button class="add-note-btn" v-if="!addNote" @click="addNote = !addNote">Add Note</button>
+        <button class="add-note-btn" v-if="!addNote" @click="addNote = !addNote">+Add Client Note</button>
         <button class="add-note-btn" v-if="addNote" @click="addNote = !addNote">Cancel</button>
         <textarea v-if="addNote" class="input-box"
         id="clientNotes"
@@ -168,7 +175,7 @@
         v-model="newClient.clientNotes"
         ></textarea>
 
-        <h2>Property Details</h2>
+        <h2 class="property-details-title">Property Details</h2>
 
         <div class="property-location">
         <div class="owner-name">
@@ -350,9 +357,8 @@
         class="input-box"
         v-model="newProperty.township" />
 
-        <h3>Property Notes</h3>
-        <button class="add-note-btn" v-if="!addPropNote" @click="addPropNote = !addPropNote">Add Note</button>
-        <button class="add-note-btn" v-if="addPropNote" @click="addPropNote = !addPropNote">Cancel</button>
+        <button class="add-note-btn" v-if="!addPropNote" @click.prevent="addPropNote = !addPropNote">+Add Property Note</button>
+        <button class="add-note-btn" v-if="addPropNote" @click.prevent="addPropNote = !addPropNote">Cancel</button>
         <textarea v-if="addPropNote" class="input-box"
         id="propNotes"
         cols="30"
@@ -390,6 +396,9 @@ export default {
         altEmail: null,
         clientNotes: null
       },
+      addPhone: false,
+      addEmail: false,
+      addBilling: false,
       addNote: false,
       newProperty: {
         ownerFirstName: null,
@@ -523,6 +532,14 @@ export default {
 
   #county {
     width: 80px;
+  }
+
+  .add-note-btn, .add-billing-btn, .hide-billing-btn {
+    margin-top: 20px;
+  }
+
+  .property-details-title {
+    margin-top: 50px;
   }
 
 </style>
