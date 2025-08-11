@@ -3,8 +3,9 @@ package com.dzt.job_card.Models;
 public class ClientPhone {
 
     private int phoneId;
-    private String phoneNumber; // make enum?
-    private String phoneType;
+    private int clientId;
+    private String phoneNumber;
+    private String phoneType; // make enum?
 
     public int getPhoneId() {
         return phoneId;
@@ -12,6 +13,14 @@ public class ClientPhone {
 
     public void setPhoneId(int phoneId) {
         this.phoneId = phoneId;
+    }
+
+    public int getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(int clientId) {
+        this.clientId = clientId;
     }
 
     public String getPhoneNumber() {

@@ -20,15 +20,12 @@ public class JdbcClientDao implements ClientDao {
     }
     @Override
     public Client createNewClient(Client client) {
-        String sql = "INSERT INTO client (first_name, last_name, company, cell_phone_number, home_phone_number, " +
-                "work_phone_number, billing_address, billing_town, billing_state, billing_zip, client_email, " +
-                "alt_email, client_notes) " +
+        String sql = "INSERT INTO client (first_name, last_name, company, billing_address, billing_town, " +
+                "billing_state, billing_zip, client_notes) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING client_id;";
         Integer newClientId = template.queryForObject(sql, Integer.class, client.getFirstName(), client.getLastName(),
-                client.getCompany(), client.getCellPhoneNumber(), client.getHomePhoneNumber(),
-                client.getWorkPhoneNumber(), client.getBillingAddress(), client.getBillingTown(),
-                client.getBillingState(), client.getBillingZip(), client.getClientEmail(), client.getAltEmail(),
-                client.getClientNotes());
+                client.getCompany(), client.getBillingAddress(), client.getBillingTown(),
+                client.getBillingState(), client.getBillingZip(), client.getClientNotes());
 
         return getClientById(newClientId);
     }
@@ -57,15 +54,12 @@ public class JdbcClientDao implements ClientDao {
 
     @Override
     public Client editClient(Client updatedClient) {
-        String sql = "UPDATE client SET first_name = ?, last_name = ?, company = ?, cell_phone_number = ?, " +
-                "home_phone_number = ?, work_phone_number = ?, billing_address = ?, billing_town = ?, " +
-                "billing_state = ?, billing_zip = ?, client_email = ?, alt_email = ?, client_notes = ? " +
+        String sql = "UPDATE client SET first_name = ?, last_name = ?, company = ?, billing_address = ?, " +
+                "billing_town = ?, billing_state = ?, billing_zip = ?, client_notes = ? " +
                 "WHERE client_id = ?;";
         template.update(sql, updatedClient.getFirstName(), updatedClient.getLastName(), updatedClient.getCompany(),
-                updatedClient.getCellPhoneNumber(), updatedClient.getHomePhoneNumber(), updatedClient.getWorkPhoneNumber(),
                 updatedClient.getBillingAddress(), updatedClient.getBillingTown(), updatedClient.getBillingState(),
-                updatedClient.getBillingZip(), updatedClient.getClientEmail(), updatedClient.getAltEmail(),
-                updatedClient.getClientNotes(), updatedClient.getClientId());
+                updatedClient.getBillingZip(), updatedClient.getClientNotes(), updatedClient.getClientId());
 
         return getClientById(updatedClient.getClientId());
     }
@@ -88,15 +82,10 @@ public class JdbcClientDao implements ClientDao {
         client.setFirstName(rowSet.getString("first_name"));
         client.setLastName(rowSet.getString("last_name"));
         client.setCompany(rowSet.getString("company"));
-        client.setCellPhoneNumber(rowSet.getString("cell_phone_number"));
-        client.setHomePhoneNumber(rowSet.getString("home_phone_number"));
-        client.setWorkPhoneNumber(rowSet.getString("work_phone_number"));
         client.setBillingAddress(rowSet.getString("billing_address"));
         client.setBillingTown(rowSet.getString("billing_town"));
         client.setBillingState(rowSet.getString("billing_state"));
         client.setBillingZip(rowSet.getString("billing_zip"));
-        client.setClientEmail(rowSet.getString("client_email"));
-        client.setAltEmail(rowSet.getString("alt_email"));
         client.setClientNotes(rowSet.getString("client_notes"));
         return client;
     }
