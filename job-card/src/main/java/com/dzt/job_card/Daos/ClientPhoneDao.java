@@ -8,6 +8,8 @@ public interface ClientPhoneDao {
 
     ClientPhone createClientPhone(ClientPhone clientPhone);
 
+    ClientPhone getPhoneById(int phoneId);
+
     List<ClientPhone> getAllPhonesForClient(int clientId);
 
     ClientPhone editClientPhone(ClientPhone clientPhone);
