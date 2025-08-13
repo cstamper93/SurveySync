@@ -62,7 +62,7 @@ public class JdbcClientPhoneDao implements ClientPhoneDao{
     }
 
     @Override
-    public boolean deleteClientPhone(int clientId, int phoneId) {
+    public boolean deleteClientPhone(int phoneId) {
         boolean success = false;
         String sql = "DELETE FROM client_phone WHERE  phone_id = ?";
         int rowsUpdated = template.update(sql, phoneId);

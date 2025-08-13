@@ -14,7 +14,7 @@ public interface ClientPhoneDao {
 
     ClientPhone editClientPhone(ClientPhone clientPhone);
 
-    boolean deleteClientPhone(int clientId, int phoneId);
+    boolean deleteClientPhone(int phoneId);
 
     void deleteAllClientPhones(int clientId);
 }
