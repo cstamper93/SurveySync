@@ -1,16 +1,18 @@
 package com.dzt.job_card.Daos;
 
+import com.dzt.job_card.Models.ClientEmail;
+
 import java.util.List;
 
 public interface ClientEmailDao {
 
-    ClientEmailDao createClientEmail(ClientEmailDao email);
+    ClientEmail createClientEmail(ClientEmail email);
 
-    ClientEmailDao getEmailById(int emailId);
+    ClientEmail getEmailById(int emailId);
 
-    List<ClientEmailDao> getAllEmailsForClient(int clientId);
+    List<ClientEmail> getAllEmailsForClient(int clientId);
 
-    ClientEmailDao editClientEmail(ClientEmailDao email);
+    ClientEmail editClientEmail(ClientEmail email);
 
     boolean deleteEmail(int emailId);
 
