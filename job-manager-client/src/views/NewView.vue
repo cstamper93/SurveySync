@@ -369,6 +369,90 @@
 
         <h2>Job Details</h2>
 
+        <label for="billingClient"
+        class="input-label"
+        >Client to Bill: </label>
+        <input type="text"
+        id="billingClient"
+        class="input-box"
+        v-model="newJob.billingClientId" />
+
+        <label for="markLinesLength"
+        class="input-label"
+        >Lines to mark (ft): </label>
+        <input type="number"
+        id="markLinesLength"
+        class="input-box"
+        v-model="newJob.markLinesLength" />
+
+        <label for="jobDescription"
+        class="input-label"
+        >Description: </label>
+        <textarea class="input-box"
+        id="jobDescription"
+        cols="30"
+        rows="10"
+        placeholder="Put job description here"
+        v-model="newJob.description"
+        ></textarea>
+
+        <label for="housePlanName"
+        class="input-label"
+        >House Plan Name: </label>
+        <input type="text"
+        id="housePlanName"
+        class="input-box"
+        v-model="newJob.housePlanName" />
+
+        <label for="readyDate"
+        class="input-label"
+        >Job Ready Date: </label>
+        <input type="date"
+        id="readyDate"
+        class="input-box"
+        v-model="newJob.readyDate" />
+
+        <label for="completeByDate"
+        class="input-label"
+        >Complete By Date: </label>
+        <input type="date"
+        id="completeByDate"
+        class="input-box"
+        v-model="newJob.completeByDate" />
+
+        <label for="readyDate"
+        class="input-label"
+        >Job Ready Date: </label>
+        <input type="date"
+        id="readyDate"
+        class="input-box"
+        v-model="newJob.markLinesLength" />
+
+        <h2>Job Type:</h2>
+
+        <label for="jobType"
+        class="input-label"
+        >Job Type: </label>
+        <input type="text"
+        id="jobType"
+        class="input-box"
+        v-model="jobType.jobType" />
+
+        <label for="price"
+        class="input-label"
+        >Price: </label>
+        <input type="text"
+        id="price"
+        class="input-box"
+        v-model="jobType.price" />
+
+        <button class="add-type-btn" v-if="!addType"
+        @click.prevent="addType = !addType"
+        >Add Type</button>
+        <button class="add-type-btn" v-if="addType"
+        @click.prevent="addType = !addType"
+        >Cancel</button>
+
         <button class="new-prospect-btn" type="submit">+Add Prospect</button>
     </form>
   </div>
@@ -458,7 +542,8 @@ export default {
         dateCreated: null,
         timeCreated: null,
         jobId: null
-      }
+      },
+      addType: false
     }
   },
   methods: {
