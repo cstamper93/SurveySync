@@ -24,7 +24,7 @@ public class JdbcJobCardDao implements JobCardDao {
         // 5/29 - usually, a new job comes with a new client and property. So, why not make inserts for them as well?
         // ACTUALLY, we can use the controller to call the client and other jdbc methods. Just contain it to
         // job card for now
-        String jobCardSql = "INSERT INTO job_card (prospect_id, active_job_id, intake_date, intake_time, " +
+        String jobCardSql = "INSERT INTO job_card (prospect_id, active_job_id, billing_client_id, intake_date, intake_time, " +
                 "marked_lines_length, job_description, house_plan_name, job_status, ready_date, complete_by_date, " +
                 "contract_sent_date, contract_signed, contract_signed_date, letters_sent, letters_sent_date, is_plotted, " +
                 "plotted_by) " +
@@ -33,7 +33,7 @@ public class JdbcJobCardDao implements JobCardDao {
         // include an insert for the lookup table(s)?
         // Probably, since jobCard is the "central" object - makes more sense to do that here
         Integer newJobId = template.queryForObject(jobCardSql, Integer.class, jobCard.getProspectId(),
-                jobCard.getActiveJobId(), jobCard.getIntakeDate(), jobCard.getIntakeTime(),
+                jobCard.getActiveJobId(), jobCard.getBillingClientId(), jobCard.getIntakeDate(), jobCard.getIntakeTime(),
                 jobCard.getMarkLinesLength(), jobCard.getJobDescription(), jobCard.getHousePlanName(),
                 jobCard.getJobStatus(), jobCard.getReadyDate(), jobCard.getCompleteByDate(), jobCard.getContractSentDate(),
                 jobCard.isContractSigned(), jobCard.getContractSignedDate(), jobCard.isLettersSent(), jobCard.getLettersSentDate(),
@@ -100,12 +100,13 @@ public class JdbcJobCardDao implements JobCardDao {
     @Override
     // edit join tables too
     public JobCard editJobCard(JobCard updatedCard) {
-        String sql = "UPDATE job_card SET prospect_id = ?, active_job_id = ?, intake_date = ?, intake_time = ?, " +
+        String sql = "UPDATE job_card SET prospect_id = ?, active_job_id = ?, billing_client_id = ?, intake_date = ?, intake_time = ?, " +
                 "marked_lines_length = ?, job_description = ?, house_plan_name = ?, job_status = ?, ready_date = ?, " +
                 "complete_by_date = ?, contract_sent_date = ?, contract_signed = ?, contract_signed_date = ?, " +
                 "letters_sent = ?, letters_sent_date = ?, is_plotted = ?, plotted_by = ? " +
                 "WHERE job_id = ?;";
-        template.update(sql, updatedCard.getProspectId(), updatedCard.getActiveJobId(), updatedCard.getIntakeDate(),
+        template.update(sql, updatedCard.getProspectId(), updatedCard.getActiveJobId(), updatedCard.getBillingClientId(),
+                updatedCard.getIntakeDate(),
                 updatedCard.getIntakeTime(), updatedCard.getMarkLinesLength(), updatedCard.getJobDescription(),
                 updatedCard.getHousePlanName(), updatedCard.getJobStatus(), updatedCard.getReadyDate(),
                 updatedCard.getCompleteByDate(), updatedCard.getContractSentDate(), updatedCard.isContractSigned(),
@@ -210,6 +211,7 @@ public class JdbcJobCardDao implements JobCardDao {
         jobCard.setJobId(rowSet.getInt("job_id"));
         jobCard.setProspectId(rowSet.getInt("prospect_id"));
         jobCard.setActiveJobId(rowSet.getString("active_job_id"));
+        jobCard.setBillingClientId(rowSet.getInt("billing_client_id"));
         jobCard.setIntakeDate(rowSet.getDate("intake_date"));
         jobCard.setIntakeTime(rowSet.getTime("intake_time"));
         jobCard.setMarkLinesLength(rowSet.getInt("marked_lines_length"));

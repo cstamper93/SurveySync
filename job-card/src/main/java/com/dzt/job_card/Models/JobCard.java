@@ -8,6 +8,7 @@ public class JobCard {
     private int jobId;
     private int prospectId;
     private String activeJobId;
+    private int billingClientId;
     private Date intakeDate;
     private Time intakeTime;
     private int markLinesLength;
@@ -53,6 +54,14 @@ public class JobCard {
 
     public void setActiveJobId(String activeJobId) {
         this.activeJobId = activeJobId;
+    }
+
+    public int getBillingClientId() {
+        return billingClientId;
+    }
+
+    public void setBillingClientId(int billingClientId) {
+        this.billingClientId = billingClientId;
     }
 
     public Date getIntakeDate() {

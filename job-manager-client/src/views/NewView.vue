@@ -424,7 +424,41 @@ export default {
         lotNum: null,
         propNotes: null
       },
-      addPropNote: false
+      addPropNote: false,
+      newJob: {
+        prospectId: null,
+        activeJobId: null,
+        billingClientId: null,
+        intakeDate: null,
+        intakeTime: null,
+        markLinesLength: null,
+        description: null,
+        housePlanName: null,
+        jobStatus: 'Needs Research',
+        readyDate: null,
+        completeByDate: null,
+        contractSentDate: null,
+        contractSigned: false,
+        contractSignedDate: null,
+        lettersSent: null,
+        lettersSentDate: null,
+        isPlotted: false,
+        plottedBy: null
+      },
+      jobType: {
+        jobId: null,
+        jobType: null,
+        price: null,
+        typeDescription: null,
+        estimatedFieldHours: null
+      },
+      jobNote: {
+        noteContent: null,
+        userId: null,
+        dateCreated: null,
+        timeCreated: null,
+        jobId: null
+      }
     }
   },
   methods: {

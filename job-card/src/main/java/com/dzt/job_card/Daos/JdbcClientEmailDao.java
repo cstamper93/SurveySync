@@ -7,6 +7,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -43,22 +44,38 @@ public class JdbcClientEmailDao implements ClientEmailDao {
 
     @Override
     public List<ClientEmail> getAllEmailsForClient(int clientId) {
-        return null;
+        List<ClientEmail> emails = new ArrayList<>();
+        String sql = "SELECT * FROM client_email WHERE client_id = ?;";
+        SqlRowSet results = template.queryForRowSet(sql, clientId);
+        while (results.next()) {
+            emails.add(mapRowToClientEmail(results));
+        }
+        return emails;
     }
 
     @Override
     public ClientEmail editClientEmail(ClientEmail email) {
-        return null;
+        ClientEmail updatedEmail = new ClientEmail();
+        String sql = "UPDATE client_email SET email_id = ?, client_id = ?, email_address = ?;";
+        template.update(sql, email.getEmailId(), email.getClientId(), email.getEmailAddress());
+        return getEmailById(email.getEmailId());
     }
 
     @Override
     public boolean deleteEmail(int emailId) {
-        return false;
+        boolean success = false;
+        String sql = "DELETE FROM client_email WHERE email_id = ?;";
+        int rowsUpdated = template.update(sql, emailId);
+        if (rowsUpdated == 1) {
+            success = true;
+        }
+        return success;
     }
 
     @Override
     public void deleteAllClientEmails(int clientId) {
-
+        String sql = "DELETE FROM client_email WHERE client_id = ?;";
+        template.update(sql);
     }
 
     private ClientEmail mapRowToClientEmail(SqlRowSet rowSet) {

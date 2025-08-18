@@ -1,12 +1,13 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS job_card, client, job_card_client, property, job_card_property,
+DROP TABLE IF EXISTS job_card, client, job_card_client, client_phone, client_email, property, job_card_property,
 job_type, job_note, field_entry, contact, users;
 
 CREATE TABLE job_card(
     job_id SERIAL,
     prospect_id SERIAL,
     active_job_id VARCHAR(25),
+    billing_client_id INTEGER,
     intake_date DATE,
     intake_time TIME,
     marked_lines_length INTEGER,
