@@ -26,7 +26,7 @@ public class JobNote {
         return noteContent;
     }
 
-    public void setNoteContent(String  cnoteContent) {
+    public void setNoteContent(String  noteContent) {
         this.noteContent = noteContent;
     }
 

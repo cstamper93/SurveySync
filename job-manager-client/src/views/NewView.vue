@@ -53,30 +53,25 @@
         placeholder="Phone"
         v-model="newClient.cellPhoneNumber"
         />
-        <button class="add-phone-btn"
+
+        <div class="flex-group">
+        <div v-if="addPhone">
+        <input
+        type="text"
+        id="cellPhoneNumber"
+        class="input-box"
+        placeholder="Phone"
+        v-model="newClient.cellPhoneNumber"
+        />
+        </div>
+
+        <button class="add-phone-btn" v-if="!addPhone"
         @click.prevent="addPhone = !addPhone">+Add Phone</button>
 
-        <!-- <label for="homePhoneNumber"
-        class="input-label"
-        >Home Phone Number: </label>
-        <input
-        type="text"
-        id="homePhoneNumber"
-        class="input-box"
-        placeholder="Home Phone Number"
-        v-model="newClient.homePhoneNumber"
-        />
+        <button class="cancel-phone-btn" v-if="addPhone"
+        @click.prevent="addPhone = !addPhone">Cancel</button>
 
-        <label for="workPhoneNumber"
-        class="input-label"
-        >Phone: </label>
-        <input
-        type="text"
-        id="workPhoneNumber"
-        class="input-box"
-        placeholder="Work Phone Number"
-        v-model="newClient.workPhoneNumber"
-        /> -->
+        </div>
         </div>
 
         <div class="flex-group">
@@ -93,16 +88,6 @@
         <button class="add-email-btn"
         @click.prevent="addEmail = !addEmail ">+Add Email</button>
 
-        <!-- <label for="altEmail"
-        class="input-label"
-        >Alternate Email Address: </label>
-        <input
-        type="text"
-        id="altEmail"
-        class="input-box"
-        placeholder="Alternate Email"
-        v-model="newClient.altEmail"
-        /> -->
         </div>
         </div>
 
@@ -241,6 +226,7 @@
         </div>
         </div>
 
+        <div class="subdivision-container">
         <label for="subdivision"
         class="input-label"
         >Subdivision: </label>
@@ -250,12 +236,14 @@
         v-model="newProperty.subdivision" />
 
         <label for="lotNum"
+        id="lot-label"
         class="input-label"
         >Lot: </label>
         <input type="text"
         id="lotNum"
         class="input-box"
         v-model="newProperty.lotNum" />
+        </div>
 
         <label for="deed1"
         class="input-label"
@@ -448,7 +436,7 @@
 
         <button class="add-type-btn" v-if="!addType"
         @click.prevent="addType = !addType"
-        >Add Type</button>
+        >+Add Type</button>
         <button class="add-type-btn" v-if="addType"
         @click.prevent="addType = !addType"
         >Cancel</button>
@@ -469,16 +457,20 @@ export default {
         firstName: null,
         lastName: null,
         company: null,
-        cellPhoneNumber: null,
-        homePhoneNumber: null,
-        workPhoneNumber: null,
         billingAddress: null,
         billingTown: null,
         billingState: null,
         billingZip: null,
-        clientEmail: null,
-        altEmail: null,
         clientNotes: null
+      },
+      clientPhone: {
+        clientId: null, // how do I associate this with the new client??
+        phoneNumber: null,
+        phoneType: null
+      },
+      clientEmail: {
+        clientId: null,
+        emailAddress: null
       },
       addPhone: false,
       addEmail: false,
@@ -659,6 +651,10 @@ export default {
 
   .property-details-title {
     margin-top: 50px;
+  }
+
+  #lot-label {
+    margin-left: 20px;
   }
 
 </style>
