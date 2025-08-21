@@ -5,6 +5,11 @@ public class Client {
     private int clientId;
     private String firstName;
     private String lastName;
+    private String cellPhone;
+    private String homePhone;
+    private String workPhone;
+    private String email;
+    private String altEmail;
     private String company;
     private String billingAddress;
     private String billingTown;
@@ -36,6 +41,46 @@ public class Client {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getCellPhone() {
+        return cellPhone;
+    }
+
+    public void setCellPhone(String cellPhone) {
+        this.cellPhone = cellPhone;
+    }
+
+    public String getHomePhone() {
+        return homePhone;
+    }
+
+    public void setHomePhone(String homePhone) {
+        this.homePhone = homePhone;
+    }
+
+    public String getWorkPhone() {
+        return workPhone;
+    }
+
+    public void setWorkPhone(String workPhone) {
+        this.workPhone = workPhone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getAltEmail() {
+        return altEmail;
+    }
+
+    public void setAltEmail(String altEmail) {
+        this.altEmail = altEmail;
     }
 
     public String getCompany() {

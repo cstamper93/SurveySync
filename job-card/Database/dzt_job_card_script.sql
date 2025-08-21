@@ -30,6 +30,11 @@ CREATE TABLE client(
     client_id SERIAL,
     first_name VARCHAR(50),
     last_name VARCHAR(50),
+    cell_phone VARCHAR(15),
+    home_phone VARCHAR(15),
+    work_phone VARCHAR(15),
+    email VARCHAR(100),
+    alt_email VARCHAR(100),
     company VARCHAR(100),
     billing_address VARCHAR(250),
     billing_town VARCHAR(50),
@@ -45,23 +50,6 @@ CREATE TABLE job_card_client(
     CONSTRAINT PK_job_card_client PRIMARY KEY(job_id, client_id),
     CONSTRAINT FK_job_id FOREIGN KEY(job_id) REFERENCES job_card(job_id),
     CONSTRAINT FK_client_id FOREIGN KEY(client_id) REFERENCES client(client_id)
-);
-
-CREATE TABLE client_phone(
-    phone_id SERIAL,
-    client_id INTEGER,
-    phone_number VARCHAR(12),
-    phone_type VARCHAR(50)
-    CONSTRAINT PK_client_phone PRIMARY KEY(phone_id),
-    CONSTRAINT FK_client_phone FOREIGN KEY(client_id) REFERENCES client(client_id)
-);
-
-CREATE TABLE client_email(
-    email_id SERIAL,
-    client_id INTEGER,
-    email_address VARCHAR(100),
-    CONSTRAINT PK_client_email PRIMARY KEY(email_id),
-    CONSTRAINT FK_client_email FOREIGN KEY(client_id) REFERENCES client(client_id)
 );
 
 CREATE TABLE property(
