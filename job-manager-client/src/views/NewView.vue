@@ -50,26 +50,26 @@
         type="text"
         id="cellPhoneNumber"
         class="input-box"
-        placeholder="Phone"
-        v-model="newClient.cellPhoneNumber"
+        placeholder="Cell Phone"
+        v-model="newClient.cellPhone"
         />
 
         <div class="flex-group">
-        <div v-if="addPhone">
         <input
         type="text"
-        id="cellPhoneNumber"
+        id="workPhone"
         class="input-box"
-        placeholder="Phone"
-        v-model="newClient.cellPhoneNumber"
+        placeholder="Home Phone"
+        v-model="newClient.homePhone"
         />
-        </div>
 
-        <button class="add-phone-btn" v-if="!addPhone"
-        @click.prevent="addPhone = !addPhone">+Add Phone</button>
-
-        <button class="cancel-phone-btn" v-if="addPhone"
-        @click.prevent="addPhone = !addPhone">Cancel</button>
+        <input
+        type="text"
+        id="workPhone"
+        class="input-box"
+        placeholder="Work Phone"
+        v-model="newClient.workPhone"
+        />
 
         </div>
         </div>
@@ -456,21 +456,17 @@ export default {
       newClient: {
         firstName: null,
         lastName: null,
+        cellPhone: null,
+        homePhone: null,
+        workPhone: null,
+        email: null,
+        altEmail: null,
         company: null,
         billingAddress: null,
         billingTown: null,
         billingState: null,
         billingZip: null,
         clientNotes: null
-      },
-      clientPhone: {
-        clientId: null, // how do I associate this with the new client??
-        phoneNumber: null,
-        phoneType: null
-      },
-      clientEmail: {
-        clientId: null,
-        emailAddress: null
       },
       addPhone: false,
       addEmail: false,
