@@ -10,7 +10,7 @@
 
         <label for="firstName"
         class="input-label"
-        >First Name: </label>
+        >Name: </label>
         <input
         type="text"
         id="firstName"
@@ -18,10 +18,6 @@
         placeholder="First Name"
         v-model="newClient.firstName"
         />
-
-        <label for="lastName"
-        class="input-label"
-        >Last Name: </label>
         <input
         type="text"
         id="lastName"
@@ -70,7 +66,6 @@
         placeholder="Work Phone"
         v-model="newClient.workPhone"
         />
-
         </div>
         </div>
 
@@ -85,8 +80,13 @@
         placeholder="Email Address"
         v-model="newClient.clientEmail"
         />
-        <button class="add-email-btn"
-        @click.prevent="addEmail = !addEmail ">+Add Email</button>
+        <input
+        type="text"
+        id="clientEmail"
+        class="input-box"
+        placeholder="Alternate Email"
+        v-model="newClient.altEmail"
+        />
 
         </div>
         </div>
@@ -166,18 +166,17 @@
         <div class="owner-name">
         <label for="ownerFirstName"
         class="input-label"
-        >Owner First Name: </label>
+        >Owner Name: </label>
         <input type="text"
         id="ownerFirstName"
         class="input-box"
+        placeholder="First Name"
         v-model="newProperty.ownerFirstName" />
 
-        <label for="ownerLastName"
-        class="input-label"
-        >Owner Last Name: </label>
         <input type="text"
         id="ownerLastName"
         class="input-box"
+        placeholder="Last Name"
         v-model="newProperty.ownerLastName" />
         </div>
 
@@ -245,12 +244,14 @@
         v-model="newProperty.lotNum" />
         </div>
 
+        <div class="deed-map-container">
         <label for="deed1"
         class="input-label"
         >Deed 1: </label>
         <input type="text"
         id="deed1"
         class="input-box"
+        placeholder="book/page"
         v-model="newProperty.deed1" />
 
         <label for="map1"
@@ -259,14 +260,18 @@
         <input type="text"
         id="map1"
         class="input-box"
+        placeholder="book/page"
         v-model="newProperty.map1" />
+        </div>
 
+        <div class="deed-map-container">
         <label for="deed2"
         class="input-label"
         >Deed 2: </label>
         <input type="text"
         id="deed2"
         class="input-box"
+        placeholder="book/page"
         v-model="newProperty.deed2" />
 
         <label for="map2"
@@ -275,14 +280,18 @@
         <input type="text"
         id="map2"
         class="input-box"
+        placeholder="book/page"
         v-model="newProperty.map2" />
+        </div>
 
+        <div class="deed-map-container">
         <label for="deed3"
         class="input-label"
         >Deed 3: </label>
         <input type="text"
         id="deed3"
         class="input-box"
+        placeholder="book/page"
         v-model="newProperty.deed3" />
 
         <label for="map3"
@@ -291,7 +300,9 @@
         <input type="text"
         id="map3"
         class="input-box"
+        placeholder="book/page"
         v-model="newProperty.map3" />
+        </div>
 
         <label for="perimeter"
         class="input-label"
@@ -299,9 +310,8 @@
         <input type="number"
         id="perimeter"
         class="input-box"
-        placeholder="ex: 500"
+        placeholder="ex: 500'"
         v-model="newProperty.perimeter" />
-        <p>ft</p>
 
         <label for="acreage"
         class="input-label"
@@ -309,7 +319,7 @@
         <input type="number"
         id="acreage"
         class="input-box"
-        placeholder="ex: 1.5"
+        placeholder="ex: 1.5 acres"
         v-model="newProperty.acreage" />
         <p>acres</p>
 
@@ -345,7 +355,7 @@
         class="input-box"
         v-model="newProperty.township" />
 
-        <button class="add-note-btn" v-if="!addPropNote" @click.prevent="addPropNote = !addPropNote">+Add Property Note</button>
+        <button class="add-note-btn" v-if="!addPropNote" @click.prevent="addPropNote = !addPropNote">+ çProperty Note</button>
         <button class="add-note-btn" v-if="addPropNote" @click.prevent="addPropNote = !addPropNote">Cancel</button>
         <textarea v-if="addPropNote" class="input-box"
         id="propNotes"
