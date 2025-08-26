@@ -355,7 +355,7 @@
         class="input-box"
         v-model="newProperty.township" />
 
-        <button class="add-note-btn" v-if="!addPropNote" @click.prevent="addPropNote = !addPropNote">+ çProperty Note</button>
+        <button class="add-note-btn" v-if="!addPropNote" @click.prevent="addPropNote = !addPropNote">+ Property Note</button>
         <button class="add-note-btn" v-if="addPropNote" @click.prevent="addPropNote = !addPropNote">Cancel</button>
         <textarea v-if="addPropNote" class="input-box"
         id="propNotes"
@@ -418,14 +418,6 @@
         class="input-box"
         v-model="newJob.completeByDate" />
 
-        <label for="readyDate"
-        class="input-label"
-        >Job Ready Date: </label>
-        <input type="date"
-        id="readyDate"
-        class="input-box"
-        v-model="newJob.markLinesLength" />
-
         <h2>Job Type:</h2>
 
         <label for="jobType"
@@ -457,8 +449,17 @@
 </template>
 
 <script>
+// FS + EPS: lines to be marked
+// Recombination: two or more properties
+// Division: acres to be divided, new lot lines to be marked
+// ALTA: table A
+
 import ClientService from '../Services/ClientService.js'
 import PropertyService from '../Services/PropertyService.js'
+import JobCardService from '../Services/JobCardService.js'
+import JobTypeService from '../Services/JobTypeService.js'
+import JobNoteService from '../Services/JobNoteService.js'
+
 export default {
   name: 'NewView',
   data () {
@@ -478,6 +479,7 @@ export default {
         billingZip: null,
         clientNotes: null
       },
+      clientArr: {},
       addPhone: false,
       addEmail: false,
       addBilling: false,
@@ -557,7 +559,27 @@ export default {
       PropertyService.addProperty(this.newProperty).then((response) => {
         if (response.status === 201) {
           alert('New property added.')
-          this.$router.go()
+        }
+      })
+    },
+    addJobCard () {
+      JobCardService.addJobCard(this.newJob).then((response) => {
+        if (response.status === 201) {
+          alert('new job added.')
+        }
+      })
+    },
+    addJobType () {
+      JobTypeService.addJobType(this.jobType).then((response) => {
+        if (response.status === 201) {
+          alert('job type added.')
+        }
+      })
+    },
+    createJobNote () {
+      JobNoteService.createJobNote(this.jobNote).then((response) => {
+        if (response.status === 201) {
+          alert('Job note added.')
         }
       })
     }
