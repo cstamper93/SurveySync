@@ -160,6 +160,8 @@
         v-model="newClient.clientNotes"
         ></textarea>
 
+        <button class="add-client-btn"> + Add Client</button>
+
         <h2 class="property-details-title">Property Details</h2>
 
         <div class="property-location">
@@ -453,6 +455,10 @@
 // Recombination: two or more properties
 // Division: acres to be divided, new lot lines to be marked
 // ALTA: table A
+
+// start - show 1 client, add client button
+// fill out 1 client req's, button gets green or something similar.
+// press add client button - adds 1 to counter - adds first client to array, creates new client object
 
 import ClientService from '../Services/ClientService.js'
 import PropertyService from '../Services/PropertyService.js'
