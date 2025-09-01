@@ -8,6 +8,7 @@
         <div class="flex-row">
         <div class="flex-group">
 
+        <div class="client-container">
         <label for="firstName"
         class="input-label"
         >Name: </label>
@@ -159,6 +160,8 @@
         placeholder="Put client notes here"
         v-model="newClient.clientNotes"
         ></textarea>
+
+        </div>
 
         <button class="add-client-btn"> + Add Client</button>
 
@@ -458,7 +461,8 @@
 
 // start - show 1 client, add client button
 // fill out 1 client req's, button gets green or something similar.
-// press add client button - adds 1 to counter - adds first client to array, creates new client object
+// press add client button - adds 1 to counter - adds first client to array, creates new client object, hides unnecessary data
+// from previously filled out client
 
 import ClientService from '../Services/ClientService.js'
 import PropertyService from '../Services/PropertyService.js'

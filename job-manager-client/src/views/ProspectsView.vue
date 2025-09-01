@@ -1,7 +1,24 @@
 <template>
   <div class="container">
+    <h1>Prospects</h1>
+    <div class="needs-research-container">
+
+    </div>
+
+    <div class="needs-quote-container">
+
+    </div>
+
+    <div class="ready-to-call-container">
+
+    </div>
+
+    <div class="ready-to-send-container">
+
+    </div>
 
   </div>
+
 </template>
 
 <script>
