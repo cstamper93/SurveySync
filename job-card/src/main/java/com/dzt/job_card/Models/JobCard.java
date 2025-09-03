@@ -26,7 +26,7 @@ public class JobCard {
     private String plottedBy;
 
     public JobCard() {
-        this.jobStatus = "Need research";
+        this.jobStatus = "needs research";
         this.contractSigned = false;
         this.lettersSent = false;
         this.isPlotted = false;
