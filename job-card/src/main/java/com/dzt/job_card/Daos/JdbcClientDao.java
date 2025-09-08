@@ -87,7 +87,6 @@ public class JdbcClientDao implements ClientDao {
         client.setFirstName(rowSet.getString("first_name"));
         client.setLastName(rowSet.getString("last_name"));
         client.setCellPhone(rowSet.getString("cell_phone"));
-        client.setCellPhone(rowSet.getString("cell_phone"));
         client.setHomePhone(rowSet.getString("home_phone"));
         client.setWorkPhone(rowSet.getString("work_phone"));
         client.setEmail(rowSet.getString("email"));

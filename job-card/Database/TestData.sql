@@ -4,7 +4,7 @@ INSERT INTO job_card (intake_date, intake_time, marked_lines_length,
 job_description, job_status, complete_by_date) VALUES ('2025-07-23', '12:00:00', 500, 'Mark boundary for fence',
 'ready for quote', '2025-08-15');
 
-INSERT INTO client (first_name, last_name, cell_phone_number, client_email, client_notes) VALUES ('Kelly',
+INSERT INTO client (first_name, last_name, cell_phone, email, client_notes) VALUES ('Kelly',
 'Mooris', '910-111-2222', 'nobody@url.com', 'Client is smelly');
 
 INSERT INTO job_card_client (job_id, client_id) VALUES (1, 1);

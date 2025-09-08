@@ -2,7 +2,7 @@
   <div class="container">
     <h1>Prospects</h1>
     <div class="needs-research-container">
-      <NeedsResearchDisplay v-for="needsResearchProspect in needsResearchList" v-bind:key="needsResearchProspect.prospectId" v-bind:needsResearchProspect="needsResearchProspect" />
+      <NeedsResearchDisplay v-for="needsResearchProspect in needsResearchList" v-bind:key="needsResearchProspect.jobId" v-bind:needsResearchProspect="needsResearchProspect" />
     </div>
 
     <div class="needs-quote-container">
@@ -28,7 +28,7 @@ import NeedsResearchDisplay from '../components/DisplayNeedsResearchProspects.vu
 import NeedsQuoteDisplay from '../components/DisplayNeedsQuoteProspects.vue'
 import ReadyToCallDisplay from '../components/DisplayReadyToCallProspects.vue'
 import ReadyToSendDisplay from '../components/DisplayReadyToSendProspects.vue'
-import JobCardService from '../Services/JobCardService.vue'
+import JobCardService from '@/Services/JobCardService.js'
 
 export default {
   name: 'ProspectsView',
