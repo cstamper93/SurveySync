@@ -1,9 +1,7 @@
 <template>
   <div class="container">
     <h1>Prospects</h1>
-    <div class="needs-research-container">
-      <NeedsResearchDisplay v-for="needsResearchProspect in needsResearchList" v-bind:key="needsResearchProspect.jobId" v-bind:needsResearchProspect="needsResearchProspect" />
-    </div>
+    <NeedsResearchDisplay v-for="needsResearchProspect in needsResearchList" v-bind:key="needsResearchProspect.jobId" v-bind:needsResearchProspect="needsResearchProspect" />
 
     <div class="needs-quote-container">
       <NeedsQuoteDisplay/>
@@ -29,12 +27,13 @@ import NeedsQuoteDisplay from '../components/DisplayNeedsQuoteProspects.vue'
 import ReadyToCallDisplay from '../components/DisplayReadyToCallProspects.vue'
 import ReadyToSendDisplay from '../components/DisplayReadyToSendProspects.vue'
 import JobCardService from '@/Services/JobCardService.js'
+import { ref } from 'vue'
 
 export default {
   name: 'ProspectsView',
   data () {
     return {
-      needsResearchList: [],
+      needsResearchList: ref([]),
       needsQuoteList: [],
       readyToCallList: [],
       readyToSendList: []
@@ -46,9 +45,11 @@ export default {
     ReadyToCallDisplay,
     ReadyToSendDisplay
   },
-  created () {
+  onMounted () {
     JobCardService.filterByStatus('needs research').then((response) => {
-      this.needsResearchList = response.data
+      if (response.status === 200) {
+        this.needsResearchList.value = response.data
+      }
     })
   }
 }
