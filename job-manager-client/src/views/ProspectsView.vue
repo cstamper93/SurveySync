@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1>Prospects</h1>
-    <NeedsResearchDisplay v-for="needsResearchProspect in needsResearchList" v-bind:key="needsResearchProspect.jobId" v-bind:needsResearchProspect="needsResearchProspect" />
+    <NeedsResearchDisplay :items="needsResearchList" />
 
     <div class="needs-quote-container">
       <NeedsQuoteDisplay/>
@@ -19,40 +19,26 @@
 
 </template>
 
-<script>
-// @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
+<script setup>
+import { ref, onMounted } from 'vue'
 import NeedsResearchDisplay from '../components/DisplayNeedsResearchProspects.vue'
 import NeedsQuoteDisplay from '../components/DisplayNeedsQuoteProspects.vue'
 import ReadyToCallDisplay from '../components/DisplayReadyToCallProspects.vue'
 import ReadyToSendDisplay from '../components/DisplayReadyToSendProspects.vue'
 import JobCardService from '@/Services/JobCardService.js'
-import { ref } from 'vue'
 
-export default {
-  name: 'ProspectsView',
-  data () {
-    return {
-      needsResearchList: ref([]),
-      needsQuoteList: [],
-      readyToCallList: [],
-      readyToSendList: []
-    }
-  },
-  components: {
-    NeedsResearchDisplay,
-    NeedsQuoteDisplay,
-    ReadyToCallDisplay,
-    ReadyToSendDisplay
-  },
-  onMounted () {
-    JobCardService.filterByStatus('needs research').then((response) => {
-      if (response.status === 200) {
-        this.needsResearchList.value = response.data
-      }
-    })
-  }
-}
+const needsResearchList = ref([])
+// const needsQuoteList = ref([])
+// const readyToCallList = ref([])
+// const readyToSendList = ref([])
+
+onMounted(() => {
+  JobCardService.filterByStatus('needs research').then((response) => {
+    needsResearchList.value = response.data
+    console.log('hello!')
+  })
+})
+
 </script>
 
 <style scoped>
