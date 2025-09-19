@@ -1,8 +1,8 @@
 <template>
   <div class="needs-research-container">
     <h1>Needs Research</h1>
-    <h2>Prospect Id: <span>{{ needsResearchProspect.prospectId }}</span></h2>
-    <h2>Name: <span>{{ needsResearchProspect.billingClientId }}</span></h2>
+    <h2>Prospect Id: {{ needsResearchProspect.prospectId }}</h2>
+    <h2>Name: {{ needsResearchProspect.intakeDate }} </h2>
   </div>
 </template>
 
@@ -16,6 +16,9 @@ export default {
   },
   props: {
     needsResearchProspect: Object
+  },
+  computed () {
+
   }
 
 }
