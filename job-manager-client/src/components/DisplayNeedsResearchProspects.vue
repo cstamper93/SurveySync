@@ -1,8 +1,8 @@
 <template>
   <div class="needs-research-container">
-    <h1>Needs Research</h1>
-    <h2>Prospect Id: {{ needsResearchProspect.prospectId }}</h2>
-    <h2>Name: {{ needsResearchProspect.intakeDate }} </h2>
+    <h3>Needs Research</h3>
+    <h4>Prospect Id: {{ needsResearchProspect.prospectId }}</h4>
+    <h4>Intake Data: {{ needsResearchProspect.intakeDate }} </h4>
   </div>
 </template>
 
@@ -17,13 +17,13 @@ export default {
   props: {
     needsResearchProspect: Object
   },
-  computed () {
+  computed: {
 
   }
 
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>

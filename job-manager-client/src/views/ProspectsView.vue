@@ -1,6 +1,6 @@
 <template>
+  <!-- <h1>Prospects</h1> -->
   <div class="container">
-    <h1>Prospects</h1>
     <div class="needs-research-container">
       <NeedsResearchDisplay v-for="needsResearchProspect in needsResearchList" v-bind:key="needsResearchProspect.jobId" v-bind:needsResearchProspect="needsResearchProspect" />
     </div>
@@ -61,6 +61,9 @@ onMounted(() => {
 <style scoped>
   .container {
     margin-left: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
   }
 
   button {
