@@ -1,7 +1,9 @@
 <template>
   <div class="container">
     <h1>Prospects</h1>
-    <NeedsResearchDisplay v-for="needsResearchProspect in needsResearchList" v-bind:key="needsResearchProspect.jobId" v-bind:needsResearchProspect="needsResearchProspect" />
+    <div class="needs-research-container">
+      <NeedsResearchDisplay v-for="needsResearchProspect in needsResearchList" v-bind:key="needsResearchProspect.jobId" v-bind:needsResearchProspect="needsResearchProspect" />
+    </div>
 
     <div class="needs-quote-container">
       <NeedsQuoteDisplay v-for="needsQuoteProspect in needsQuoteList" v-bind:key="needsQuoteProspect.jobId" v-bind:needsQuoteProspect="needsQuoteProspect" />
