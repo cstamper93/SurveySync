@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class ProspectDisplayDTO {
 
-    private int jobID;
+    private int jobId;
     private int prospectId;
     private int activeJobId;
     private String clientFirstName;
@@ -17,12 +17,12 @@ public class ProspectDisplayDTO {
 
     public ProspectDisplayDTO() {}
 
-    public int getJobID() {
-        return jobID;
+    public int getJobId() {
+        return jobId;
     }
 
-    public void setJobID(int jobID) {
-        this.jobID = jobID;
+    public void setJobId(int jobId) {
+        this.jobId = jobId;
     }
 
     public int getProspectId() {
