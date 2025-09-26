@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
 import java.util.List;
 
 public class JdbcProspectDisplayDTODao implements ProspectDisplayDTODao {
@@ -18,6 +19,7 @@ public class JdbcProspectDisplayDTODao implements ProspectDisplayDTODao {
 
     @Override
     public ProspectDisplayDTO getProspectDisplayData(String jobStatus) {
+        ProspectDisplayDTO prospect = new ProspectDisplayDTO();
         String sql = "SELECT jc.job_id, jc.prospect_id, jc.active_job_id, " +
                 "client.first_name, client.last_name " +
                 "property.address, property.town, property.county, " +
@@ -28,18 +30,45 @@ public class JdbcProspectDisplayDTODao implements ProspectDisplayDTODao {
                 "JOIN job_card_property jcp ON jc.job_id = jcp.job_id " +
                 "JOIN property p ON jcp.prop_id = p.prop_id " +
                 "WHERE job_status = ?;";
-        return null;
+        SqlRowSet results = template.queryForRowSet(sql, jobStatus);
+        if(results.next()) {
+            prospect = mapRowToProspectObject(results);
+        }
+        return prospect;
     }
 
     @Override
     public List<ProspectDisplayDTO> getProspectDisplayList(String jobStatus) {
-        return null;
+        List<ProspectDisplayDTO> prospectList = new ArrayList<>();
+        String sql = "SELECT jc.job_id, jc.prospect_id, jc.active_job_id, " +
+                "client.first_name, client.last_name " +
+                "property.address, property.town, property.county, " +
+                "jc.intake_date, job_type.job_type " +
+                "FROM job_card AS jc " +
+                "JOIN job_card_client jcc ON jc.job_id = jcc.job_id " +
+                "JOIN client c ON jcc.client_id = c.client_id " +
+                "JOIN job_card_property jcp ON jc.job_id = jcp.job_id " +
+                "JOIN property p ON jcp.prop_id = p.prop_id " +
+                "WHERE job_status = ?;";
+        SqlRowSet results = template.queryForRowSet(sql, jobStatus);
+        while(results.next()) {
+            prospectList.add(mapRowToProspectObject(results));
+        }
+        return prospectList;
     }
 
     private ProspectDisplayDTO mapRowToProspectObject(SqlRowSet rs) {
         ProspectDisplayDTO prospect = new ProspectDisplayDTO();
         prospect.setJobId(rs.getInt("job_id"));
         prospect.setProspectId(rs.getInt("prospect_id"));
-        return null;
+        prospect.setActiveJobId(rs.getInt("active_job_id"));
+        prospect.setClientFirstName(rs.getString("first_name"));
+        prospect.setClientLastName(rs.getString("last_name"));
+        prospect.setJobAddress(rs.getString("address"));
+        prospect.setJobTown(rs.getString("town"));
+        prospect.setJobCounty(rs.getString("county"));
+        prospect.setIntakeDate(rs.getDate("intake_date"));
+        prospect.setJobType(rs.getString("jobType"));
+        return prospect;
     }
 }
