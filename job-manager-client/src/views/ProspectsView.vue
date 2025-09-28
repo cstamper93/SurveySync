@@ -27,7 +27,7 @@ import NeedsResearchDisplay from '../components/DisplayNeedsResearchProspects.vu
 import NeedsQuoteDisplay from '../components/DisplayNeedsQuoteProspects.vue'
 import ReadyToCallDisplay from '../components/DisplayReadyToCallProspects.vue'
 import ReadyToSendDisplay from '../components/DisplayReadyToSendProspects.vue'
-import JobCardService from '@/Services/JobCardService.js'
+import ProspectDisplayService from '@/Services/ProspectDisplayService'
 
 // reactive state
 const needsResearchList = ref([])
@@ -36,22 +36,22 @@ const readyToCallList = ref([])
 const readyToSendList = ref([])
 
 onMounted(() => {
-  JobCardService.filterByStatus('needs research').then((response) => {
+  ProspectDisplayService.getProspectDisplayList('needs research').then((response) => {
     // console.log(response.data)
     needsResearchList.value = response.data
   })
 
-  JobCardService.filterByStatus('needs quote').then((response) => {
+  ProspectDisplayService.getProspectDisplayList('needs quote').then((response) => {
     console.log(response.data)
     needsQuoteList.value = response.data
   })
 
-  JobCardService.filterByStatus('ready to call').then((response) => {
+  ProspectDisplayService.getProspectDisplayList('ready to call').then((response) => {
     console.log(response.data)
     readyToCallList.value = response.data
   })
 
-  JobCardService.filterByStatus('ready to send').then((response) => {
+  ProspectDisplayService.getProspectDisplayList('ready to send').then((response) => {
     console.log(response.data)
     readyToSendList.value = response.data
   })
