@@ -1,8 +1,12 @@
 <template>
+  <h3>Needs Research</h3>
   <div class="needs-research-container">
-    <h3>Needs Research</h3>
     <h4>Prospect Id: {{ needsResearchProspect.prospectId }}</h4>
-    <h4>Intake Data: {{ needsResearchProspect.intakeDate }} </h4>
+    <h4>Intake Date: {{ needsResearchProspect.intakeDate }}</h4>
+    <h4>Client Name: {{ needsResearchProspect.clientFirstName }} {{ needsResearchProspect.clientLastName }}</h4>
+    <h4>Job Address: {{ needsResearchProspect.jobAddress }}, {{ needsResearchProspect.jobTown }}</h4>
+    <h4>County: {{ needsResearchProspect.jobCounty }}</h4>
+    <h4>Job Type: {{ needsResearchProspect.jobType }}</h4>
   </div>
 </template>
 

@@ -7,7 +7,7 @@ const http = axios.create({
 export default {
 
   getProspectDisplayList (status) {
-    return http.get('/prospect-display', status)
+    return http.get(`/prospect-display/${status}`)
   }
 
 }

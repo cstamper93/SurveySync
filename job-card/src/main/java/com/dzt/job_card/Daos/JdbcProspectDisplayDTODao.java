@@ -45,14 +45,14 @@ public class JdbcProspectDisplayDTODao implements ProspectDisplayDTODao {
         String sql = "SELECT jc.job_id, jc.prospect_id, jc.active_job_id, " +
                 "c.first_name, c.last_name, " +
                 "p.address, p.town, p.county, " +
-                "jc.intake_date, jt.job_type " +
+                "jc.intake_date, jt.\"job_type\" " +
                 "FROM job_card AS jc " +
                 "JOIN job_card_client jcc ON jc.job_id = jcc.job_id " +
                 "JOIN client c ON jcc.client_id = c.client_id " +
                 "JOIN job_card_property jcp ON jc.job_id = jcp.job_id " +
                 "JOIN property p ON jcp.prop_id = p.prop_id " +
                 "JOIN job_type jt ON jc.job_id = jt.job_id " +
-                "WHERE job_status = ?;";
+                "WHERE jc.job_status = ?;";
         SqlRowSet results = template.queryForRowSet(sql, jobStatus);
         while(results.next()) {
             prospectList.add(mapRowToProspectObject(results));
@@ -71,7 +71,7 @@ public class JdbcProspectDisplayDTODao implements ProspectDisplayDTODao {
         prospect.setJobTown(rs.getString("town"));
         prospect.setJobCounty(rs.getString("county"));
         prospect.setIntakeDate(rs.getDate("intake_date"));
-        prospect.setJobType(rs.getString("jobType"));
+        prospect.setJobType(rs.getString("job_type"));
         return prospect;
     }
 }
