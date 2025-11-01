@@ -2,6 +2,7 @@
   <!-- <h1>Prospects</h1> -->
   <div class="container">
     <div class="needs-research-container">
+      <h3>Needs Research</h3>
       <NeedsResearchDisplay v-for="needsResearchProspect in needsResearchList" v-bind:key="needsResearchProspect.jobId" v-bind:needsResearchProspect="needsResearchProspect" />
     </div>
 

@@ -1,7 +1,7 @@
 <template>
   <nav>
     <ul>
-      <li><img class="logo" alt="Vue logo" src="../src/assets/logo.png"></li>
+      <li><img class="logo" alt="Vue logo" src="../src/assets/dzt_logo_final.png"></li>
       <li>User Profile</li>
       <li><router-link to="/new-prospect">+New</router-link></li>
       <li><router-link to="/">Prospects</router-link></li>
@@ -30,7 +30,13 @@ nav a {
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
+  color: blue;
+}
+
+.logo {
+  width: 100%;
+  height: auto;
+  margin-bottom: 50px;
 }
 
 ul {
