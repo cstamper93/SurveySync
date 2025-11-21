@@ -3,99 +3,99 @@
     <h1>New Prospect</h1>
     <form class="prospect-form" @submit.prevent="addClient">
 
+        <div class="client-details">
         <h2>Client Details</h2>
+          <div class="client-input-fields">
 
-        <div class="flex-row">
-        <div class="flex-group">
+            <div class="name">
+            <label for="firstName"
+            class="input-label"
+            >Name: </label>
+            <input
+            type="text"
+            id="firstName"
+            class="input-box"
+            placeholder="First Name"
+            v-model="newClient.firstName"
+            />
+            <input
+            type="text"
+            id="lastName"
+            class="input-box"
+            placeholder="Last Name"
+            v-model="newClient.lastName"
+            />
+            </div>
 
-        <div class="client-container">
-        <label for="firstName"
-        class="input-label"
-        >Name: </label>
-        <input
-        type="text"
-        id="firstName"
-        class="input-box"
-        placeholder="First Name"
-        v-model="newClient.firstName"
-        />
-        <input
-        type="text"
-        id="lastName"
-        class="input-box"
-        placeholder="Last Name"
-        v-model="newClient.lastName"
-        />
+            <div class="company">
+            <label for="company"
+            class="input-label"
+            >Company: </label>
+            <input
+            type="text"
+            id="company"
+            class="input-box"
+            placeholder="Company"
+            v-model="newClient.company"
+            />
+            </div>
 
-        <label for="company"
-        class="input-label"
-        >Company: </label>
-        <input
-        type="text"
-        id="company"
-        class="input-box"
-        placeholder="Company"
-        v-model="newClient.company"
-        />
-        </div>
+            <div class="phone-numbers">
+            <label for="cellPhoneNumber"
+            class="input-label"
+            >Phone #: </label>
+            <input
+            type="text"
+            id="cellPhoneNumber"
+            class="input-box"
+            placeholder="Cell Phone"
+            v-model="newClient.cellPhone"
+            />
 
-        <div class="flex-group">
-        <label for="cellPhoneNumber"
-        class="input-label"
-        >Phone: </label>
-        <input
-        type="text"
-        id="cellPhoneNumber"
-        class="input-box"
-        placeholder="Cell Phone"
-        v-model="newClient.cellPhone"
-        />
+            <input
+            type="text"
+            id="workPhone"
+            class="input-box"
+            placeholder="Home Phone"
+            v-model="newClient.homePhone"
+            />
 
-        <div class="flex-group">
-        <input
-        type="text"
-        id="workPhone"
-        class="input-box"
-        placeholder="Home Phone"
-        v-model="newClient.homePhone"
-        />
+            <input
+            type="text"
+            id="workPhone"
+            class="input-box"
+            placeholder="Work Phone"
+            v-model="newClient.workPhone"
+            />
+            </div>
 
-        <input
-        type="text"
-        id="workPhone"
-        class="input-box"
-        placeholder="Work Phone"
-        v-model="newClient.workPhone"
-        />
-        </div>
-        </div>
+            <div class="email">
+            <label for="clientEmail"
+            class="input-label"
+            >Email Address: </label>
+            <input
+            type="text"
+            id="clientEmail"
+            class="input-box"
+            placeholder="Email Address"
+            v-model="newClient.clientEmail"
+            />
+            <input
+            type="text"
+            id="clientEmail"
+            class="input-box"
+            placeholder="Alternate Email"
+            v-model="newClient.altEmail"
+            />
+            </div>
+          </div>
 
-        <div class="flex-group">
-        <label for="clientEmail"
-        class="input-label"
-        >Email Address: </label>
-        <input
-        type="text"
-        id="clientEmail"
-        class="input-box"
-        placeholder="Email Address"
-        v-model="newClient.clientEmail"
-        />
-        <input
-        type="text"
-        id="clientEmail"
-        class="input-box"
-        placeholder="Alternate Email"
-        v-model="newClient.altEmail"
-        />
-
-        </div>
-        </div>
-
-        <button class="add-billing-btn" v-if="!addBilling"
-        @click.prevent="addBilling = !addBilling">+ Add Billing Info</button>
-        <button class="hide-billing-btn" v-if="addBilling"
-        @click.prevent="addBilling = !addBilling">- Hide Billing Info</button>
+          <div class="billing-container">
+          <h3>Billing</h3>
+            <button class="billing-btn" v-if="!addBilling"
+            @click.prevent="addBilling = !addBilling">+ Add Billing Info</button>
+            <button class="billing-btn" v-if="addBilling"
+            @click.prevent="addBilling = !addBilling">- Hide Billing Info</button>
 
         <div v-if="addBilling" class="billing-info">
         <div class="billing-field">
@@ -150,6 +150,7 @@
         />
         </div>
         </div>
+          </div>
 
         <button class="add-note-btn" v-if="!addNote" @click="addNote = !addNote">+Add Client Note</button>
         <button class="add-note-btn" v-if="addNote" @click="addNote = !addNote">Cancel</button>
@@ -600,6 +601,20 @@ export default {
 
 <style>
 
+  .client-details {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid black;
+    padding: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+
+  .client-input-fields {
+    text-align: left;
+  }
+
   .container {
     margin-left: 20%;
     text-align: center;
@@ -615,17 +630,6 @@ export default {
     margin-right: auto;
     width: 200px;
     margin-bottom: 15px;
-  }
-
-  .flex-row {
-    display: flex;
-  }
-
-  .flex-group {
-    display: flex;
-    flex-direction: column;
-    margin-left: auto;
-    margin-right: auto;
   }
 
   .billing-info {
@@ -662,15 +666,6 @@ export default {
     flex-direction: column;
   }
 
-  .flex-row {
-    display: flex;
-  }
-
-  .flex-column {
-    display: flex;
-    flex-direction: column;
-  }
-
   #state {
     width: 25px;
   }
@@ -683,8 +678,12 @@ export default {
     width: 80px;
   }
 
-  .add-note-btn, .add-billing-btn, .hide-billing-btn {
-    margin-top: 20px;
+  .add-note-btn, .billing-btn {
+    margin-top: 10px;
+  }
+
+  .add-client-btn {
+    margin-top: 25px;
   }
 
   .property-details-title {

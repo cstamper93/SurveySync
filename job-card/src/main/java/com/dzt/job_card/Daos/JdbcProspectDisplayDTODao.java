@@ -18,7 +18,6 @@ public class JdbcProspectDisplayDTODao implements ProspectDisplayDTODao {
         this.template = new JdbcTemplate(dataSource);
     }
 
-
     @Override
     public ProspectDisplayDTO getProspectDisplayData(String jobStatus) {
         ProspectDisplayDTO prospect = new ProspectDisplayDTO();
@@ -38,6 +37,7 @@ public class JdbcProspectDisplayDTODao implements ProspectDisplayDTODao {
         }
         return prospect;
     }
+
 
     @Override
     public List<ProspectDisplayDTO> getProspectDisplayList(String jobStatus) {
