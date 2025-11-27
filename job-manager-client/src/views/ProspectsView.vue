@@ -28,33 +28,34 @@ import NeedsResearchDisplay from '../components/DisplayNeedsResearchProspects.vu
 import NeedsQuoteDisplay from '../components/DisplayNeedsQuoteProspects.vue'
 import ReadyToCallDisplay from '../components/DisplayReadyToCallProspects.vue'
 import ReadyToSendDisplay from '../components/DisplayReadyToSendProspects.vue'
-import ProspectDisplayService from '@/Services/ProspectDisplayService'
+// import ProspectDisplayService from '@/Services/ProspectDisplayService'
+import JobCardService from '../Services/JobCardService.js'
 
 // reactive state
-const needsResearchList = ref([])
-const needsQuoteList = ref([])
-const readyToCallList = ref([])
-const readyToSendList = ref([])
+const needsResearchJobCards = ref([])
+const needsQuoteJobCards = ref([])
+const readyToCallJobCards = ref([])
+const readyToSendJobCards = ref([])
 
 onMounted(() => {
-  ProspectDisplayService.getProspectDisplayList('needs research').then((response) => {
-    // console.log(response.data)
-    needsResearchList.value = response.data
+  JobCardService.filterByStatus('needs research').then((response) => {
+    console.log(response.data)
+    needsResearchJobCards.value = response.data
   })
 
-  ProspectDisplayService.getProspectDisplayList('needs quote').then((response) => {
+  JobCardService.filterByStatus('needs quote').then((response) => {
     console.log(response.data)
-    needsQuoteList.value = response.data
+    needsQuoteJobCards.value = response.data
   })
 
-  ProspectDisplayService.getProspectDisplayList('ready to call').then((response) => {
+  JobCardService.filterByStatus('ready to call').then((response) => {
     console.log(response.data)
-    readyToCallList.value = response.data
+    readyToCallJobCards.value = response.data
   })
 
-  ProspectDisplayService.getProspectDisplayList('ready to send').then((response) => {
+  JobCardService.filterByStatus('ready to send').then((response) => {
     console.log(response.data)
-    readyToSendList.value = response.data
+    readyToSendJobCards.value = response.data
   })
 })
 </script>
