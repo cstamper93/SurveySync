@@ -1,6 +1,7 @@
 package com.dzt.job_card.Models;
 
 import java.util.Date;
+import java.util.List;
 
 public class ProspectDisplayDTO {
 

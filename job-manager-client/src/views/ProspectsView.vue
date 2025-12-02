@@ -3,7 +3,7 @@
   <div class="container">
     <div class="needs-research-container">
       <h3>Needs Research</h3>
-      <NeedsResearchDisplay v-for="needsResearchProspect in needsResearchList" v-bind:key="needsResearchProspect.jobId" v-bind:needsResearchProspect="needsResearchProspect" />
+      <NeedsResearchDisplay v-for="needsResearchProspect in needsResearchProspects" v-bind:key="needsResearchProspect.jobId" v-bind:needsResearchProspect="needsResearchProspect" />
     </div>
 
     <div class="needs-quote-container">
@@ -28,32 +28,33 @@ import NeedsResearchDisplay from '../components/DisplayNeedsResearchProspects.vu
 import NeedsQuoteDisplay from '../components/DisplayNeedsQuoteProspects.vue'
 import ReadyToCallDisplay from '../components/DisplayReadyToCallProspects.vue'
 import ReadyToSendDisplay from '../components/DisplayReadyToSendProspects.vue'
-// import ProspectDisplayService from '@/Services/ProspectDisplayService'
-import JobCardService from '../Services/JobCardService.js'
+import ProspectDisplayService from '../Services/ProspectDisplayService.js'
+// import JobTypeService from '../Services/JobTypeService.js'
 
 // reactive state
-const needsResearchJobCards = ref([])
+const needsResearchProspects = ref([])
+// const needsResearchJobTypes = ref([])
 const needsQuoteJobCards = ref([])
 const readyToCallJobCards = ref([])
 const readyToSendJobCards = ref([])
 
 onMounted(() => {
-  JobCardService.filterByStatus('needs research').then((response) => {
+  ProspectDisplayService.getProspectDisplayList('needs research').then((response) => {
     console.log(response.data)
-    needsResearchJobCards.value = response.data
+    needsResearchProspects.value = response.data
   })
 
-  JobCardService.filterByStatus('needs quote').then((response) => {
+  ProspectDisplayService.getProspectDisplayList('needs quote').then((response) => {
     console.log(response.data)
     needsQuoteJobCards.value = response.data
   })
 
-  JobCardService.filterByStatus('ready to call').then((response) => {
+  ProspectDisplayService.getProspectDisplayList('ready to call').then((response) => {
     console.log(response.data)
     readyToCallJobCards.value = response.data
   })
 
-  JobCardService.filterByStatus('ready to send').then((response) => {
+  ProspectDisplayService.getProspectDisplayList('ready to send').then((response) => {
     console.log(response.data)
     readyToSendJobCards.value = response.data
   })

@@ -632,6 +632,10 @@ export default {
     margin-bottom: 15px;
   }
 
+  label {
+    font-weight: bold;
+  }
+
   .billing-info {
     display: flex;
     justify-content: space-around;
