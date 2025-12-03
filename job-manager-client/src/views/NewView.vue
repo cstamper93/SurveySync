@@ -90,77 +90,78 @@
             </div>
           </div>
 
-          <div class="billing-container">
           <h3>Billing</h3>
             <button class="billing-btn" v-if="!addBilling"
             @click.prevent="addBilling = !addBilling">+ Add Billing Info</button>
             <button class="billing-btn" v-if="addBilling"
             @click.prevent="addBilling = !addBilling">- Hide Billing Info</button>
 
-        <div v-if="addBilling" class="billing-info">
-        <div class="billing-field">
-        <label for="billingAddress"
-        class="input-label"
-        >Billing Address: </label>
-        <input
-        type="text"
-        id="billingAddress"
-        class="input-box"
-        placeholder="Billing Address"
-        v-model="newClient.billingAddress"
-        />
-        </div>
+            <div v-if="addBilling" class="billing-info">
+            <div class="billing-field">
+              <label for="billingAddress"
+              class="input-label"
+              >Billing Address: </label>
+              <input
+              type="text"
+              id="billingAddress"
+              class="input-box"
+              placeholder="Billing Address"
+              v-model="newClient.billingAddress"
+              />
+            </div>
 
-        <div class="billing-field">
-        <label for="billingTown"
-        class="input-label"
-        >Billing Town: </label>
-        <input
-        type="text"
-        id="billingTown"
-        class="input-box"
-        placeholder="Billing Town"
-        v-model="newClient.billingTown"
-        />
-        </div>
+            <div class="billing-field">
+              <label for="billingTown"
+              class="input-label"
+              >Billing Town: </label>
+              <input
+              type="text"
+              id="billingTown"
+              class="input-box"
+              placeholder="Billing Town"
+              v-model="newClient.billingTown"
+              />
+            </div>
 
-        <div class="billing-field">
-        <label for="billingState"
-        class="input-label"
-        >Billing State: </label>
-        <input
-        type="text"
-        id="billingState"
-        class="input-box"
-        placeholder="Billing State"
-        v-model="newClient.billingState"
-        />
-        </div>
+            <div class="billing-field">
+              <label for="billingState"
+              class="input-label"
+              >Billing State: </label>
+              <input
+              type="text"
+              id="billingState"
+              class="input-box"
+              placeholder="Billing State"
+              v-model="newClient.billingState"
+              />
+            </div>
 
-        <div class="billing-field">
-        <label for="billingZip"
-        class="input-label"
-        >Billing Zip: </label>
-        <input
-        type="text"
-        id="billingZip"
-        class="input-box"
-        placeholder="Billing Zip"
-        v-model="newClient.billingZip"
-        />
-        </div>
-        </div>
+            <div class="billing-field">
+              <label for="billingZip"
+              class="input-label"
+              >Billing Zip: </label>
+              <input
+              type="text"
+              id="billingZip"
+              class="input-box"
+              placeholder="Billing Zip"
+              v-model="newClient.billingZip"
+              />
+            </div>
+            </div>
+
+          <div class="client-notes-container">
+            <button class="add-note-btn" v-if="!addNote" @click="addNote = !addNote">+Add Client Note</button>
+            <button class="add-note-btn" v-if="addNote" @click="addNote = !addNote">Cancel</button>
+
+            <textarea v-if="addNote" class="client-notes"
+            id="clientNotes"
+            cols="30"
+            rows="10"
+            placeholder="Put client notes here"
+            v-model="newClient.clientNotes"
+            ></textarea>
           </div>
-
-        <button class="add-note-btn" v-if="!addNote" @click="addNote = !addNote">+Add Client Note</button>
-        <button class="add-note-btn" v-if="addNote" @click="addNote = !addNote">Cancel</button>
-        <textarea v-if="addNote" class="input-box"
-        id="clientNotes"
-        cols="30"
-        rows="10"
-        placeholder="Put client notes here"
-        v-model="newClient.clientNotes"
-        ></textarea>
 
         </div>
 
@@ -379,15 +380,20 @@
           v-model="newProperty.township" />
         </div>
 
-        <button class="add-note-btn" v-if="!addPropNote" @click.prevent="addPropNote = !addPropNote">+ Property Note</button>
-        <button class="add-note-btn" v-if="addPropNote" @click.prevent="addPropNote = !addPropNote">Cancel</button>
-        <textarea v-if="addPropNote" class="input-box"
-        id="propNotes"
-        cols="30"
-        rows="10"
-        placeholder="Put property notes here"
-        v-model="newProperty.propNotes"
-        ></textarea>
+        <div class="property-notes-container">
+          <button class="add-note-btn" v-if="!addPropNote" @click.prevent="addPropNote = !addPropNote">+ Property Note</button>
+          <button class="add-note-btn" v-if="addPropNote" @click.prevent="addPropNote = !addPropNote">Cancel
+          </button>
+
+          <textarea v-if="addPropNote" class="property-notes"
+          id="propNotes"
+          cols="30"
+          rows="10"
+          placeholder="Put property notes here"
+          v-model="newProperty.propNotes"
+          ></textarea>
+        </div>
+
         </div>
 
         <!-- Job Details -->
@@ -477,19 +483,71 @@
         <div class="price">
           <label for="price"
           class="input-label"
-          >Price: </label>
+          >Price: $</label>
           <input type="text"
           id="price"
           class="input-box"
           v-model="jobType.price" />
         </div>
 
+        <div v-if="addType">
+        <div class="job-type">
+          <label for="jobType"
+          class="input-label"
+          >Job Type: </label>
+          <input type="text"
+          id="jobType"
+          class="input-box"
+          v-model="jobType2.jobType" />
+        </div>
+
+        <div class="price">
+          <label for="price"
+          class="input-label"
+          >Price: $</label>
+          <input type="text"
+          id="price"
+          class="input-box"
+          v-model="jobType2.price" />
+        </div>
+        </div>
+
         <button class="add-type-btn" v-if="!addType"
         @click.prevent="addType = !addType"
         >+Add Type</button>
-        <button class="add-type-btn" v-if="addType"
+        <button class="add-type-btn" v-if="addType && !addType2"
         @click.prevent="addType = !addType"
         >Cancel</button>
+
+        <div v-if="addType && addType2">
+        <div class="job-type">
+          <label for="jobType"
+          class="input-label"
+          >Job Type: </label>
+          <input type="text"
+          id="jobType"
+          class="input-box"
+          v-model="jobType2.jobType" />
+        </div>
+
+        <div class="price">
+          <label for="price"
+          class="input-label"
+          >Price: $</label>
+          <input type="text"
+          id="price"
+          class="input-box"
+          v-model="jobType2.price" />
+        </div>
+        </div>
+
+        <button class="add-type-btn" v-if="addType && !addType2"
+        @click.prevent="addType2 = !addType2"
+        >+Add Type</button>
+        <button class="add-type-btn" v-if="addType && addType2"
+        @click.prevent="addType2 = !addType2"
+        >Cancel</button>
+
         </div>
 
         <button class="new-prospect-btn" type="submit">+Add Prospect</button>
@@ -590,6 +648,20 @@ export default {
         typeDescription: null,
         estimatedFieldHours: null
       },
+      jobType2: {
+        jobId: null,
+        jobType: null,
+        price: null,
+        typeDescription: null,
+        estimatedFieldHours: null
+      },
+      jobType3: {
+        jobId: null,
+        jobType: null,
+        price: null,
+        typeDescription: null,
+        estimatedFieldHours: null
+      },
       jobNote: {
         noteContent: null,
         userId: null,
@@ -597,7 +669,8 @@ export default {
         timeCreated: null,
         jobId: null
       },
-      addType: false
+      addType: false,
+      addType2: false
     }
   },
   methods: {
@@ -727,6 +800,15 @@ export default {
     margin-right: auto;
   }
 
+  .client-notes-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .client-notes {
+    margin-top: 10px;
+  }
+
   #state {
     width: 25px;
   }
@@ -737,6 +819,15 @@ export default {
 
   #county {
     width: 80px;
+  }
+
+  .property-notes-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .property-notes {
+    margin-top: 10px;
   }
 
   .add-note-btn, .billing-btn {
