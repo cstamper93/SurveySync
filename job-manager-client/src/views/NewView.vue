@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1>New Prospect</h1>
-    <form class="prospect-form" @submit.prevent="addClient">
+    <form class="prospect-form" @submit.prevent="submitProspect">
 
         <div class="client-details">
         <h2>Client Details</h2>
@@ -591,6 +591,7 @@ export default {
         billingZip: null,
         clientNotes: null
       },
+      newClientId: null,
       clientArr: {},
       addPhone: false,
       addEmail: false,
@@ -620,6 +621,7 @@ export default {
         lotNum: null,
         propNotes: null
       },
+      newPropertyId: null,
       addPropNote: false,
       newJob: {
         prospectId: null,
@@ -674,9 +676,19 @@ export default {
     }
   },
   methods: {
+    submitProspect () {
+      this.addClient(this.newClient)
+      this.addProperty(this.newProperty)
+      this.addJobCard(this.newJob, this.newClientId, this.newPropertyId)
+      this.addJobType(this.jobType)
+      this.addJobType(this.jobType2)
+      this.addJobType(this.jobType3)
+      this.createJobNote(this.jobNote)
+    },
     addClient () {
       ClientService.addClient(this.newClient).then((response) => {
         if (response.status === 201) {
+          response.data = this.newClientId
           alert('New client added.')
           this.$router.go()
         }
@@ -685,6 +697,7 @@ export default {
     addProperty () {
       PropertyService.addProperty(this.newProperty).then((response) => {
         if (response.status === 201) {
+          this.newPropertyId = response.data
           alert('New property added.')
         }
       })
@@ -692,6 +705,10 @@ export default {
     addJobCard () {
       JobCardService.addJobCard(this.newJob).then((response) => {
         if (response.status === 201) {
+          this.jobType.jobId = response.data
+          this.jobType2.jobId = response.data
+          this.jobType3.jobId = response.data
+          this.jobNote.jobId = response.data
           alert('new job added.')
         }
       })
