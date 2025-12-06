@@ -165,9 +165,347 @@
 
         </div>
 
-        <button class="add-client-btn"> + Add Client</button>
+        <button class="add-client-btn" v-if="!addClient2"
+        @click.prevent="addClient2 = !addClient2"> + Add Second Client</button>
 
-        <!-- Property Details -->
+        <!--Client 2-->
+
+        <div class="client-details" v-if="addClient2">
+        <h2>Client Details</h2>
+          <div class="client-input-fields">
+
+            <div class="name">
+            <label for="firstName"
+            class="input-label"
+            >Name: </label>
+            <input
+            type="text"
+            id="firstName"
+            class="input-box"
+            placeholder="First Name"
+            v-model="newClient2.firstName"
+            />
+            <input
+            type="text"
+            id="lastName"
+            class="input-box"
+            placeholder="Last Name"
+            v-model="newClient2.lastName"
+            />
+            </div>
+
+            <div class="company">
+            <label for="company"
+            class="input-label"
+            >Company: </label>
+            <input
+            type="text"
+            id="company"
+            class="input-box"
+            placeholder="Company"
+            v-model="newClient2.company"
+            />
+            </div>
+
+            <div class="phone-numbers">
+            <label for="cellPhoneNumber"
+            class="input-label"
+            >Phone #: </label>
+            <input
+            type="text"
+            id="cellPhoneNumber"
+            class="input-box"
+            placeholder="Cell Phone"
+            v-model="newClient2.cellPhone"
+            />
+
+            <input
+            type="text"
+            id="workPhone"
+            class="input-box"
+            placeholder="Home Phone"
+            v-model="newClient2.homePhone"
+            />
+
+            <input
+            type="text"
+            id="workPhone"
+            class="input-box"
+            placeholder="Work Phone"
+            v-model="newClient2.workPhone"
+            />
+            </div>
+
+            <div class="email">
+            <label for="clientEmail"
+            class="input-label"
+            >Email Address: </label>
+            <input
+            type="text"
+            id="clientEmail"
+            class="input-box"
+            placeholder="Email Address"
+            v-model="newClient2.clientEmail"
+            />
+            <input
+            type="text"
+            id="clientEmail"
+            class="input-box"
+            placeholder="Alternate Email"
+            v-model="newClient2.altEmail"
+            />
+            </div>
+          </div>
+
+          <h3>Billing</h3>
+            <button class="billing-btn" v-if="!addBilling2"
+            @click.prevent="addBilling2 = !addBilling2">+ Add Billing Info</button>
+            <button class="billing-btn" v-if="addBilling2"
+            @click.prevent="addBilling2 = !addBilling2">- Hide Billing Info</button>
+
+            <div v-if="addBilling2" class="billing-info">
+            <div class="billing-field">
+              <label for="billingAddress"
+              class="input-label"
+              >Billing Address: </label>
+              <input
+              type="text"
+              id="billingAddress"
+              class="input-box"
+              placeholder="Billing Address"
+              v-model="newClient2.billingAddress"
+              />
+            </div>
+
+            <div class="billing-field">
+              <label for="billingTown"
+              class="input-label"
+              >Billing Town: </label>
+              <input
+              type="text"
+              id="billingTown"
+              class="input-box"
+              placeholder="Billing Town"
+              v-model="newClient2.billingTown"
+              />
+            </div>
+
+            <div class="billing-field">
+              <label for="billingState"
+              class="input-label"
+              >Billing State: </label>
+              <input
+              type="text"
+              id="billingState"
+              class="input-box"
+              placeholder="Billing State"
+              v-model="newClient2.billingState"
+              />
+            </div>
+
+            <div class="billing-field">
+              <label for="billingZip"
+              class="input-label"
+              >Billing Zip: </label>
+              <input
+              type="text"
+              id="billingZip"
+              class="input-box"
+              placeholder="Billing Zip"
+              v-model="newClient2.billingZip"
+              />
+            </div>
+            </div>
+
+          <div class="client-notes-container">
+            <button class="add-note-btn" v-if="!addNote" @click="addNote = !addNote">+Add Client Note</button>
+            <button class="add-note-btn" v-if="addNote" @click="addNote = !addNote">Cancel</button>
+
+            <textarea v-if="addNote" class="client-notes"
+            id="clientNotes"
+            cols="30"
+            rows="10"
+            placeholder="Put client notes here"
+            v-model="newClient2.clientNotes"
+            ></textarea>
+          </div>
+
+        </div>
+
+        <button class="cancel-adding-client-btn" v-if="addClient2"
+        @click.prevent="addClient2=!addClient2">Cancel Adding Second Client</button>
+
+        <button class="add-client-3-btn" v-if="addClient2 && !addClient3"
+        @click.prevent="addClient3=!addClient3">Add Third Client</button>
+
+        <!--Client 3-->
+
+        <div class="client-details" v-if="addClient3">
+        <h2>Client Details</h2>
+          <div class="client-input-fields">
+
+            <div class="name">
+            <label for="firstName"
+            class="input-label"
+            >Name: </label>
+            <input
+            type="text"
+            id="firstName"
+            class="input-box"
+            placeholder="First Name"
+            v-model="newClient3.firstName"
+            />
+            <input
+            type="text"
+            id="lastName"
+            class="input-box"
+            placeholder="Last Name"
+            v-model="newClient3.lastName"
+            />
+            </div>
+
+            <div class="company">
+            <label for="company"
+            class="input-label"
+            >Company: </label>
+            <input
+            type="text"
+            id="company"
+            class="input-box"
+            placeholder="Company"
+            v-model="newClient3.company"
+            />
+            </div>
+
+            <div class="phone-numbers">
+            <label for="cellPhoneNumber"
+            class="input-label"
+            >Phone #: </label>
+            <input
+            type="text"
+            id="cellPhoneNumber"
+            class="input-box"
+            placeholder="Cell Phone"
+            v-model="newClient3.cellPhone"
+            />
+
+            <input
+            type="text"
+            id="workPhone"
+            class="input-box"
+            placeholder="Home Phone"
+            v-model="newClient3.homePhone"
+            />
+
+            <input
+            type="text"
+            id="workPhone"
+            class="input-box"
+            placeholder="Work Phone"
+            v-model="newClient3.workPhone"
+            />
+            </div>
+
+            <div class="email">
+            <label for="clientEmail"
+            class="input-label"
+            >Email Address: </label>
+            <input
+            type="text"
+            id="clientEmail"
+            class="input-box"
+            placeholder="Email Address"
+            v-model="newClient3.clientEmail"
+            />
+            <input
+            type="text"
+            id="clientEmail"
+            class="input-box"
+            placeholder="Alternate Email"
+            v-model="newClient3.altEmail"
+            />
+            </div>
+          </div>
+
+          <h3>Billing</h3>
+            <button class="billing-btn" v-if="!addBilling3"
+            @click.prevent="addBilling3 = !addBilling3">+ Add Billing Info</button>
+            <button class="billing-btn" v-if="addBilling3"
+            @click.prevent="addBilling3 = !addBilling3">- Hide Billing Info</button>
+
+            <div v-if="addBilling3" class="billing-info">
+            <div class="billing-field">
+              <label for="billingAddress"
+              class="input-label"
+              >Billing Address: </label>
+              <input
+              type="text"
+              id="billingAddress"
+              class="input-box"
+              placeholder="Billing Address"
+              v-model="newClient3.billingAddress"
+              />
+            </div>
+
+            <div class="billing-field">
+              <label for="billingTown"
+              class="input-label"
+              >Billing Town: </label>
+              <input
+              type="text"
+              id="billingTown"
+              class="input-box"
+              placeholder="Billing Town"
+              v-model="newClient3.billingTown"
+              />
+            </div>
+
+            <div class="billing-field">
+              <label for="billingState"
+              class="input-label"
+              >Billing State: </label>
+              <input
+              type="text"
+              id="billingState"
+              class="input-box"
+              placeholder="Billing State"
+              v-model="newClient3.billingState"
+              />
+            </div>
+
+            <div class="billing-field">
+              <label for="billingZip"
+              class="input-label"
+              >Billing Zip: </label>
+              <input
+              type="text"
+              id="billingZip"
+              class="input-box"
+              placeholder="Billing Zip"
+              v-model="newClient3.billingZip"
+              />
+            </div>
+            </div>
+
+          <div class="client-notes-container">
+            <button class="add-note-btn" v-if="!addNote" @click="addNote = !addNote">+Add Client Note</button>
+            <button class="add-note-btn" v-if="addNote" @click="addNote = !addNote">Cancel</button>
+
+            <textarea v-if="addNote" class="client-notes"
+            id="clientNotes"
+            cols="30"
+            rows="10"
+            placeholder="Put client notes here"
+            v-model="newClient3.clientNotes"
+            ></textarea>
+          </div>
+
+        </div>
+
+        <button class="cancel-adding-client-btn" v-if="addClient3"
+        @click.prevent="addClient3=!addClient3">Cancel Adding Third Client</button>
+
+        <!--Property Details-->
 
         <div class="property-details">
         <h2 class="property-details-title">Property Details</h2>
@@ -591,12 +929,47 @@ export default {
         billingZip: null,
         clientNotes: null
       },
+      newClient2: {
+        firstName: null,
+        lastName: null,
+        cellPhone: null,
+        homePhone: null,
+        workPhone: null,
+        email: null,
+        altEmail: null,
+        company: null,
+        billingAddress: null,
+        billingTown: null,
+        billingState: null,
+        billingZip: null,
+        clientNotes: null
+      },
+      newClient3: {
+        firstName: null,
+        lastName: null,
+        cellPhone: null,
+        homePhone: null,
+        workPhone: null,
+        email: null,
+        altEmail: null,
+        company: null,
+        billingAddress: null,
+        billingTown: null,
+        billingState: null,
+        billingZip: null,
+        clientNotes: null
+      },
       newClientId: null,
-      clientArr: {},
       addPhone: false,
       addEmail: false,
       addBilling: false,
+      addBilling2: false,
+      addBilling3: false,
       addNote: false,
+      addNote2: false,
+      addNote3: false,
+      addClient2: false,
+      addClient3: false,
       newProperty: {
         ownerFirstName: null,
         ownerLastName: null,
@@ -697,7 +1070,7 @@ export default {
     addProperty () {
       PropertyService.addProperty(this.newProperty).then((response) => {
         if (response.status === 201) {
-          this.newPropertyId = response.data
+          response.data = this.newPropertyId
           alert('New property added.')
         }
       })
