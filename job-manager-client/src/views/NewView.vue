@@ -1099,6 +1099,74 @@ export default {
           alert('Job note added.')
         }
       })
+    },
+    clearNewClient () {
+      this.newClient.firstName = null
+      this.newClient.lastName = null
+      this.newClient.cellPhone = null
+      this.newClient.homePhone = null
+      this.newClient.workPhone = null
+      this.newClient.email = null
+      this.newClient.altEmail = null
+      this.newClient.company = null
+      this.newClient.billingAddress = null
+      this.newClient.billingTown = null
+      this.newClient.billingState = null
+      this.newClient.billingZip = null
+      this.newClient.clientNotes = null
+    },
+    clearNewClient2 () {
+      this.newClient2.firstName = null
+      this.newClient2.lastName = null
+      this.newClient2.cellPhone = null
+      this.newClient2.homePhone = null
+      this.newClient2.workPhone = null
+      this.newClient2.email = null
+      this.newClient2.altEmail = null
+      this.newClient2.company = null
+      this.newClient2.billingAddress = null
+      this.newClient2.billingTown = null
+      this.newClient2.billingState = null
+      this.newClient2.billingZip = null
+      this.newClient2f.clientNotes = null
+    },
+    clearNewClient3 () {
+      this.newClient3.firstName = null
+      this.newClient3.lastName = null
+      this.newClient3.cellPhone = null
+      this.newClient3.homePhone = null
+      this.newClient3.workPhone = null
+      this.newClient3.email = null
+      this.newClient3.altEmail = null
+      this.newClient3.company = null
+      this.newClient3.billingAddress = null
+      this.newClient3.billingTown = null
+      this.newClient3.billingState = null
+      this.newClient3.billingZip = null
+      this.newClient3.clientNotes = null
+    },
+    clearNewProperty () {
+      this.newProperty.ownerFirstName = null
+      this.newProperty.ownerLastName = null
+      this.newProperty.address = null
+      this.newProperty.town = null
+      this.newProperty.state = null
+      this.newProperty.zip = null
+      this.newProperty.county = null
+      this.newProperty.deed1 = null
+      this.newProperty.deed2 = null
+      this.newProperty.deed3 = null
+      this.newProperty.map1 = null
+      this.newProperty.map2 = null
+      this.newProperty.map3 = null
+      this.newProperty.perimeter = null
+      this.newProperty.acreage = null
+      this.newProperty.driveTime = null
+      this.newProperty.subdivision = null
+      this.newProperty.pid = null
+      this.newProperty.pin = null
+      this.newProperty.lotNum = null
+      this.newProperty.propNotes = null
     }
   }
 
