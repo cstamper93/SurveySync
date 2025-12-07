@@ -960,6 +960,8 @@ export default {
         clientNotes: null
       },
       newClientId: null,
+      newClientId2: null,
+      newClientId3: null,
       addPhone: false,
       addEmail: false,
       addBilling: false,
@@ -994,7 +996,57 @@ export default {
         lotNum: null,
         propNotes: null
       },
+      newProperty2: {
+        ownerFirstName: null,
+        ownerLastName: null,
+        address: null,
+        town: null,
+        state: 'NC',
+        zip: null,
+        county: null,
+        deed1: null,
+        deed2: null,
+        deed3: null,
+        map1: null,
+        map2: null,
+        map3: null,
+        perimeter: null,
+        acreage: null,
+        driveTime: null,
+        subdivision: null,
+        pid: null,
+        pin: null,
+        township: null,
+        lotNum: null,
+        propNotes: null
+      },
+      newProperty3: {
+        ownerFirstName: null,
+        ownerLastName: null,
+        address: null,
+        town: null,
+        state: 'NC',
+        zip: null,
+        county: null,
+        deed1: null,
+        deed2: null,
+        deed3: null,
+        map1: null,
+        map2: null,
+        map3: null,
+        perimeter: null,
+        acreage: null,
+        driveTime: null,
+        subdivision: null,
+        pid: null,
+        pin: null,
+        township: null,
+        lotNum: null,
+        propNotes: null
+      },
       newPropertyId: null,
+      newPropertyId2: null,
+      newPropertyId3: null,
       addPropNote: false,
       newJob: {
         prospectId: null,
@@ -1051,6 +1103,7 @@ export default {
   methods: {
     submitProspect () {
       this.addClient(this.newClient)
+      this.addClient(this.newClient2)
       this.addProperty(this.newProperty)
       this.addJobCard(this.newJob, this.newClientId, this.newPropertyId)
       this.addJobType(this.jobType)
