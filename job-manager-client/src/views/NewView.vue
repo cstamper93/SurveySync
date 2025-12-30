@@ -1562,23 +1562,44 @@ export default {
   },
   methods: {
     submitProspect () {
-      this.addClient(this.newClient)
-      this.addClient(this.newClient2)
+      // client
+      // check if client exists
+      // add client if not; do nothing if exists
+      // *** LATER - THINK ABOUT INTEGRATING THESE METHODS ON SERVER SIDE IN ONE METHOD - INPUT CLIENTS NAMES AND PROPERTIES, CHECK IF NULL, INPUT IF SO...
+      if (this.checkClient(this.newClient.firstName, this.newClient.lastName)) {
+        this.addClient(this.newClient)
+      }
+      if (this.checkClient(this.newClient2.firstName, this.newClient2.lastName)) {
+        this.addClient(this.newClient2)
+      }
+      if (this.checkClient(this.newClient3.firstName, this.newClient3.lastName)) {
+        this.addClient(this.newClient3)
+      }
+      // property
       this.addProperty(this.newProperty)
+      this.addProperty(this.newProperty2)
+      this.addProperty(this.newProperty3)
       this.addJobCard(this.newJob, this.newClientId, this.newPropertyId)
       this.addJobType(this.jobType)
       this.addJobType(this.jobType2)
       this.addJobType(this.jobType3)
       this.createJobNote(this.jobNote)
     },
-    addClient () {
-      ClientService.addClient(this.newClient).then((response) => {
+    addClient (client) {
+      ClientService.addClient(client).then((response) => {
         if (response.status === 201) {
           response.data = this.newClientId
           alert('New client added.')
           this.$router.go()
         }
       })
+    },
+    checkClient (firstName, lastName) {
+      if (ClientService.getClientByName != null) {
+        return true
+      } else {
+        return false
+      }
     },
     addProperty () {
       PropertyService.addProperty(this.newProperty).then((response) => {

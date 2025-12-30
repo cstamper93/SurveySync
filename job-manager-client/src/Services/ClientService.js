@@ -14,6 +14,10 @@ export default {
     return http.get(`/client/${id}`)
   },
 
+  getClientByName (first, last) {
+    return http.get(`/client/name/${first}/${last}`)
+  },
+
   getAllClients () {
     return http.get('/clients')
   },
