@@ -732,6 +732,464 @@
           ></textarea>
         </div>
 
+        <!--Property Details 2-->
+
+        </div>
+
+        <div class="property-details">
+        <h2 class="property-details-title">Property Details</h2>
+
+        <div class="owner-name">
+          <label for="ownerFirstName"
+          class="input-label"
+          >Owner Name: </label>
+          <input type="text"
+          id="ownerFirstName"
+          class="input-box"
+          placeholder="First Name"
+          v-model="newProperty2.ownerFirstName" />
+
+          <input type="text"
+          id="ownerLastName"
+          class="input-box"
+          placeholder="Last Name"
+          v-model="newProperty2.ownerLastName" />
+        </div>
+
+        <div class="address">
+          <label for="address"
+          class="input-label"
+          >Property Address: </label>
+          <input type="text"
+          id="address"
+          class="input-box"
+          v-model="newProperty2.address" />
+        </div>
+
+        <div class="town">
+          <label for="town"
+          class="input-label"
+          >Town: </label>
+          <input type="text"
+          id="town"
+          class="input-box"
+          v-model="newProperty2.town" />
+        </div>
+
+        <div class="state">
+          <label for="state"
+          class="input-label"
+          >State: </label>
+          <input type="text"
+          id="state"
+          class="input-box"
+          v-model="newProperty2.state" />
+        </div>
+
+        <div class="zip">
+          <label for="zip"
+          class="input-label"
+          >Zip: </label>
+          <input type="text"
+          id="zip"
+          class="input-box"
+          v-model="newProperty2.zip" />
+        </div>
+
+        <div class="county">
+          <label for="county"
+          class="input-label"
+          >County: </label>
+          <input type="text"
+          id="county"
+          class="input-box"
+          v-model="newProperty2.county" />
+        </div>
+
+        <div class="subdivision-lot">
+          <label for="subdivision"
+          class="input-label"
+          >Subdivision: </label>
+          <input type="text"
+          id="subdivision"
+          class="input-box"
+          v-model="newProperty2.subdivision" />
+
+          <label for="lotNum"
+          id="lot-label"
+          class="input-label"
+          >Lot: </label>
+          <input type="text"
+          id="lotNum"
+          class="input-box"
+          v-model="newProperty2.lotNum" />
+        </div>
+
+        <div class="deed-map-container">
+          <label for="deed1"
+          class="input-label"
+          >Deed 1: </label>
+          <input type="text"
+          id="deed1"
+          class="input-box"
+          placeholder="book/page"
+          v-model="newProperty2.deed1" />
+
+          <label for="map1"
+          class="input-label"
+          >Map 1: </label>
+          <input type="text"
+          id="map1"
+          class="input-box"
+          placeholder="book/page"
+          v-model="newProperty2.map1" />
+        </div>
+
+        <div class="deed-map-container">
+          <label for="deed2"
+          class="input-label"
+          >Deed 2: </label>
+          <input type="text"
+          id="deed2"
+          class="input-box"
+          placeholder="book/page"
+          v-model="newProperty2.deed2" />
+
+          <label for="map2"
+          class="input-label"
+          >Map 2: </label>
+          <input type="text"
+          id="map2"
+          class="input-box"
+          placeholder="book/page"
+          v-model="newProperty2.map2" />
+        </div>
+
+        <div class="deed-map-container">
+          <label for="deed3"
+          class="input-label"
+          >Deed 3: </label>
+          <input type="text"
+          id="deed3"
+          class="input-box"
+          placeholder="book/page"
+          v-model="newProperty2.deed3" />
+
+          <label for="map3"
+          class="input-label"
+          >Map 3: </label>
+          <input type="text"
+          id="map3"
+          class="input-box"
+          placeholder="book/page"
+          v-model="newProperty2.map3" />
+        </div>
+
+        <div class="perimeter">
+          <label for="perimeter"
+          class="input-label"
+          >Perimeter: </label>
+          <input type="number"
+          id="perimeter"
+          class="input-box"
+          placeholder="ex: 500'"
+          v-model="newProperty2.perimeter" />
+        </div>
+
+        <div class="acreage">
+          <label for="acreage"
+          class="input-label"
+          >Acreage: </label>
+          <input type="number"
+          id="acreage"
+          class="input-box"
+          placeholder="ex: 1.5 acres"
+          v-model="newProperty2.acreage" />
+        </div>
+
+        <div class="drive-time">
+          <label for="driveTime"
+          class="input-label"
+          >Drive Time: </label>
+          <input type="time"
+          id="driveTime"
+          class="input-box"
+          v-model="newProperty2.driveTime" />
+        </div>
+
+        <div class="pid">
+          <label for="pid"
+          class="input-label"
+          >Parcel ID: </label>
+          <input type="text"
+          id="pid"
+          class="input-box"
+          v-model="newProperty2.pid" />
+        </div>
+
+        <div class="pin">
+          <label for="pin"
+          class="input-label"
+          >PIN / REID: </label>
+          <input type="text"
+          id="pin"
+          class="input-box"
+          v-model="newProperty2.pin" />
+        </div>
+
+        <div class="township">
+          <label for="township"
+          class="input-label"
+          >Township: </label>
+          <input type="text"
+          id="township"
+          class="input-box"
+          v-model="newProperty2.township" />
+        </div>
+
+        <div class="property-notes-container">
+          <button class="add-note-btn" v-if="!addPropNote2" @click.prevent="addPropNote2 = !addPropNote2">+ Property Note</button>
+          <button class="add-note-btn" v-if="addPropNote2" @click.prevent="addPropNote2 = !addPropNote2">Cancel
+          </button>
+
+          <textarea v-if="addPropNote" class="property-notes"
+          id="propNotes"
+          cols="30"
+          rows="10"
+          placeholder="Put property notes here"
+          v-model="newProperty2.propNotes"
+          ></textarea>
+        </div>
+
+        </div>
+
+        <!--Property Details 3-->
+
+        <div class="property-details">
+        <h2 class="property-details-title">Property Details</h2>
+
+        <div class="owner-name">
+          <label for="ownerFirstName"
+          class="input-label"
+          >Owner Name: </label>
+          <input type="text"
+          id="ownerFirstName"
+          class="input-box"
+          placeholder="First Name"
+          v-model="newProperty3.ownerFirstName" />
+
+          <input type="text"
+          id="ownerLastName"
+          class="input-box"
+          placeholder="Last Name"
+          v-model="newProperty3.ownerLastName" />
+        </div>
+
+        <div class="address">
+          <label for="address"
+          class="input-label"
+          >Property Address: </label>
+          <input type="text"
+          id="address"
+          class="input-box"
+          v-model="newProperty3.address" />
+        </div>
+
+        <div class="town">
+          <label for="town"
+          class="input-label"
+          >Town: </label>
+          <input type="text"
+          id="town"
+          class="input-box"
+          v-model="newProperty3.town" />
+        </div>
+
+        <div class="state">
+          <label for="state"
+          class="input-label"
+          >State: </label>
+          <input type="text"
+          id="state"
+          class="input-box"
+          v-model="newProperty3.state" />
+        </div>
+
+        <div class="zip">
+          <label for="zip"
+          class="input-label"
+          >Zip: </label>
+          <input type="text"
+          id="zip"
+          class="input-box"
+          v-model="newProperty3.zip" />
+        </div>
+
+        <div class="county">
+          <label for="county"
+          class="input-label"
+          >County: </label>
+          <input type="text"
+          id="county"
+          class="input-box"
+          v-model="newProperty3.county" />
+        </div>
+
+        <div class="subdivision-lot">
+          <label for="subdivision"
+          class="input-label"
+          >Subdivision: </label>
+          <input type="text"
+          id="subdivision"
+          class="input-box"
+          v-model="newProperty3.subdivision" />
+
+          <label for="lotNum"
+          id="lot-label"
+          class="input-label"
+          >Lot: </label>
+          <input type="text"
+          id="lotNum"
+          class="input-box"
+          v-model="newProperty3.lotNum" />
+        </div>
+
+        <div class="deed-map-container">
+          <label for="deed1"
+          class="input-label"
+          >Deed 1: </label>
+          <input type="text"
+          id="deed1"
+          class="input-box"
+          placeholder="book/page"
+          v-model="newProperty3.deed1" />
+
+          <label for="map1"
+          class="input-label"
+          >Map 1: </label>
+          <input type="text"
+          id="map1"
+          class="input-box"
+          placeholder="book/page"
+          v-model="newProperty3.map1" />
+        </div>
+
+        <div class="deed-map-container">
+          <label for="deed2"
+          class="input-label"
+          >Deed 2: </label>
+          <input type="text"
+          id="deed2"
+          class="input-box"
+          placeholder="book/page"
+          v-model="newProperty3.deed2" />
+
+          <label for="map2"
+          class="input-label"
+          >Map 2: </label>
+          <input type="text"
+          id="map2"
+          class="input-box"
+          placeholder="book/page"
+          v-model="newProperty3.map2" />
+        </div>
+
+        <div class="deed-map-container">
+          <label for="deed3"
+          class="input-label"
+          >Deed 3: </label>
+          <input type="text"
+          id="deed3"
+          class="input-box"
+          placeholder="book/page"
+          v-model="newProperty3.deed3" />
+
+          <label for="map3"
+          class="input-label"
+          >Map 3: </label>
+          <input type="text"
+          id="map3"
+          class="input-box"
+          placeholder="book/page"
+          v-model="newProperty3.map3" />
+        </div>
+
+        <div class="perimeter">
+          <label for="perimeter"
+          class="input-label"
+          >Perimeter: </label>
+          <input type="number"
+          id="perimeter"
+          class="input-box"
+          placeholder="ex: 500'"
+          v-model="newProperty3.perimeter" />
+        </div>
+
+        <div class="acreage">
+          <label for="acreage"
+          class="input-label"
+          >Acreage: </label>
+          <input type="number"
+          id="acreage"
+          class="input-box"
+          placeholder="ex: 1.5 acres"
+          v-model="newProperty3.acreage" />
+        </div>
+
+        <div class="drive-time">
+          <label for="driveTime"
+          class="input-label"
+          >Drive Time: </label>
+          <input type="time"
+          id="driveTime"
+          class="input-box"
+          v-model="newProperty3.driveTime" />
+        </div>
+
+        <div class="pid">
+          <label for="pid"
+          class="input-label"
+          >Parcel ID: </label>
+          <input type="text"
+          id="pid"
+          class="input-box"
+          v-model="newProperty3.pid" />
+        </div>
+
+        <div class="pin">
+          <label for="pin"
+          class="input-label"
+          >PIN / REID: </label>
+          <input type="text"
+          id="pin"
+          class="input-box"
+          v-model="newProperty3.pin" />
+        </div>
+
+        <div class="township">
+          <label for="township"
+          class="input-label"
+          >Township: </label>
+          <input type="text"
+          id="township"
+          class="input-box"
+          v-model="newProperty3.township" />
+        </div>
+
+        <div class="property-notes-container">
+          <button class="add-note-btn" v-if="!addPropNote3" @click.prevent="addPropNote3 = !addPropNote3">+ Property Note</button>
+          <button class="add-note-btn" v-if="addPropNote3" @click.prevent="addPropNote3 = !addPropNote3">Cancel
+          </button>
+
+          <textarea v-if="addPropNote" class="property-notes"
+          id="propNotes"
+          cols="30"
+          rows="10"
+          placeholder="Put property notes here"
+          v-model="newProperty3.propNotes"
+          ></textarea>
+        </div>
+
         </div>
 
         <!-- Job Details -->
@@ -1048,6 +1506,8 @@ export default {
       newPropertyId2: null,
       newPropertyId3: null,
       addPropNote: false,
+      addPropNote2: false,
+      addPropNote3: false,
       newJob: {
         prospectId: null,
         activeJobId: null,
