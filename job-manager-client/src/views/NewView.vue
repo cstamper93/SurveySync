@@ -731,12 +731,14 @@
           v-model="newProperty.propNotes"
           ></textarea>
         </div>
+        </div>
+
+        <button class="add-property-btn" v-if="!addProperty2"
+        @click.prevent="addProperty2 = !addProperty2"> + Add Second Property</button>
 
         <!--Property Details 2-->
 
-        </div>
-
-        <div class="property-details">
+        <div class="property-details" v-if="addProperty2">
         <h2 class="property-details-title">Property Details</h2>
 
         <div class="owner-name">
@@ -965,7 +967,7 @@
 
         <!--Property Details 3-->
 
-        <div class="property-details">
+        <div class="property-details" v-if="addProperty3">
         <h2 class="property-details-title">Property Details</h2>
 
         <div class="owner-name">
@@ -1508,6 +1510,8 @@ export default {
       addPropNote: false,
       addPropNote2: false,
       addPropNote3: false,
+      addProperty2: false,
+      addProperty3: false,
       newJob: {
         prospectId: null,
         activeJobId: null,
@@ -1717,6 +1721,7 @@ export default {
     padding: 10px;
     padding-left: 25px;
     padding-right: 25px;
+    width: 800px;
   }
 
   .property-details {
@@ -1727,6 +1732,7 @@ export default {
     padding: 10px;
     padding-left: 25px;
     padding-right: 25px;
+    width: 800px;
   }
 
   .job-details {
@@ -1737,6 +1743,7 @@ export default {
     padding: 10px;
     padding-left: 25px;
     padding-right: 25px;
+    width: 800px;
   }
 
   .job-type-container {
@@ -1748,6 +1755,7 @@ export default {
     padding-left: 25px;
     padding-right: 25px;
     margin-bottom: 25px;
+    width: 800px;
   }
 
   .client-input-fields {
