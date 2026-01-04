@@ -963,6 +963,9 @@
           ></textarea>
         </div>
 
+        <button class="cancel-adding-property-btn" v-if="addProperty2"
+        @click.prevent="addProperty2=!addProperty2">Cancel Adding Second Property</button>
+
         </div>
 
         <!--Property Details 3-->
