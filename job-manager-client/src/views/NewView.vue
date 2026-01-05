@@ -968,6 +968,9 @@
 
         </div>
 
+        <button class="add-property-btn" v-if="!addProperty3 && addProperty2"
+        @click.prevent="addProperty3 = !addProperty3"> + Add Third Property</button>
+
         <!--Property Details 3-->
 
         <div class="property-details" v-if="addProperty3">
@@ -1194,6 +1197,9 @@
           v-model="newProperty3.propNotes"
           ></textarea>
         </div>
+
+        <button class="cancel-adding-property-btn" v-if="addProperty3"
+        @click.prevent="addProperty3=!addProperty3">Cancel Adding Third Property</button>
 
         </div>
 
