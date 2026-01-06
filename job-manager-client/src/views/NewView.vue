@@ -1863,4 +1863,13 @@ export default {
     margin-bottom: 25px;
   }
 
+  .add-property-btn {
+    margin-bottom: 25px;
+    margin-top: 25px;
+  }
+
+  .cancel-adding-property-btn {
+    margin-top: 25px;
+  }
+
 </style>
