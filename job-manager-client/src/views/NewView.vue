@@ -963,10 +963,10 @@
           ></textarea>
         </div>
 
+        </div>
+
         <button class="cancel-adding-property-btn" v-if="addProperty2"
         @click.prevent="addProperty2=!addProperty2">Cancel Adding Second Property</button>
-
-        </div>
 
         <button class="add-property-btn" v-if="!addProperty3 && addProperty2"
         @click.prevent="addProperty3 = !addProperty3"> + Add Third Property</button>
@@ -1198,10 +1198,10 @@
           ></textarea>
         </div>
 
+        </div>
+
         <button class="cancel-adding-property-btn" v-if="addProperty3"
         @click.prevent="addProperty3=!addProperty3">Cancel Adding Third Property</button>
-
-        </div>
 
         <!-- Job Details -->
 
@@ -1844,7 +1844,12 @@ export default {
   }
 
   .add-client-btn {
-    margin-top: 25px;
+    margin-top: 15px;
+  }
+
+  .cancel-adding-client-btn {
+    margin-top: 15px;
+    margin-bottom: 15px;
   }
 
   .property-details-title {
@@ -1857,19 +1862,23 @@ export default {
 
   .job-description {
     display: flex;
+    justify-content: center;
+    width: 325px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .new-prospect-btn {
-    margin-bottom: 25px;
+    margin-bottom: 15px;
   }
 
   .add-property-btn {
-    margin-bottom: 25px;
-    margin-top: 25px;
+    margin-bottom: 15px;
+    margin-top: 15px;
   }
 
   .cancel-adding-property-btn {
-    margin-top: 25px;
+    margin-top: 15px;
   }
 
 </style>
