@@ -7,6 +7,9 @@
 </template>
 
 <script>
+// Create a computed property to find list of job types based on job id. Send to another component to
+// display each programmatically
+
 export default {
   name: 'NeedsQuoteDisplay',
   data () {
