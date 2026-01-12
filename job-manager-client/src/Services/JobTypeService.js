@@ -14,7 +14,7 @@ export default {
     http.get(`/job-type/${id}`)
   },
 
-  getJobTypeByJob (jobId) {
+  getJobTypesByJob (jobId) {
     http.get(`/job-types/${jobId}`)
   },
 

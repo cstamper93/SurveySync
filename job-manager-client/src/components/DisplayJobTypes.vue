@@ -4,7 +4,11 @@
 
 <script>
 export default {
-
+  name: 'DisplayJobTypes',
+  data () {
+    return {
+    }
+  }
 }
 </script>
 
