@@ -12,7 +12,7 @@
 
 <script>
 import JobTypeService from '../Services/JobTypeService.js'
-import DisplayJobTypes from 'DisplayJobTypes.vue'
+import DisplayJobTypes from './DisplayJobTypes.vue'
 // Create a computed property to find list of job types based on job id. Send to another component to
 // display each programmatically
 
