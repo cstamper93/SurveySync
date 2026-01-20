@@ -88,7 +88,7 @@ public class JdbcJobTypeDao implements JobTypeDao {
         jobType.setJobType(rs.getString("job_type"));
         jobType.setPrice(rs.getDouble("price"));
         jobType.setTypeDescription(rs.getString("type_description"));
-        jobType.setEstimatedFieldHours(rs.getInt("estimated_field_days"));
+        jobType.setEstimatedFieldHours(rs.getInt("estimated_field_hours"));
         return jobType;
     }
 }

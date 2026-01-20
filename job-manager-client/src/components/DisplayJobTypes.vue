@@ -1,6 +1,6 @@
 <template>
   <div>
-    
+    <p>{{ jobType }}</p>
   </div>
 </template>
 
@@ -10,6 +10,9 @@ export default {
   data () {
     return {
     }
+  },
+  props: {
+    jobType: Object
   }
 }
 </script>

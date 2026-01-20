@@ -1,11 +1,12 @@
 <template>
   <div class="needs-research-container">
-    <h4>Prospect Id: {{ needsResearchProspect.prospectId }}</h4>
-    <h4>Intake Date: {{ needsResearchProspect.intakeDate }}</h4>
-    <h4>Client Name: {{ needsResearchProspect.clientFirstName }} {{ needsResearchProspect.clientLastName }}</h4>
-    <h4>Job Address: {{ needsResearchProspect.jobAddress }}, {{ needsResearchProspect.jobTown }}</h4>
-    <h4>County: {{ needsResearchProspect.jobCounty }}</h4>
-    <h4>Job Type: <DisplayJobTypes v-for="jobType in jobTypeList" v-bind:key="jobType" v-bind:jobType="jobType"/></h4>
+    <h4>Prospect Id: </h4><p>{{ needsResearchProspect.prospectId }}</p>
+    <h4>Intake Date: </h4><p>{{ needsResearchProspect.intakeDate }}</p>
+    <h4>Client Name: </h4><p>{{ needsResearchProspect.clientFirstName }} {{ needsResearchProspect.clientLastName }}</p>
+    <h4>Job Address: </h4><p>{{ needsResearchProspect.jobAddress }}, {{ needsResearchProspect.jobTown }}</p>
+    <h4>County: </h4><p>{{ needsResearchProspect.jobCounty }}</p>
+    <h4>Job Type: <DisplayJobTypes v-for="jobType in jobTypeList" v-bind:key="jobType.jobId" v-bind:jobType="jobType"/></h4>
+    <p> {{ this.jobTypeList }}</p>
     <p>------------------------------</p>
   </div>
 </template>
