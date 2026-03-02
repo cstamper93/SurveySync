@@ -27,8 +27,14 @@ public class JobTypeController {
     }
 
     @GetMapping("/job-types/{id}")
-    public List<JobType> getJobTypesByJob(@PathVariable int id) {
-        return jobTypeDao.getJobTypesByJob(id);
+    public List<String> getJobTypesByJob(@PathVariable int id) {
+        System.out.println("controller " + id);
+        List<String> jobTypeList = jobTypeDao.getJobTypesByJob(id);
+        for(int i=0; i<jobTypeList.size(); i++) {
+            System.out.println(jobTypeList.get(i));
+        }
+        //System.out.println(jobTypes);
+        return jobTypeList;
     }
 
     @PutMapping("/job-type")

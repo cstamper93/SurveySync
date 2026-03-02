@@ -45,14 +45,20 @@ public class JdbcJobTypeDao implements JobTypeDao {
     }
 
     @Override
-    public List<JobType> getJobTypesByJob(int jobId) {
+    public List<String> getJobTypesByJob(int jobId) {
         List<JobType> jobTypes = new ArrayList<>();
+        List<String> jobTypeList = new ArrayList<>();
         String sql = "SELECT * FROM job_type WHERE job_id = ? ORDER BY job_id;";
         SqlRowSet results = template.queryForRowSet(sql, jobId);
         while(results.next()) {
             jobTypes.add(mapRowToJobType(results));
         }
-        return jobTypes;
+        System.out.println("dao " + jobId);
+        for(int i=0; i<jobTypes.size(); i++) {
+            System.out.println(jobTypes.get(i).toString());
+            jobTypeList.add(jobTypes.get(i).getJobType());
+        }
+        return jobTypeList;
     }
 
     @Override

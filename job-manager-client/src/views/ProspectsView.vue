@@ -37,10 +37,11 @@ const needsResearchProspects = ref([])
 const needsQuoteJobCards = ref([])
 const readyToCallJobCards = ref([])
 const readyToSendJobCards = ref([])
+// const jobTypeList = ref([])
 
 onMounted(() => {
   ProspectDisplayService.getProspectDisplayList('needs research').then((response) => {
-    console.log(response.data)
+    // console.log(response.data)
     needsResearchProspects.value = response.data
   })
 

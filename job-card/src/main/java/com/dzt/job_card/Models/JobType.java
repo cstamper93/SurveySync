@@ -58,4 +58,8 @@ public class JobType {
     public void setEstimatedFieldHours(int estimatedFieldHours) {
         this.estimatedFieldHours = estimatedFieldHours;
     }
+
+    public String toString() {
+        return "Job Type: " + this.jobType;
+    }
 }

@@ -10,7 +10,7 @@ public interface JobTypeDao {
 
     JobType getJobTypeById(int id);
 
-    List<JobType> getJobTypesByJob(int jobId);
+    List<String> getJobTypesByJob(int jobId);
 
     JobType editJobType(JobType jobType);
 

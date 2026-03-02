@@ -72,7 +72,7 @@ public class JdbcProspectDisplayDTODao implements ProspectDisplayDTODao {
         prospect.setJobTown(rs.getString("town"));
         prospect.setJobCounty(rs.getString("county"));
         prospect.setIntakeDate(rs.getDate("intake_date"));
-        prospect.setJobType(rs.getString("job_type"));
+        // prospect.setJobType(rs.getString("job_type")); ==> put this logic within method
         return prospect;
     }
 }

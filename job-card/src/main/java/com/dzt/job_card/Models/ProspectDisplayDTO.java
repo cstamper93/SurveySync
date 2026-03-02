@@ -1,5 +1,6 @@
 package com.dzt.job_card.Models;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class ProspectDisplayDTO {
     private String jobTown;
     private String jobCounty;
     private Date intakeDate;
-    private String jobType;
+    private List<String> jobTypes = new ArrayList<>();
 
     public ProspectDisplayDTO() {}
 
@@ -90,11 +91,17 @@ public class ProspectDisplayDTO {
         this.intakeDate = intakeDate;
     }
 
-    public String getJobType() {
+    public JobType getJobType() {
         return jobType;
     }
 
-    public void setJobType(String jobType) {
-        this.jobType = jobType;
+    public void addJobType 'n                                                                                                                                                                                                                                                                       '
+
+    public List<String> getJobTypes() {
+        return jobTypes;
+    }
+
+    public void setJobType(List<String> jobTypes) {
+        this.jobTypes = jobTypes;
     }
 }
