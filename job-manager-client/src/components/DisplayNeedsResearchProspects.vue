@@ -6,11 +6,14 @@
     <h4>Job Address: </h4><p>{{ needsResearchProspect.jobAddress }}, {{ needsResearchProspect.jobTown }}</p>
     <h4>County: </h4><p>{{ needsResearchProspect.jobCounty }}</p>
     <h4>Job Types: </h4>
-    <ul>
-      <li v-for="(type, index) in needsResearchProspect.jobTypes" :key="index">
+    <div class="job-type-tags">
+      <span
+        v-for="(type, index) in needsResearchProspect.jobTypes"
+        :key="index"
+        :class="['job-tag', tagColor(type)]">
         {{ type }}
-      </li>
-    </ul>
+      </span>
+    </div>
     <p>------------------------------</p>
   </div>
 </template>
@@ -30,9 +33,20 @@ export default {
   props: {
     needsResearchProspect: Object
   },
-  computed: {
-    jobTypeList () {
-      return JobTypeService.getJobTypesByJob(this.needsResearchProspect.jobId)
+  methods: {
+    tagColor (type) {
+      switch (type) {
+        case 'FS':
+          return 'tag-FS'
+        case 'EPS':
+          return 'tag-EPS'
+        case 'Division':
+          return 'tag-Div'
+        case 'Recombination':
+          return 'tag-Recomb'
+        default:
+          return 'tag-default'
+      }
     }
   },
   created () {
@@ -42,5 +56,32 @@ export default {
 </script>
 
 <style scoped>
-
+  .job-type-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .job-tag {
+    background-color: #2c7be5;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+  .tag-FS {
+    background-color: #2c7be5;
+  }
+  .tag-EPS {
+    background-color: #00a854;
+  }
+  .tag-Div {
+    background-color: #f0ad4e;
+  }
+  .tag-Recomb {
+    background-color: #ff69b4;
+  }
+  .tag-default {
+    background-color: #6c757d;
+  }
 </style>
