@@ -5,7 +5,12 @@
     <h4>Client Name: </h4><p>{{ needsResearchProspect.clientFirstName }} {{ needsResearchProspect.clientLastName }}</p>
     <h4>Job Address: </h4><p>{{ needsResearchProspect.jobAddress }}, {{ needsResearchProspect.jobTown }}</p>
     <h4>County: </h4><p>{{ needsResearchProspect.jobCounty }}</p>
-    <h4>Job Types: </h4><p>{{ needsResearchProspect.jobType }}</p>
+    <h4>Job Types: </h4>
+    <ul>
+      <li v-for="(type, index) in needsResearchProspect.jobTypes" :key="index">
+        {{ type }}
+      </li>
+    </ul>
     <p>------------------------------</p>
   </div>
 </template>

@@ -91,17 +91,11 @@ public class ProspectDisplayDTO {
         this.intakeDate = intakeDate;
     }
 
-    public JobType getJobType() {
-        return jobType;
-    }
-
-    public void addJobType 'n                                                                                                                                                                                                                                                                       '
-
     public List<String> getJobTypes() {
         return jobTypes;
     }
 
-    public void setJobType(List<String> jobTypes) {
+    public void setJobTypes(List<String> jobTypes) {
         this.jobTypes = jobTypes;
     }
 }

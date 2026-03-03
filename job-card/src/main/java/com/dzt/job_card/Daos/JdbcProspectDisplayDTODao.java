@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 @Component
@@ -41,7 +42,8 @@ public class JdbcProspectDisplayDTODao implements ProspectDisplayDTODao {
 
     @Override
     public List<ProspectDisplayDTO> getProspectDisplayList(String jobStatus) {
-        List<ProspectDisplayDTO> prospectList = new ArrayList<>();
+        // List<ProspectDisplayDTO> prospectList = new ArrayList<>();
+        LinkedHashMap<Integer, ProspectDisplayDTO> prospectMap = new LinkedHashMap<>();
         String sql = "SELECT jc.job_id, jc.prospect_id, jc.active_job_id, " +
                 "c.first_name, c.last_name, " +
                 "p.address, p.town, p.county, " +
@@ -56,9 +58,15 @@ public class JdbcProspectDisplayDTODao implements ProspectDisplayDTODao {
                 "ORDER BY jc.job_id;";
         SqlRowSet results = template.queryForRowSet(sql, jobStatus);
         while(results.next()) {
-            prospectList.add(mapRowToProspectObject(results));
+            int jobId = results.getInt("job_id");
+            ProspectDisplayDTO dto = prospectMap.get(jobId);
+            if (dto == null) {
+                dto = mapRowToProspectObject(results);
+                prospectMap.put(jobId, dto);
+            }
+            dto.getJobTypes().add(results.getString("job_type"));
         }
-        return prospectList;
+        return new ArrayList<>(prospectMap.values());
     }
 
     private ProspectDisplayDTO mapRowToProspectObject(SqlRowSet rs) {
