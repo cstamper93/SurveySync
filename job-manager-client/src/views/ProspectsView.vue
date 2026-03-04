@@ -7,14 +7,17 @@
     </div>
 
     <div class="needs-quote-container">
-      <NeedsQuoteDisplay v-for="needsQuoteProspect in needsQuoteList" v-bind:key="needsQuoteProspect.jobId" v-bind:needsQuoteProspect="needsQuoteProspect" />
+      <h3>Needs Quote</h3>
+      <NeedsQuoteDisplay v-for="needsQuoteProspect in needsQuoteJobCards" v-bind:key="needsQuoteProspect.jobId" v-bind:needsQuoteProspect="needsQuoteProspect" />
     </div>
 
     <div class="ready-to-call-container">
+      <h3>Ready To Call</h3>
       <ReadyToCallDisplay v-for="readyToCallProspect in readyToCallList" v-bind:key="readyToCallProspect.jobId" v-bind:readyToCallProspect="readyToCallProspect" />
     </div>
 
     <div class="ready-to-send-container">
+      <h3>Send Contract</h3>
       <ReadyToSendDisplay v-for="readyToSendProspect in readyToSendList" v-bind:key="readyToSendProspect.jobId" v-bind:readyToSendProspect="readyToSendProspect" />
     </div>
 
@@ -64,10 +67,13 @@ onMounted(() => {
 
 <style scoped>
   .container {
-    margin-left: 20%;
+    margin-left: 21%;
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+  }
+  .needs-research-container {
+    width: 300px;
   }
 
   button {

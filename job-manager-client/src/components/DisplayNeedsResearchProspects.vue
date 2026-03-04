@@ -1,34 +1,36 @@
 <template>
   <div class="needs-research-container">
-    <h4>Prospect Id: </h4><p>{{ needsResearchProspect.prospectId }}</p>
-    <h4>Intake Date: </h4><p>{{ needsResearchProspect.intakeDate }}</p>
-    <h4>Client Name: </h4><p>{{ needsResearchProspect.clientFirstName }} {{ needsResearchProspect.clientLastName }}</p>
-    <h4>Job Address: </h4><p>{{ needsResearchProspect.jobAddress }}, {{ needsResearchProspect.jobTown }}</p>
-    <h4>County: </h4><p>{{ needsResearchProspect.jobCounty }}</p>
-    <h4>Job Types: </h4>
-    <div class="job-type-tags">
-      <span
-        v-for="(type, index) in needsResearchProspect.jobTypes"
-        :key="index"
-        :class="['job-tag', tagColor(type)]">
-        {{ type }}
-      </span>
-    </div>
-    <p>------------------------------</p>
+      <div class="row">
+        <h4>Intake Date: </h4><p>{{ needsResearchProspect.intakeDate }}</p>
+      </div>
+      <div class="row">
+        <h4>Client Name: </h4><p>{{ needsResearchProspect.clientFirstName }} {{ needsResearchProspect.clientLastName }}</p>
+      </div>
+      <div class="row">
+        <h4>Job Address: </h4><p>{{ needsResearchProspect.jobAddress }}, {{ needsResearchProspect.jobTown }}</p>
+      </div>
+      <div class="row">
+        <h4>County: </h4><p>{{ needsResearchProspect.jobCounty }}</p>
+      </div>
+      <div class="row">
+        <h4>Job Types: </h4>
+        <div class="job-type-tags">
+        <span
+          v-for="(type, index) in needsResearchProspect.jobTypes"
+          :key="index"
+          :class="['job-tag', tagColor(type)]">
+          {{ type }}
+        </span>
+        </div>
+      </div>
   </div>
 </template>
 
 <script>
-import JobTypeService from '../Services/JobTypeService.js'
-// Create a computed property to find list of job types based on job id. Send to another component to
-// display each programmatically
-
 export default {
   name: 'NeedsResearchDisplay',
   data () {
-    return {
-      listOfJobTypes: []
-    }
+    return {}
   },
   props: {
     needsResearchProspect: Object
@@ -48,11 +50,9 @@ export default {
           return 'tag-default'
       }
     }
-  },
-  created () {
-    JobTypeService.getJobTypesByJob(this.needsResearchProspect.jobId)
   }
 }
+
 </script>
 
 <style scoped>
@@ -83,5 +83,23 @@ export default {
   }
   .tag-default {
     background-color: #6c757d;
+  }
+  .needs-research-container {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    border-radius: 5px;
+  }
+  .row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 5px;
+  }
+  h4 {
+    margin-right: 5px;
+  }
+  p {
+    margin-right: 5px;
   }
 </style>
