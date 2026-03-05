@@ -46,6 +46,8 @@ export default {
           return 'tag-Div'
         case 'Recombination':
           return 'tag-Recomb'
+        case 'Site Plan':
+          return 'tag-SP'
         default:
           return 'tag-default'
       }
@@ -80,6 +82,9 @@ export default {
   }
   .tag-Recomb {
     background-color: #ff69b4;
+  }
+  .tag-SP {
+    background-color: red;
   }
   .tag-default {
     background-color: #6c757d;

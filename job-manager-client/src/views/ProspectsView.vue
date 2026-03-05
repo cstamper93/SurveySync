@@ -38,8 +38,8 @@ import ProspectDisplayService from '../Services/ProspectDisplayService.js'
 const needsResearchProspects = ref([])
 // const needsResearchJobTypes = ref([])
 const needsQuoteJobCards = ref([])
-const readyToCallJobCards = ref([])
-const readyToSendJobCards = ref([])
+const readyToCallList = ref([])
+const readyToSendList = ref([])
 // const jobTypeList = ref([])
 
 onMounted(() => {
@@ -55,12 +55,12 @@ onMounted(() => {
 
   ProspectDisplayService.getProspectDisplayList('ready to call').then((response) => {
     console.log(response.data)
-    readyToCallJobCards.value = response.data
+    readyToCallList.value = response.data
   })
 
   ProspectDisplayService.getProspectDisplayList('ready to send').then((response) => {
     console.log(response.data)
-    readyToSendJobCards.value = response.data
+    readyToSendList.value = response.data
   })
 })
 </script>
