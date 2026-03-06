@@ -33,7 +33,7 @@ export default {
     return {}
   },
   props: {
-    readyToCallProspect: Object
+    readyToSendProspect: Object
   },
   methods: {
     tagColor (type) {
