@@ -12,6 +12,10 @@ public interface PropertyDao {
 
     Property getPropertyById(int propId);
 
+    Property getPropertyByAddress(String address, String town);
+
+    Property getPropertyByPidOrPin(String pin, String pid);
+
     List<Property> getPropertiesByJob(int jobId);
 
     Property editProperty(Property property);

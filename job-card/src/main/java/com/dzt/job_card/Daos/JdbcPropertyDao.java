@@ -54,6 +54,18 @@ public class JdbcPropertyDao implements PropertyDao {
     }
 
     @Override
+    public Property getPropertyByAddress(String address, String town) {
+        Property property = null;
+        String sql = "SELECT * FROM property WHERE address = ? && town = ?;";
+        return null;
+    }
+
+    @Override
+    public Property getPropertyByPidOrPin(String pin, String pid) {
+        return null;
+    }
+
+    @Override
     public List<Property> getPropertiesByJob(int jobId) {
         List<Property> properties = new ArrayList<>();
         String sql = "SELECT * FROM property " +

@@ -1575,10 +1575,12 @@ export default {
   },
   methods: {
     submitProspect () {
-      // client
-      // check if client exists
-      // add client if not; do nothing if exists
-      // *** LATER - THINK ABOUT INTEGRATING THESE METHODS ON SERVER SIDE IN ONE METHOD - INPUT CLIENTS NAMES AND PROPERTIES, CHECK IF NULL, INPUT IF SO...
+      // Check property existence
+      // Check client existence
+      // **Maybe** If both exist, pull the associated job (check job id against both job property and client property tables)
+      // If job id matches, prompt user and ask if they still want to submit job
+
+
       if (this.checkClient(this.newClient.firstName, this.newClient.lastName)) {
         this.addClient(this.newClient)
       }
@@ -1621,6 +1623,10 @@ export default {
           alert('New property added.')
         }
       })
+    },
+    checkProperty (address, town, pid, pin) {
+      // add new get methods to property dao,,,
+      return false
     },
     addJobCard () {
       JobCardService.addJobCard(this.newJob).then((response) => {

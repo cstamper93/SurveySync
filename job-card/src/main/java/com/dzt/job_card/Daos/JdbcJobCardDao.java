@@ -21,9 +21,7 @@ public class JdbcJobCardDao implements JobCardDao {
 
     @Override
     public JobCard createNewJobCard(JobCard jobCard, int clientId, int propertyId) {
-        // 5/29 - usually, a new job comes with a new client and property. So, why not make inserts for them as well?
-        // ACTUALLY, we can use the controller to call the client and other jdbc methods. Just contain it to
-        // job card for now
+
         String jobCardSql = "INSERT INTO job_card (prospect_id, active_job_id, billing_client_id, intake_date, intake_time, " +
                 "marked_lines_length, job_description, house_plan_name, job_status, ready_date, complete_by_date, " +
                 "contract_sent_date, contract_signed, contract_signed_date, letters_sent, letters_sent_date, is_plotted, " +
