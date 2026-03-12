@@ -26,6 +26,16 @@ public class PropertyController {
         return propertyDao.getPropertyById(id);
     }
 
+    @GetMapping("/property-by-address/{address}/{town}")
+    public Property getPropertyByAddress(@PathVariable String address, @PathVariable String townn) {
+        return null;
+    }
+
+    @GetMapping("/property-by-pin/{pin}/{pid}")
+    public Property getPropertyByPidOrPin(@PathVariable String pin, @PathVariable String pid) {
+        return null;
+    }
+
     @GetMapping("/properties/{id}")
     public List<Property> getPropertiesByJob(@PathVariable int jobId) {
         return propertyDao.getPropertiesByJob(jobId);

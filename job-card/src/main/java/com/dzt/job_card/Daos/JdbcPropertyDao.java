@@ -56,13 +56,27 @@ public class JdbcPropertyDao implements PropertyDao {
     @Override
     public Property getPropertyByAddress(String address, String town) {
         Property property = null;
-        String sql = "SELECT * FROM property WHERE address = ? && town = ?;";
-        return null;
+        String sql = "SELECT * FROM property WHERE address = ? AND town = ?;";
+        SqlRowSet result = template.queryForRowSet(sql, address, town);
+        if(result.next()) {
+            property = mapRowToProperty(result);
+            return property;
+        } else {
+            throw new NullPointerException("Oops! Property is null...");
+        }
     }
 
     @Override
     public Property getPropertyByPidOrPin(String pin, String pid) {
-        return null;
+        Property property;
+        String sql = "SELECT * FROM property WHERE pid = ? OR pin = ?;";
+        SqlRowSet result = template.queryForRowSet(sql, pid, pin);
+        if(result.next()) {
+            property = mapRowToProperty(result);
+            return property;
+        } else {
+            throw new NullPointerException("Oops! Property is null...");
+        }
     }
 
     @Override
@@ -119,7 +133,7 @@ public class JdbcPropertyDao implements PropertyDao {
         property.setMap2(rowSet.getString("map_2"));
         property.setMap3(rowSet.getString("map_3"));
         property.setPerimeter(rowSet.getInt("perimeter"));
-        property.setAcreage(rowSet.getInt("acreage"));
+        property.setAcreage(rowSet.getDouble("acreage"));
         property.setDriveTime(rowSet.getTime("drive_time"));
         property.setSubdivision(rowSet.getString("subdivision"));
         property.setPid(rowSet.getString("pid"));

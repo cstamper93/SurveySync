@@ -156,7 +156,7 @@ public class Property {
         return acreage;
     }
 
-    public void setAcreage(int acreage) {
+    public void setAcreage(double acreage) {
         this.acreage = acreage;
     }
 
