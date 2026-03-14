@@ -14,6 +14,14 @@ export default {
     return http.get(`/property/${id}`)
   },
 
+  getPropertyByAddress (address, town) {
+    return http.get(`/property/${address}/${town}`)
+  },
+
+  getPropertyByPin (pin, pid) {
+    return http.get(`/property/${pin}/${pid}`)
+  },
+
   getPropertiesByJob (jobId) {
     return http.get(`/properties/${jobId}`)
   },

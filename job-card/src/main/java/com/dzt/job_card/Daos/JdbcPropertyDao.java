@@ -62,7 +62,8 @@ public class JdbcPropertyDao implements PropertyDao {
             property = mapRowToProperty(result);
             return property;
         } else {
-            throw new NullPointerException("Oops! Property is null...");
+            return null;
+            //throw new NullPointerException("Oops! Property is null...");
         }
     }
 
@@ -75,7 +76,8 @@ public class JdbcPropertyDao implements PropertyDao {
             property = mapRowToProperty(result);
             return property;
         } else {
-            throw new NullPointerException("Oops! Property is null...");
+            return null;
+            //throw new NullPointerException("Oops! Property is null...");
         }
     }
 

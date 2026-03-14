@@ -35,4 +35,7 @@ public interface JobCardDao {
 
     List<JobCard> getJobsByClient(int clientId);
 
+    // take in job details, return if any objects exist
+    int checkNewProspectFormSubmission(String stuffMaybe);
+
 }

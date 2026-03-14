@@ -27,13 +27,13 @@ public class PropertyController {
     }
 
     @GetMapping("/property-by-address/{address}/{town}")
-    public Property getPropertyByAddress(@PathVariable String address, @PathVariable String townn) {
-        return null;
+    public Property getPropertyByAddress(@PathVariable String address, @PathVariable String town) {
+        return propertyDao.getPropertyByAddress(address, town);
     }
 
     @GetMapping("/property-by-pin/{pin}/{pid}")
     public Property getPropertyByPidOrPin(@PathVariable String pin, @PathVariable String pid) {
-        return null;
+        return propertyDao.getPropertyByPidOrPin(pin, pid);
     }
 
     @GetMapping("/properties/{id}")
