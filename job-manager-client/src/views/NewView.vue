@@ -1,23 +1,25 @@
 <template>
   <div class="container">
     <h1>New Prospect</h1>
-    <form class="prospect-form" @submit.prevent="submitProspect">
-
-        <div class="client-details">
+    <form 
+      class="prospect-form" 
+      @submit.prevent="submitProspect"
+    >
+      <div class="client-details">
         <h2>Client Details</h2>
-          <div class="client-input-fields">
-
-            <div class="name">
-            <label for="firstName"
-            class="input-label"
+        <div class="client-input-fields">
+          <div class="name">
+            <label 
+              for="firstName"
+              class="input-label"
             >Name: </label>
             <input
-            type="text"
-            id="firstName"
-            class="input-box"
-            placeholder="First Name"
-            v-model="newClient.firstName"
-            />
+              id="firstName"
+              type="text"
+              v-model="newClient.firstName"
+              class="input-box"
+              placeholder="First Name"
+            >
             <input
             type="text"
             id="lastName"
@@ -1575,16 +1577,22 @@ export default {
   },
   methods: {
     submitProspect () {
+
+      //var doesClientExist = checkClient();
+
+      //var doesPropertyExist = checkProperty();
   
-      if (this.checkClient(this.newClient.firstName, this.newClient.lastName)) {
-        this.addClient(this.newClient)
-      }
-      if (this.checkClient(this.newClient2.firstName, this.newClient2.lastName)) {
-        this.addClient(this.newClient2)
-      }
-      if (this.checkClient(this.newClient3.firstName, this.newClient3.lastName)) {
-        this.addClient(this.newClient3)
-      }
+      // if both exist, pull job id associated with join tables and see if its the same job
+      // may have multiple jobs for any existing client or property. Will just have to assume lists and compare each
+      // create method in java to compare and return matching job id or 0 for no matches
+
+      // possibilities: 
+      // none existing, new everything
+      // existing property only OR existing client only
+      // existing property AND client with matching job id
+      // existing property AND client with no matching job id
+
+
       // property
       this.addProperty(this.newProperty)
       this.addProperty(this.newProperty2)
@@ -1605,7 +1613,7 @@ export default {
       })
     },
     checkClient (firstName, lastName) {
-      if (ClientService.getClientByName != null) {
+      if (ClientService.getClientByName(firstName, lastName) != null) {
         return true
       } else {
         return false

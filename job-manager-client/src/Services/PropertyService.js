@@ -27,7 +27,7 @@ export default {
   },
 
   fixProperty (property) {
-    return http.put('/property')
+    return http.put('/property', property)
   },
 
   removeProperty (id) {
