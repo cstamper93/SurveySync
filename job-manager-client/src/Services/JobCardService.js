@@ -52,6 +52,10 @@ export default {
 
   getJobsByClient (clientId) {
     return http.get(`/clients-jobs/${clientId}`)
+  },
+
+  getMatchingJobId (clientId, propertyId) {
+    return http.get (`/job-match/${clientId}/${propertyId}`)
   }
 
 }

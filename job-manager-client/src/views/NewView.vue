@@ -1582,7 +1582,7 @@ export default {
 
       var doesPropertyExist = this.checkProperty(this.newProperty.address, this.newProperty.town);
 
-      var doJobIdsMatch = null;
+      var doJobIdsMatch = JobCardService.getMatchingJobId(doesClientExist, doesPropertyExist);
 
       // possibilities: 
       // none existing, new everything
@@ -1596,8 +1596,10 @@ export default {
         alert("Client already exists in database. Creating new prospect with this client.")
       } else if (doesClientExist === 0 && doesPropertyExist != 0) {
         alert("Property already exists in database. Creating new prospect with this property.")
-      } else if (doesClientExist != 0 && doesPropertyExist != 0 && ) {
-        alert("")
+      } else if (doesClientExist != 0 && doesPropertyExist != 0 && doJobIdsMatch === 0) {
+        alert("client and property exist but no prospect or job exists for them. Adding prospect now :)!")
+      } else if (doesClientExist != 0 && doesPropertyExist != 0 && doJobIdsMatch != 0 ) {
+        alert("A prospect/job exists for this client and property already. Add a new job type to the existing job.")
       }
 
       // property
@@ -1642,9 +1644,6 @@ export default {
         doesPropertyExist = true;
       }
       return doesPropertyExist;
-    },
-    doJobIdsMatch (clientId, propertyId) {
-      // 0 if no; jobId returned if match.
     },
     addJobCard () {
       JobCardService.addJobCard(this.newJob).then((response) => {
