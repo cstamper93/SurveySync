@@ -27,7 +27,7 @@ public class PropertyController {
     }
 
     @GetMapping("/property-by-address/{address}/{town}")
-    public Property getPropertyByAddress(@PathVariable String address, @PathVariable String town) {
+    public int getPropertyByAddress(@PathVariable String address, @PathVariable String town) {
         return propertyDao.getPropertyByAddress(address, town);
     }
 

@@ -44,14 +44,16 @@ public class JdbcClientDao implements ClientDao {
     }
 
     @Override
-    public Client getClientByName(String firstName, String lastName) {
+    public int getClientByName(String firstName, String lastName) {
         Client client = null;
         String sql = "SELECT * FROM client WHERE first_name = ? AND last_name = ?;";
         SqlRowSet results = template.queryForRowSet(sql, firstName, lastName);
         if(results.next()) {
             client = mapRowToClient(results);
+            return client.getClientId();
+        } else {
+            return 0;
         }
-        return client;
     }
 
     @Override

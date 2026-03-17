@@ -54,15 +54,15 @@ public class JdbcPropertyDao implements PropertyDao {
     }
 
     @Override
-    public Property getPropertyByAddress(String address, String town) {
+    public int getPropertyByAddress(String address, String town) {
         Property property = null;
         String sql = "SELECT * FROM property WHERE address = ? AND town = ?;";
         SqlRowSet result = template.queryForRowSet(sql, address, town);
         if(result.next()) {
             property = mapRowToProperty(result);
-            return property;
+            return property.getPropId();
         } else {
-            return null;
+            return 0;
             //throw new NullPointerException("Oops! Property is null...");
         }
     }

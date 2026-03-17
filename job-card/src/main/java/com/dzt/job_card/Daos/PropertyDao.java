@@ -12,7 +12,7 @@ public interface PropertyDao {
 
     Property getPropertyById(int propId);
 
-    Property getPropertyByAddress(String address, String town);
+    int getPropertyByAddress(String address, String town);
 
     Property getPropertyByPidOrPin(String pin, String pid);
 

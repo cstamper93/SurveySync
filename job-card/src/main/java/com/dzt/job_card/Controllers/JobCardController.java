@@ -95,4 +95,8 @@ public class JobCardController {
         return jobCardDao.getJobsByClient(clientId);
     }
 
+    @GetMapping("/job-match/{clientId}/{propertyId}")
+    public int getMatchingJobId(@PathVariable int clientId, @PathVariable int propertyId) {
+        return jobCardDao.getMatchingJobId(clientId, propertyId);
+    }
 }

@@ -1578,13 +1578,11 @@ export default {
   methods: {
     submitProspect () {
 
-      //var doesClientExist = checkClient();
+      var doesClientExist = this.checkClient(this.newClient.firstName, this.newClient.lastName);
 
-      //var doesPropertyExist = checkProperty();
-  
-      // if both exist, pull job id associated with join tables and see if its the same job
-      // may have multiple jobs for any existing client or property. Will just have to assume lists and compare each
-      // create method in java to compare and return matching job id or 0 for no matches
+      var doesPropertyExist = this.checkProperty(this.newProperty.address, this.newProperty.town);
+
+      var doJobIdsMatch = null;
 
       // possibilities: 
       // none existing, new everything
@@ -1592,6 +1590,15 @@ export default {
       // existing property AND client with matching job id
       // existing property AND client with no matching job id
 
+      if (doesClientExist === 0 && doesPropertyExist === 0) {
+        alert("New prospect created!")
+      } else if (doesClientExist != 0 && doesPropertyExist === 0) {
+        alert("Client already exists in database. Creating new prospect with this client.")
+      } else if (doesClientExist === 0 && doesPropertyExist != 0) {
+        alert("Property already exists in database. Creating new prospect with this property.")
+      } else if (doesClientExist != 0 && doesPropertyExist != 0 && ) {
+        alert("")
+      }
 
       // property
       this.addProperty(this.newProperty)
@@ -1635,6 +1642,9 @@ export default {
         doesPropertyExist = true;
       }
       return doesPropertyExist;
+    },
+    doJobIdsMatch (clientId, propertyId) {
+      // 0 if no; jobId returned if match.
     },
     addJobCard () {
       JobCardService.addJobCard(this.newJob).then((response) => {

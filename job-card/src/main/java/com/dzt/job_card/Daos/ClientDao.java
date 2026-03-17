@@ -11,7 +11,7 @@ public interface ClientDao {
 
     Client getClientById(int id);
 
-    Client getClientByName(String firstName, String lastName);
+    int getClientByName(String firstName, String lastName);
 
     List<Client> getAllClients();
 

@@ -203,6 +203,33 @@ public class JdbcJobCardDao implements JobCardDao {
         return allClientJobs;
     }
 
+    @Override
+    public int getMatchingJobId(int clientId, int propertyId) {
+        List<Integer> clientIdList = new ArrayList<>();
+        List<Integer> propertyIdList = new ArrayList<>();
+        String clientSql = "SELECT job_id FROM job_card_client WHERE client_id = ?;";
+        // can have multiple jobs with same client id
+        SqlRowSet clientResults = template.queryForRowSet(clientSql, clientId);
+        while (clientResults.next()) {
+            clientIdList.add(clientResults.getInt("job_id"));
+        }
+        String propertySql = "SELECT job_id FROM job_card_property WHERE prop_id = ?;";
+        // CAN have multiple job prospects on same property
+        SqlRowSet propertyResults = template.queryForRowSet(propertySql, propertyId);
+        while (propertyResults.next()) {
+            propertyIdList.add(propertyResults.getInt("job_id"));
+        }
+        //CANNOT have multiple job ids that match...same client + same job = same prospect...just add new job type
+        int matchingJobId = 0;
+        for(int i=0; i<clientIdList.size(); i++) {
+            if (propertyIdList.contains(clientIdList.get(i))) {
+                matchingJobId = clientIdList.get(i);
+            }
+        }
+        // if the whole clientIdList is looped through and no matches are found, then there are none.
+        return matchingJobId;
+    }
+
     // Mapping method to help other methods that return a JobCard object and have to read from db
     private JobCard mapRowToJobCard(SqlRowSet rowSet) {
         JobCard jobCard = new JobCard();
