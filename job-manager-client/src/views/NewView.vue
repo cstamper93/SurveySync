@@ -1579,18 +1579,29 @@ export default {
     submitProspect () {
 
       var doesClientExist = this.checkClient(this.newClient.firstName, this.newClient.lastName);
-
       var doesPropertyExist = this.checkProperty(this.newProperty.address, this.newProperty.town);
+      var doJobIdsMatch = 0
+      JobCardService.getMatchingJobId(doesClientExist, doesPropertyExist).then((response) => {
+        if (response.status === 201 || response.status === 200) {
+          doJobIdsMatch = response.data;
+        }
+      });
 
-      var doJobIdsMatch = JobCardService.getMatchingJobId(doesClientExist, doesPropertyExist);
-
-      // possibilities: 
-      // none existing, new everything
-      // existing property only OR existing client only
-      // existing property AND client with matching job id
-      // existing property AND client with no matching job id
-
+      // if (this.newClient != null && this.newClient2 == null && this.newClient3 
+      //   && this.newProperty != null && this.newProperty2
+      // ) {
+      // }
       if (doesClientExist === 0 && doesPropertyExist === 0) {
+        this.addClient(this.newClient);
+        this.addSecondClient(this.newClient2);
+        this.addThirdClient(this.newClient3);
+        this.addProperty(this.newProperty);
+        this.addSecondProperty(this.newProperty2);
+        this.addThirdProperty(this.newProperty3);
+        this.addJobCard(this.newJob, this.newClientId, this.newPropertyId);
+        // Gotta figure out how to add the second and third client and properties to the join tables!
+        // add job types
+        // add job note
         alert("New prospect created!")
       } else if (doesClientExist != 0 && doesPropertyExist === 0) {
         alert("Client already exists in database. Creating new prospect with this client.")
@@ -1599,60 +1610,102 @@ export default {
       } else if (doesClientExist != 0 && doesPropertyExist != 0 && doJobIdsMatch === 0) {
         alert("client and property exist but no prospect or job exists for them. Adding prospect now :)!")
       } else if (doesClientExist != 0 && doesPropertyExist != 0 && doJobIdsMatch != 0 ) {
-        alert("A prospect/job exists for this client and property already. Add a new job type to the existing job.")
+        alert("A prospect/job exists for this client and property already. Check existing prospects after this is created.")
       }
 
-      // property
-      this.addProperty(this.newProperty)
-      this.addProperty(this.newProperty2)
       this.addProperty(this.newProperty3)
       this.addJobCard(this.newJob, this.newClientId, this.newPropertyId)
       this.addJobType(this.jobType)
       this.addJobType(this.jobType2)
       this.addJobType(this.jobType3)
       this.createJobNote(this.jobNote)
+      // Make sure to refresh the page after adding the job. That should reset everything.
     },
     addClient (client) {
       ClientService.addClient(client).then((response) => {
-        if (response.status === 201) {
-          response.data = this.newClientId
-          alert('New client added.')
-          this.$router.go()
+        if (response.status === 201 || response.status === 200) {
+          response.data.clientId = this.newClientId
+          //alert('New client added.')
+          //this.$router.go() I don't think I need this
+        }
+      })
+    },
+    addSecondClient (client2) {
+      ClientService.addClient(client2).then((response) => {
+        if (response.status === 201 || response.status === 200) {
+          response.data.clientId = this.newClientId2
+          //alert('New client added.')
+          //this.$router.go()
+        }
+      })
+    },
+    addThirdClient (client3) {
+      ClientService.addClient(client3).then((response) => {
+        if (response.status === 201 || response.status === 200) {
+          response.data.clientId = this.newClientId3
+          //alert('New client added.')
+          //this.$router.go()
         }
       })
     },
     checkClient (firstName, lastName) {
-      if (ClientService.getClientByName(firstName, lastName) != null) {
-        return true
-      } else {
-        return false
-      }
-    },
-    addProperty () {
-      PropertyService.addProperty(this.newProperty).then((response) => {
+      ClientService.getClientByName(firstName, lastName).then((response) => {
         if (response.status === 201) {
-          response.data = this.newPropertyId
-          alert('New property added.')
+          return response.data
+        } else {
+          return "Something went wrong"
+        }
+      })
+    },
+    addProperty (property) {
+      PropertyService.addProperty(property).then((response) => {
+        if (response.status === 201 || response.status === 200) {
+          response.data.propId = this.newPropertyId
+          //alert('New property added.')
+        }
+      })
+    },
+    addSecondProperty (property2) {
+      PropertyService.addProperty(property2).then((response) => {
+        if (response.status === 201 || response.status === 200) {
+          response.data.propId = this.newPropertyId2
+          //alert('New property added.')
+        }
+      })
+    },
+    addThirdProperty (property3) {
+      PropertyService.addProperty(property3).then((response) => {
+        if (response.status === 201 || response.status === 200) {
+          response.data.propId = this.newPropertyId3
+          //alert('New property added.')
         }
       })
     },
     checkProperty (address, town, pid, pin) {
-      var doesPropertyExist = false;
-      var propertyByAddress = PropertyService.getPropertyByAddress(address, town);
-      var propertyByPin = PropertyService.getPropertyByPin(pin, pid);
-      if (propertyByAddress != null || propertyByPin != null) {
-        doesPropertyExist = true;
+      var propertyByAddress = null;
+      PropertyService.getPropertyByAddress(address, town).then((response) => {
+        response.data = propertyByAddress;
+      });
+      var propertyByPin = null;
+      PropertyService.getPropertyByPin(pin, pid).then((response) => {
+        response.data = propertyByPin;
+      });
+      if (propertyByAddress != 0 && propertyByAddress != null) {
+        return propertyByAddress
+      } else if (propertyByPin != 0 && propertyByPin != null) {
+        return propertyByPin;
+      } else {
+        return "Something went wrong."
       }
-      return doesPropertyExist;
     },
-    addJobCard () {
-      JobCardService.addJobCard(this.newJob).then((response) => {
-        if (response.status === 201) {
-          this.jobType.jobId = response.data
-          this.jobType2.jobId = response.data
-          this.jobType3.jobId = response.data
-          this.jobNote.jobId = response.data
-          alert('new job added.')
+    addJobCard (jobDetails, clientId, propertyId) {
+      JobCardService.addJobCard(jobDetails, clientId, propertyId).then((response) => {
+        if (response.status === 201 || response.status === 200) {
+          this.jobType.jobId = response.data.jobId
+          this.jobType2.jobId = response.data.jobId
+          this.jobType3.jobId = response.data.jobId
+          this.jobNote.jobId = response.data.jobId
+          //alert('new job added.')
         }
       })
     },
