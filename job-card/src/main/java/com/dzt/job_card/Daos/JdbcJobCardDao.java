@@ -48,6 +48,22 @@ public class JdbcJobCardDao implements JobCardDao {
     }
 
     @Override
+    public boolean addClientToJoinTable(int jobId, int clientId) {
+        boolean success = false;
+        String sql = "INSERT INTO job_card_client (job_id, client_id) VALUES(?, ?);";
+        template.update(sql, jobId, clientId);
+        return success;
+    }
+
+    @Override
+    public boolean addPropertyToJoinTable(int jobId, int propId) {
+        boolean success = false;
+        String sql = "INSERT INTO job_card_property (job_id, prop_id) VALUES(?, ?);";
+        template.update(sql, jobId, propId);
+        return success;
+    }
+
+    @Override
     public JobCard getCardById(int id) {
         JobCard jobCard = null;
         String jobCardSql = "SELECT * FROM job_card WHERE job_id = ?;";

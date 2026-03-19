@@ -1577,6 +1577,10 @@ export default {
   },
   methods: {
     submitProspect () {
+      // New Idea: just check each client / property / job type to see if it is null
+      // if not null, check for existence in db
+      // if exists, just add to join table (add method for this in java)
+      // if no prior existence, proceed as normal
 
       var doesClientExist = this.checkClient(this.newClient.firstName, this.newClient.lastName);
       var doesPropertyExist = this.checkProperty(this.newProperty.address, this.newProperty.town);
@@ -1595,18 +1599,66 @@ export default {
         this.addClient(this.newClient);
         this.addSecondClient(this.newClient2);
         this.addThirdClient(this.newClient3);
+        
         this.addProperty(this.newProperty);
-        this.addSecondProperty(this.newProperty2);
-        this.addThirdProperty(this.newProperty3);
+        if (this.newPoperty2 != null) {
+          this.addSecondProperty(this.newProperty2);
+        }
+        if (this.newProperty3 != null) {
+          this.addThirdProperty(this.newProperty3);
+        }
+        
         this.addJobCard(this.newJob, this.newClientId, this.newPropertyId);
         // Gotta figure out how to add the second and third client and properties to the join tables!
         // add job types
+        this.addJobType(this.jobType);
+        this.addJobType(this.jobType2);
+        this.addJobType(this.jobType3);
         // add job note
+        this.createJobNote(this.jobNote);
         alert("New prospect created!")
       } else if (doesClientExist != 0 && doesPropertyExist === 0) {
         alert("Client already exists in database. Creating new prospect with this client.")
+
+        //this.addClient(this.newClient);
+        //this.addSecondClient(this.newClient2);
+        //this.addThirdClient(this.newClient3);
+        this.addProperty(this.newProperty);
+        if (this.newPoperty2 != null) {
+          this.addSecondProperty(this.newProperty2);
+        }
+        if (this.newProperty3 != null) {
+          this.addThirdProperty(this.newProperty3);
+        }
+        this.addJobCard(this.newJob, doesClientExist, this.newPropertyId);
+        // Gotta figure out how to add the second and third client and properties to the join tables!
+        // add job types
+        this.addJobType(this.jobType);
+        this.addJobType(this.jobType2);
+        this.addJobType(this.jobType3);
+        // add job note
+        this.createJobNote(this.jobNote);
+        alert("New prospect created!")
+
       } else if (doesClientExist === 0 && doesPropertyExist != 0) {
         alert("Property already exists in database. Creating new prospect with this property.")
+
+        this.addClient(this.newClient);
+        this.addSecondClient(this.newClient2);
+        this.addThirdClient(this.newClient3);
+        //this.addProperty(this.newProperty);
+        //this.addSecondProperty(this.newProperty2);
+        //this.addThirdProperty(this.newProperty3);
+        this.addJobCard(this.newJob, this.newClientId, doesPropertyExist);
+        // Gotta figure out how to add the second and third client and properties to the join tables!
+        // add job types
+        this.addJobType(this.jobType);
+        this.addJobType(this.jobType2);
+        this.addJobType(this.jobType3);
+        // add job note
+        this.createJobNote(this.jobNote);
+        alert("New prospect created!")
+
       } else if (doesClientExist != 0 && doesPropertyExist != 0 && doJobIdsMatch === 0) {
         alert("client and property exist but no prospect or job exists for them. Adding prospect now :)!")
       } else if (doesClientExist != 0 && doesPropertyExist != 0 && doJobIdsMatch != 0 ) {
@@ -1711,14 +1763,14 @@ export default {
     },
     addJobType () {
       JobTypeService.addJobType(this.jobType).then((response) => {
-        if (response.status === 201) {
-          alert('job type added.')
+        if (response.status === 201 || response.status === 200) {
+          //alert('job type added.')
         }
       })
     },
     createJobNote () {
       JobNoteService.createJobNote(this.jobNote).then((response) => {
-        if (response.status === 201) {
+        if (response.status === 201 || response.status === 200) {
           alert('Job note added.')
         }
       })

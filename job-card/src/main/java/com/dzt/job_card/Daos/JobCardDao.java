@@ -11,6 +11,10 @@ public interface JobCardDao {
 
     JobCard createNewJobCard(JobCard jobCard, int clientId, int propertyId);
 
+    boolean addClientToJoinTable(int jobId, int clientId);
+
+    boolean addPropertyToJoinTable(int jobId, int propId);
+
     JobCard getCardById(int id);
 
     List<JobCard> getAllJobCards();
