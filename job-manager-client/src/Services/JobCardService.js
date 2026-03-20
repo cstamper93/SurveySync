@@ -10,6 +10,14 @@ export default {
     return http.post(`/add-card/${clientId}/${propertyId}`, jobCard)
   },
 
+  addClientToJoinTable (jobId, clientId) {
+    return http.post(`/add-job-client/${jobId}/${clientId}`)
+  },
+
+  addPropertyToJoinTable (jobId, popertyId) {
+    return http.post(`/add-job-prop/${jobId}/${propertyId}`)
+  },
+
   getCardById (jobCardId) {
     return http.get(`/job-card/${jobCardId}`)
   },

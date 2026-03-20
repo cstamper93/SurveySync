@@ -28,6 +28,18 @@ public class JobCardController {
         }
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("add-job-client/{jobId}/{clientId}")
+    public boolean addClientToJoinTable(@PathVariable int jobId, @PathVariable int clientId) {
+        return jobCardDao.addClientToJoinTable(jobId, clientId);
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("add-job-prop/{jobId}/{propId}")
+    public boolean addPropertyToJoinTable(@PathVariable int jobId, @PathVariable int propId) {
+        return jobCardDao.addPropertyToJoinTable(jobId, propId);
+    }
+
     @GetMapping("/job-card/{id}")
     public JobCard getCardById(@PathVariable int id) {
         return jobCardDao.getCardById(id);

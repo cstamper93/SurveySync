@@ -1577,101 +1577,66 @@ export default {
   },
   methods: {
     submitProspect () {
-      // New Idea: just check each client / property / job type to see if it is null
-      // if not null, check for existence in db
-      // if exists, just add to join table (add method for this in java)
-      // if no prior existence, proceed as normal
-
-      var doesClientExist = this.checkClient(this.newClient.firstName, this.newClient.lastName);
-      var doesPropertyExist = this.checkProperty(this.newProperty.address, this.newProperty.town);
-      var doJobIdsMatch = 0
-      JobCardService.getMatchingJobId(doesClientExist, doesPropertyExist).then((response) => {
-        if (response.status === 201 || response.status === 200) {
-          doJobIdsMatch = response.data;
+      // what if second or third properties are specified but not first? CAN this happen?
+      if (this.newClient == null || this.newProperty == null) {
+        alert("A client and a property have to be specified.")
+        return;
+      } else {
+        // first set
+        // what if first or last names are missing? Or a town or pid/pin is missing?
+        const doesClientExist = this.checkClient(this.newClient.firstName, this.newClient.lastName)
+        const doesPropertyExist = this.checkProperty(this.newProperty.address, this.newProperty.town, 
+          this.newProperty.pid, this.newProperty.pin)
+        if (doesClientExist === 0) {
+          this.addClient(this.newClient)
+        } else {
+          this.newClientId = doesClientExist
         }
-      });
-
-      // if (this.newClient != null && this.newClient2 == null && this.newClient3 
-      //   && this.newProperty != null && this.newProperty2
-      // ) {
-      // }
-      if (doesClientExist === 0 && doesPropertyExist === 0) {
-        this.addClient(this.newClient);
-        this.addSecondClient(this.newClient2);
-        this.addThirdClient(this.newClient3);
-        
-        this.addProperty(this.newProperty);
-        if (this.newPoperty2 != null) {
-          this.addSecondProperty(this.newProperty2);
+        if (doesPropertyExist === 0) {
+          this.addProperty(this.newProperty)
+        } else {
+          this.newPropertyId = doesPropertyExist
         }
-        if (this.newProperty3 != null) {
-          this.addThirdProperty(this.newProperty3);
+        // second set
+        const doesClient2Exist = this.checkClient(this.newClient2.firstName, this.newClient2.lastName)
+        const doesProperty2Exist = this.checkProperty(this.newProperty2.address, this.newProperty2.town, 
+          this.newProperty2.pid, this.newProperty2.pin)
+        if (doesClient2Exist === 0) {
+          this.addSecondClient(this.newClient2)
+        } else {
+          this.newClientId2 = doesClient2Exist
         }
-        
-        this.addJobCard(this.newJob, this.newClientId, this.newPropertyId);
-        // Gotta figure out how to add the second and third client and properties to the join tables!
-        // add job types
-        this.addJobType(this.jobType);
-        this.addJobType(this.jobType2);
-        this.addJobType(this.jobType3);
-        // add job note
-        this.createJobNote(this.jobNote);
-        alert("New prospect created!")
-      } else if (doesClientExist != 0 && doesPropertyExist === 0) {
-        alert("Client already exists in database. Creating new prospect with this client.")
-
-        //this.addClient(this.newClient);
-        //this.addSecondClient(this.newClient2);
-        //this.addThirdClient(this.newClient3);
-        this.addProperty(this.newProperty);
-        if (this.newPoperty2 != null) {
-          this.addSecondProperty(this.newProperty2);
+        if (doesProperty2Exist === 0) {
+          this.addSecondProperty(this.newProperty2)
+        } else {
+          this.newPropertyId2 = doesProperty2Exist
         }
-        if (this.newProperty3 != null) {
-          this.addThirdProperty(this.newProperty3);
+        // third set
+        const doesClient3Exist = this.checkClient(this.newClient3.firstName, this.newClient3.lastName)
+        const doesProperty3Exist = this.checkProperty(this.newProperty3.address, this.newProperty3.town, 
+          this.newProperty3.pid, this.newProperty3.pin)
+        if (doesClient3Exist === 0) {
+          this.addThirdClient(this.newClient3)
+        } else {
+          this.newClientId3 = doesClient3Exist
         }
-        this.addJobCard(this.newJob, doesClientExist, this.newPropertyId);
-        // Gotta figure out how to add the second and third client and properties to the join tables!
-        // add job types
-        this.addJobType(this.jobType);
-        this.addJobType(this.jobType2);
-        this.addJobType(this.jobType3);
-        // add job note
-        this.createJobNote(this.jobNote);
-        alert("New prospect created!")
+        if (doesProperty3Exist === 0) {
+          this.addThirdProperty(this.newProperty3)
+        } else {
+          this.newPropertyId3 = doesProperty3Exist
+        }
+        // Now that these ids are set, let's create the new job and put entries into thconst doesClientExist = this.checkClient(this.newClient.firstName, this.newClient.lastName)
+        const doesPropertyExist = this.checkProperty(this.newProperty.address, this.newProperty.town, 
+          this.newProperty.pid, this.newProperty.pin)
+        if (doesClientExist === 0) {
+          this.addClient(this.newClient)
+        }
+        if (doesPropertyExist === 0) {
+          this.addProperty(this.newProperty)
+        } tabls                                                                                                                  
+        c   tg                                                                                                                        
 
-      } else if (doesClientExist === 0 && doesPropertyExist != 0) {
-        alert("Property already exists in database. Creating new prospect with this property.")
-
-        this.addClient(this.newClient);
-        this.addSecondClient(this.newClient2);
-        this.addThirdClient(this.newClient3);
-        //this.addProperty(this.newProperty);
-        //this.addSecondProperty(this.newProperty2);
-        //this.addThirdProperty(this.newProperty3);
-        this.addJobCard(this.newJob, this.newClientId, doesPropertyExist);
-        // Gotta figure out how to add the second and third client and properties to the join tables!
-        // add job types
-        this.addJobType(this.jobType);
-        this.addJobType(this.jobType2);
-        this.addJobType(this.jobType3);
-        // add job note
-        this.createJobNote(this.jobNote);
-        alert("New prospect created!")
-
-      } else if (doesClientExist != 0 && doesPropertyExist != 0 && doJobIdsMatch === 0) {
-        alert("client and property exist but no prospect or job exists for them. Adding prospect now :)!")
-      } else if (doesClientExist != 0 && doesPropertyExist != 0 && doJobIdsMatch != 0 ) {
-        alert("A prospect/job exists for this client and property already. Check existing prospects after this is created.")
       }
-
-      this.addProperty(this.newProperty3)
-      this.addJobCard(this.newJob, this.newClientId, this.newPropertyId)
-      this.addJobType(this.jobType)
-      this.addJobType(this.jobType2)
-      this.addJobType(this.jobType3)
-      this.createJobNote(this.jobNote)
-      // Make sure to refresh the page after adding the job. That should reset everything.
     },
     addClient (client) {
       ClientService.addClient(client).then((response) => {
@@ -1702,7 +1667,7 @@ export default {
     },
     checkClient (firstName, lastName) {
       ClientService.getClientByName(firstName, lastName).then((response) => {
-        if (response.status === 201) {
+        if (response.status === 201 || response.status === 200) {
           return response.data
         } else {
           return "Something went wrong"

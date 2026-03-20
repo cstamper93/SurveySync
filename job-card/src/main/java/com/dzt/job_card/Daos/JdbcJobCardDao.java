@@ -37,13 +37,6 @@ public class JdbcJobCardDao implements JobCardDao {
                 jobCard.isContractSigned(), jobCard.getContractSignedDate(), jobCard.isLettersSent(), jobCard.getLettersSentDate(),
                 jobCard.isPlotted(), jobCard.getPlottedBy());
 
-        String jobCardClientSql = "INSERT INTO job_card_client (job_id, client_id) VALUES(?, ?);";
-        template.update(jobCardClientSql, jobCard.getJobId(), clientId);
-        // Do I need to us query for object instead? We shall see
-
-        String jobCardPropertySql = "INSERT INTO job_card_property (job_id, prop_id) VALUES (?, ?);";
-        template.update(jobCardPropertySql, jobCard.getJobId(), propertyId);
-
         return getCardById(newJobId); // Null pointer?? How do I handle this particular one??
     }
 
@@ -51,7 +44,10 @@ public class JdbcJobCardDao implements JobCardDao {
     public boolean addClientToJoinTable(int jobId, int clientId) {
         boolean success = false;
         String sql = "INSERT INTO job_card_client (job_id, client_id) VALUES(?, ?);";
-        template.update(sql, jobId, clientId);
+        int rowsUpdated = template.update(sql, jobId, clientId);
+        if (rowsUpdated == 1) {
+            success = true;
+        }
         return success;
     }
 
@@ -59,7 +55,10 @@ public class JdbcJobCardDao implements JobCardDao {
     public boolean addPropertyToJoinTable(int jobId, int propId) {
         boolean success = false;
         String sql = "INSERT INTO job_card_property (job_id, prop_id) VALUES(?, ?);";
-        template.update(sql, jobId, propId);
+        int rowsUpdated = template.update(sql, jobId, propId);
+        if (rowsUpdated == 1) {
+            success = true;
+        }
         return success;
     }
 
