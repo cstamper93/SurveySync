@@ -1543,6 +1543,7 @@ export default {
         isPlotted: false,
         plottedBy: null
       },
+      newJobId: null,
       jobType: {
         jobId: null,
         jobType: null,
@@ -1625,17 +1626,38 @@ export default {
         } else {
           this.newPropertyId3 = doesProperty3Exist
         }
-        // Now that these ids are set, let's create the new job and put entries into thconst doesClientExist = this.checkClient(this.newClient.firstName, this.newClient.lastName)
-        const doesPropertyExist = this.checkProperty(this.newProperty.address, this.newProperty.town, 
-          this.newProperty.pid, this.newProperty.pin)
-        if (doesClientExist === 0) {
-          this.addClient(this.newClient)
-        }
-        if (doesPropertyExist === 0) {
-          this.addProperty(this.newProperty)
-        } tabls                                                                                                                  
-        c   tg                                                                                                                        
+        // Now that these ids are set, let's create the new job
+        this.addJobCard(this.newJob)
+        this.addClientToJoinTable(this.newJobId, this.newClientId)
+        this.addPropertyToJoinTable(this.newJobId, this.newPropertyId)
 
+        if (this.newClient2 != null) {
+          this.addClientToJoinTable(this.newJobId, this.newClientId2)
+        }
+        if (this.newProperty2 != null) {
+          this.addPropertyToJoinTable(this.newJobId, this.newPropertyId2)
+        }
+
+        if (this.newClient3 != null) {
+          this.addClientToJoinTable(this.newJobId, this.newClientId3)
+        }
+        if (this.newProperty3 != null) {
+          this.addPropertyToJoinTable(this.newJobId, this.newPropertyId3)
+        }
+
+        if (this.jobType != null) {
+          this.addJobType(this.jobType)
+        }
+        if (this.jobType2 != null) {
+          this.addJobType(this.jobType2)
+        }
+        if (this.jobType3 != null) {
+          this.addJobType(this.jobType3)
+        }
+
+        if (this.jobNote != null) {
+          this.createJobNote ()
+        }
       }
     },
     addClient (client) {
@@ -1715,9 +1737,10 @@ export default {
         return "Something went wrong."
       }
     },
-    addJobCard (jobDetails, clientId, propertyId) {
-      JobCardService.addJobCard(jobDetails, clientId, propertyId).then((response) => {
+    addJobCard (jobDetails) {
+      JobCardService.addJobCard(jobDetails).then((response) => {
         if (response.status === 201 || response.status === 200) {
+          this.newJobId = response.data.jobId
           this.jobType.jobId = response.data.jobId
           this.jobType2.jobId = response.data.jobId
           this.jobType3.jobId = response.data.jobId
@@ -1726,8 +1749,22 @@ export default {
         }
       })
     },
-    addJobType () {
-      JobTypeService.addJobType(this.jobType).then((response) => {
+    addClientToJoinTable (jobId, clientId) {
+      JobCardService.addClientToJoinTable(jobId, clientId).then((response) => {
+        if (response.status === 201 || response.status === 200) {
+          alert("Adding client to join table successful!")
+        }
+      })
+    },
+    addPropertyToJoinTable (jobId, propertyId) {
+      JobCardService.addPropertyToJoinTable(jobId, propertyId).then((response) => {
+        if (response.status === 201 || response.status === 200) {
+          alert("Adding property to join table successful!")
+        }
+      })
+    },
+    addJobType (jobType) {
+      JobTypeService.addJobType(jobType).then((response) => {
         if (response.status === 201 || response.status === 200) {
           //alert('job type added.')
         }
@@ -1809,7 +1846,7 @@ export default {
       this.newProperty.propNotes = null
     }
   }
-
+} 
 }
 </script>
 

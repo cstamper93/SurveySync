@@ -6,15 +6,15 @@ const http = axios.create({
 
 export default {
 
-  addJobCard (jobCard, propertyId, clientId) {
-    return http.post(`/add-card/${clientId}/${propertyId}`, jobCard)
+  addJobCard (jobCard) {
+    return http.post(`/add-card}`, jobCard)
   },
 
   addClientToJoinTable (jobId, clientId) {
     return http.post(`/add-job-client/${jobId}/${clientId}`)
   },
 
-  addPropertyToJoinTable (jobId, popertyId) {
+  addPropertyToJoinTable (jobId, propertyId) {
     return http.post(`/add-job-prop/${jobId}/${propertyId}`)
   },
 

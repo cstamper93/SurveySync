@@ -9,7 +9,7 @@ public interface JobCardDao {
 
     // CRUD: create, read, update, delete
 
-    JobCard createNewJobCard(JobCard jobCard, int clientId, int propertyId);
+    JobCard createNewJobCard(JobCard jobCard);
 
     boolean addClientToJoinTable(int jobId, int clientId);
 
