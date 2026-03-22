@@ -1631,31 +1631,31 @@ export default {
         this.addClientToJoinTable(this.newJobId, this.newClientId)
         this.addPropertyToJoinTable(this.newJobId, this.newPropertyId)
 
-        if (this.newClient2 != null) {
+        if (this.newClientId2 != null) {
           this.addClientToJoinTable(this.newJobId, this.newClientId2)
         }
-        if (this.newProperty2 != null) {
+        if (this.newPropertyId2 != null) {
           this.addPropertyToJoinTable(this.newJobId, this.newPropertyId2)
         }
 
-        if (this.newClient3 != null) {
+        if (this.newClientId3 != null) {
           this.addClientToJoinTable(this.newJobId, this.newClientId3)
         }
-        if (this.newProperty3 != null) {
+        if (this.newPropertyId3 != null) {
           this.addPropertyToJoinTable(this.newJobId, this.newPropertyId3)
         }
 
-        if (this.jobType != null) {
+        if (this.jobType.jobType != null) {
           this.addJobType(this.jobType)
         }
-        if (this.jobType2 != null) {
+        if (this.jobType2.jobType != null) {
           this.addJobType(this.jobType2)
         }
-        if (this.jobType3 != null) {
+        if (this.jobType3.jobType != null) {
           this.addJobType(this.jobType3)
         }
 
-        if (this.jobNote != null) {
+        if (this.jobNote.noteContent != null) {
           this.createJobNote ()
         }
       }
