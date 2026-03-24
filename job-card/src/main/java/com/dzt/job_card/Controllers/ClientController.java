@@ -33,7 +33,7 @@ public class ClientController {
     }
 
     @GetMapping("/client-name/{first}/{last}")
-    public Client getClientByName(@PathVariable String first, @PathVariable String last) {
+    public int getClientByName(@PathVariable String first, @PathVariable String last) {
         return clientDao.getClientByName(first, last);
     }
 

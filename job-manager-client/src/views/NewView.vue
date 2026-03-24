@@ -1577,87 +1577,201 @@ export default {
     }
   },
   methods: {
-    submitProspect () {
-      // what if second or third properties are specified but not first? CAN this happen?
-      if (this.newClient == null || this.newProperty == null) {
-        alert("A client and a property have to be specified.")
-        return;
-      } else {
-        // first set
-        // what if first or last names are missing? Or a town or pid/pin is missing?
-        const doesClientExist = this.checkClient(this.newClient.firstName, this.newClient.lastName)
-        const doesPropertyExist = this.checkProperty(this.newProperty.address, this.newProperty.town, 
-          this.newProperty.pid, this.newProperty.pin)
-        if (doesClientExist === 0) {
-          this.addClient(this.newClient)
-        } else {
-          this.newClientId = doesClientExist
-        }
-        if (doesPropertyExist === 0) {
-          this.addProperty(this.newProperty)
-        } else {
-          this.newPropertyId = doesPropertyExist
-        }
-        // second set
-        const doesClient2Exist = this.checkClient(this.newClient2.firstName, this.newClient2.lastName)
-        const doesProperty2Exist = this.checkProperty(this.newProperty2.address, this.newProperty2.town, 
-          this.newProperty2.pid, this.newProperty2.pin)
-        if (doesClient2Exist === 0) {
-          this.addSecondClient(this.newClient2)
-        } else {
-          this.newClientId2 = doesClient2Exist
-        }
-        if (doesProperty2Exist === 0) {
-          this.addSecondProperty(this.newProperty2)
-        } else {
-          this.newPropertyId2 = doesProperty2Exist
-        }
-        // third set
-        const doesClient3Exist = this.checkClient(this.newClient3.firstName, this.newClient3.lastName)
-        const doesProperty3Exist = this.checkProperty(this.newProperty3.address, this.newProperty3.town, 
-          this.newProperty3.pid, this.newProperty3.pin)
-        if (doesClient3Exist === 0) {
-          this.addThirdClient(this.newClient3)
-        } else {
-          this.newClientId3 = doesClient3Exist
-        }
-        if (doesProperty3Exist === 0) {
-          this.addThirdProperty(this.newProperty3)
-        } else {
-          this.newPropertyId3 = doesProperty3Exist
-        }
-        // Now that these ids are set, let's create the new job
-        this.addJobCard(this.newJob)
-        this.addClientToJoinTable(this.newJobId, this.newClientId)
-        this.addPropertyToJoinTable(this.newJobId, this.newPropertyId)
+    // submitProspect () {
+    //   // what if second or third properties are specified but not first? CAN this happen?
+    //   if (this.newClient == null || this.newProperty == null) {
+    //     alert("A client and a property have to be specified.")
+    //     return;
+    //   } else {
+    //     // first set
+    //     // what if first or last names are missing? Or a town or pid/pin is missing?
+    //     const doesClientExist = this.checkClient(this.newClient.firstName, this.newClient.lastName)
+    //     const doesPropertyExist = this.checkProperty(this.newProperty.address, this.newProperty.town, 
+    //       this.newProperty.pid, this.newProperty.pin)
+    //     if (doesClientExist === 0) {
+    //       this.addClient(this.newClient)
+    //     } else {
+    //       this.newClientId = doesClientExist
+    //     }
+    //     if (doesPropertyExist === 0) {
+    //       this.addProperty(this.newProperty)
+    //     } else {
+    //       this.newPropertyId = doesPropertyExist
+    //     }
+    //     // second set
+    //     const doesClient2Exist = this.checkClient(this.newClient2.firstName, this.newClient2.lastName)
+    //     const doesProperty2Exist = this.checkProperty(this.newProperty2.address, this.newProperty2.town, 
+    //       this.newProperty2.pid, this.newProperty2.pin)
+    //     if (doesClient2Exist === 0) {
+    //       this.addSecondClient(this.newClient2)
+    //     } else {
+    //       this.newClientId2 = doesClient2Exist
+    //     }
+    //     if (doesProperty2Exist === 0) {
+    //       this.addSecondProperty(this.newProperty2)
+    //     } else {
+    //       this.newPropertyId2 = doesProperty2Exist
+    //     }
+    //     // third set
+    //     const doesClient3Exist = this.checkClient(this.newClient3.firstName, this.newClient3.lastName)
+    //     const doesProperty3Exist = this.checkProperty(this.newProperty3.address, this.newProperty3.town, 
+    //       this.newProperty3.pid, this.newProperty3.pin)
+    //     if (doesClient3Exist === 0) {
+    //       this.addThirdClient(this.newClient3)
+    //     } else {
+    //       this.newClientId3 = doesClient3Exist
+    //     }
+    //     if (doesProperty3Exist === 0) {
+    //       this.addThirdProperty(this.newProperty3)
+    //     } else {
+    //       this.newPropertyId3 = doesProperty3Exist
+    //     }
+    //     // Now that these ids are set, let's create the new job
+    //     this.addJobCard(this.newJob)
+    //     this.addClientToJoinTable(this.newJobId, this.newClientId)
+    //     this.addPropertyToJoinTable(this.newJobId, this.newPropertyId)
 
-        if (this.newClientId2 != null) {
-          this.addClientToJoinTable(this.newJobId, this.newClientId2)
-        }
-        if (this.newPropertyId2 != null) {
-          this.addPropertyToJoinTable(this.newJobId, this.newPropertyId2)
+    //     if (this.newClientId2 != null) {
+    //       this.addClientToJoinTable(this.newJobId, this.newClientId2)
+    //     }
+    //     if (this.newPropertyId2 != null) {
+    //       this.addPropertyToJoinTable(this.newJobId, this.newPropertyId2)
+    //     }
+
+    //     if (this.newClientId3 != null) {
+    //       this.addClientToJoinTable(this.newJobId, this.newClientId3)
+    //     }
+    //     if (this.newPropertyId3 != null) {
+    //       this.addPropertyToJoinTable(this.newJobId, this.newPropertyId3)
+    //     }
+
+    //     if (this.jobType.jobType != null) {
+    //       this.addJobType(this.jobType)
+    //     }
+    //     if (this.jobType2.jobType != null) {
+    //       this.addJobType(this.jobType2)
+    //     }
+    //     if (this.jobType3.jobType != null) {
+    //       this.addJobType(this.jobType3)
+    //     }
+
+    //     if (this.jobNote.noteContent != null) {
+    //       this.createJobNote ()
+    //     }
+    //   }
+    // },
+    async submitProspect() {
+      try {
+        // Basic validation
+        if (!this.newClient.firstName || !this.newProperty.address) {
+          alert("A client and a property must be specified.");
+          return;
         }
 
-        if (this.newClientId3 != null) {
-          this.addClientToJoinTable(this.newJobId, this.newClientId3)
-        }
-        if (this.newPropertyId3 != null) {
-          this.addPropertyToJoinTable(this.newJobId, this.newPropertyId3)
+        // -------------------------
+        // 1. CREATE / GET CLIENT 1
+        // -------------------------
+        const clientRes = await ClientService.addClient(this.newClient);
+        this.newClientId = clientRes.data.clientId;
+
+        // -------------------------
+        // 2. CREATE / GET PROPERTY 1
+        // -------------------------
+        const propRes = await PropertyService.addProperty(this.newProperty);
+        this.newPropertyId = propRes.data.propId;
+
+        // -------------------------
+        // OPTIONAL CLIENT 2
+        // -------------------------
+        if (this.addClient2 && this.newClient2.firstName) {
+          const client2Res = await ClientService.addClient(this.newClient2);
+          this.newClientId2 = client2Res.data.clientId;
         }
 
-        if (this.jobType.jobType != null) {
-          this.addJobType(this.jobType)
-        }
-        if (this.jobType2.jobType != null) {
-          this.addJobType(this.jobType2)
-        }
-        if (this.jobType3.jobType != null) {
-          this.addJobType(this.jobType3)
+        // OPTIONAL PROPERTY 2
+        if (this.addProperty2 && this.newProperty2.address) {
+          const prop2Res = await PropertyService.addProperty(this.newProperty2);
+          this.newPropertyId2 = prop2Res.data.propId;
         }
 
-        if (this.jobNote.noteContent != null) {
-          this.createJobNote ()
+        // -------------------------
+        // OPTIONAL CLIENT 3
+        // -------------------------
+        if (this.addClient3 && this.newClient3.firstName) {
+          const client3Res = await ClientService.addClient(this.newClient3);
+          this.newClientId3 = client3Res.data.clientId;
         }
+
+        // OPTIONAL PROPERTY 3
+        if (this.addProperty3 && this.newProperty3.address) {
+          const prop3Res = await PropertyService.addProperty(this.newProperty3);
+          this.newPropertyId3 = prop3Res.data.propId;
+        }
+
+        // -------------------------
+        // 3. CREATE JOB
+        // -------------------------
+        const jobRes = await JobCardService.addJobCard(this.newJob);
+        this.newJobId = jobRes.data.jobId;
+
+        // Attach jobId to related objects
+        this.jobType.jobId = this.newJobId;
+        this.jobType2.jobId = this.newJobId;
+        this.jobType3.jobId = this.newJobId;
+        this.jobNote.jobId = this.newJobId;
+
+        // -------------------------
+        // 4. JOIN TABLES
+        // -------------------------
+        await JobCardService.addClientToJoinTable(this.newJobId, this.newClientId);
+        await JobCardService.addPropertyToJoinTable(this.newJobId, this.newPropertyId);
+
+        if (this.newClientId2) {
+          await JobCardService.addClientToJoinTable(this.newJobId, this.newClientId2);
+        }
+
+        if (this.newPropertyId2) {
+          await JobCardService.addPropertyToJoinTable(this.newJobId, this.newPropertyId2);
+        }
+
+        if (this.newClientId3) {
+          await JobCardService.addClientToJoinTable(this.newJobId, this.newClientId3);
+        }
+
+        if (this.newPropertyId3) {
+          await JobCardService.addPropertyToJoinTable(this.newJobId, this.newPropertyId3);
+        }
+
+        // -------------------------
+        // 5. JOB TYPES
+        // -------------------------
+        if (this.jobType.jobType) {
+          await JobTypeService.addJobType(this.jobType);
+        }
+
+        if (this.jobType2.jobType) {
+          await JobTypeService.addJobType(this.jobType2);
+        }
+
+        if (this.jobType3.jobType) {
+          await JobTypeService.addJobType(this.jobType3);
+        }
+
+        // -------------------------
+        // 6. JOB NOTE
+        // -------------------------
+        if (this.jobNote.noteContent) {
+          await JobNoteService.createJobNote(this.jobNote);
+        }
+
+        // -------------------------
+        // SUCCESS
+        // -------------------------
+        alert("Prospect created successfully!");
+
+      } catch (error) {
+        console.error("Error creating prospect:", error);
+        alert("Something went wrong. Check console.");
       }
     },
     addClient (client) {
@@ -1847,7 +1961,7 @@ export default {
     }
   }
 } 
-}
+
 </script>
 
 <style>

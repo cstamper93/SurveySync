@@ -7,43 +7,43 @@ const http = axios.create({
 export default {
 
   storeContact (contact) {
-    http.post('/contact', contact)
+    return http.post('/contact', contact)
   },
 
   fetchContactById (id) {
-    http.get(`/contact-id/${id}`)
+    return http.get(`/contact-id/${id}`)
   },
 
   fetchAllContacts () {
-    http.get('/contact-all')
+    return http.get('/contact-all')
   },
 
   fetchContactsByJob (jobId) {
-    http.get(`/contact-job/${jobId}`)
+    return http.get(`/contact-job/${jobId}`)
   },
 
   fetchContactsByClient (clientId) {
-    http.get(`/contact-client/${clientId}`)
+    return http.get(`/contact-client/${clientId}`)
   },
 
   fetchContactsByUser (userId) {
-    http.get(`/contact-user/${userId}`)
+    return http.get(`/contact-user/${userId}`)
   },
 
   fetchContactsByDate (date) {
-    http.get('/contact-date', date)
+    return http.get('/contact-date', date)
   },
 
   updateContact (contact) {
-    http.put('/contact', contact)
+    return http.put('/contact', contact)
   },
 
   deleteContact (id) {
-    http.delete(`/contact-single/${id}`)
+    return http.delete(`/contact-single/${id}`)
   },
 
   deleteContactByJob (jobId) {
-    http.delete(`/contact-job/${jobId}`)
+    return http.delete(`/contact-job/${jobId}`)
   }
 
 }

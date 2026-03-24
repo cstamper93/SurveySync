@@ -7,27 +7,27 @@ const http = axios.create({
 export default {
 
   addJobType (jobType) {
-    http.post('/add-job-type', jobType)
+    return http.post('/add-job-type', jobType)
   },
 
   getJobTypeById (id) {
-    http.get(`/job-type/${id}`)
+    return http.get(`/job-type/${id}`)
   },
 
   getJobTypesByJob (jobId) {
-    http.get(`/job-types/${jobId}`)
+    return http.get(`/job-types/${jobId}`)
   },
 
   editJobType (jobType) {
-    http.put('/job-type', jobType)
+    return http.put('/job-type', jobType)
   },
 
   deleteJobType (id) {
-    http.delete(`/job-type/${id}`)
+    return http.delete(`/job-type/${id}`)
   },
 
   deleteJobTypesByJob (jobId) {
-    http.delete(`/job-type-job/${jobId}`)
+    return http.delete(`/job-type-job/${jobId}`)
   }
 
 }

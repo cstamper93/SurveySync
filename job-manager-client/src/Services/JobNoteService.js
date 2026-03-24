@@ -7,27 +7,27 @@ const http = axios.create({
 export default {
 
   createJobNote (jobNote) {
-    http.post('/job-note', jobNote)
+    return http.post('/job-note', jobNote)
   },
 
   getNoteById (id) {
-    http.get(`/job-note-by-id/${id}`)
+    return http.get(`/job-note-by-id/${id}`)
   },
 
   getNotesByJob (jobId) {
-    http.get(`/job-notes-by-job/${jobId}`)
+    return http.get(`/job-notes-by-job/${jobId}`)
   },
 
   editNote (note) {
-    http.put('/job-note', note)
+    return http.put('/job-note', note)
   },
 
   deleteNote (id) {
-    http.delete(`/job-note/${id}`)
+    return http.delete(`/job-note/${id}`)
   },
 
   deleteNotesByJob (jobId) {
-    http.delete(`/job-notes/${jobId}`)
+    return http.delete(`/job-notes/${jobId}`)
   }
 
 }

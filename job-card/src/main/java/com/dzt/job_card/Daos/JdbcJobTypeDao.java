@@ -22,7 +22,7 @@ public class JdbcJobTypeDao implements JobTypeDao {
     @Override
     public JobType addJobType(JobType jobType) {
         String sql = "INSERT INTO job_type (job_id, job_type, price, type_description, " +
-                "estimated_field_days VALUES(?, ?, ?, ?, ?) " +
+                "estimated_field_hours) VALUES (?, ?, ?, ?, ?) " +
                 "RETURNING job_type_id;";
         Integer newId = template.queryForObject(sql, Integer.class, jobType.getJobId(), jobType.getJobType(),
                 jobType.getPrice(), jobType.getTypeDescription(), jobType.getEstimatedFieldHours());

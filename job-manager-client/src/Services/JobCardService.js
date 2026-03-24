@@ -7,7 +7,7 @@ const http = axios.create({
 export default {
 
   addJobCard (jobCard) {
-    return http.post(`/add-card}`, jobCard)
+    return http.post('/add-card', jobCard)
   },
 
   addClientToJoinTable (jobId, clientId) {
