@@ -30,7 +30,8 @@
           </div>
 
           <div class="company">
-            <label for="company"
+            <label
+              for="company"
             class="input-label"
             >Company: </label>
             <input
@@ -1359,7 +1360,16 @@
 
         </div>
 
-        <button class="new-prospect-btn" type="submit">+Add Prospect</button>
+      <button
+        class="new-prospect-btn"
+        type="submit"
+        :disabled="isLoading"
+      >
+        +Add Prospect
+      </button>
+      <span v-if=this.isLoading="isLoadinng">
+
+      </span>
     </form>
   </div>
 </template>
@@ -1573,7 +1583,8 @@ export default {
         jobId: null
       },
       addType: false,
-      addType2: false
+      addType2: false,
+      isLoading: false
     }
   },
   methods: {
