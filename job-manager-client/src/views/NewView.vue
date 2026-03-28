@@ -1,35 +1,35 @@
 <template>
   <div class="container">
     <h1>New Prospect</h1>
-    <form 
-      class="prospect-form" 
+    <form
+      class="prospect-form"
       @submit.prevent="submitProspect"
     >
       <div class="client-details">
         <h2>Client Details</h2>
         <div class="client-input-fields">
           <div class="name">
-            <label 
+            <label
               for="firstName"
               class="input-label"
             >Name: </label>
             <input
               id="firstName"
-              type="text"
               v-model="newClient.firstName"
+              type="text"
               class="input-box"
               placeholder="First Name"
             >
             <input
-            type="text"
-            id="lastName"
-            class="input-box"
-            placeholder="Last Name"
-            v-model="newClient.lastName"
-            />
-            </div>
+              id="lastName"
+              v-model="newClient.lastName"
+              type="text"
+              class="input-box"
+              placeholder="Last Name"
+            >
+          </div>
 
-            <div class="company">
+          <div class="company">
             <label for="company"
             class="input-label"
             >Company: </label>
@@ -1586,7 +1586,7 @@ export default {
     //     // first set
     //     // what if first or last names are missing? Or a town or pid/pin is missing?
     //     const doesClientExist = this.checkClient(this.newClient.firstName, this.newClient.lastName)
-    //     const doesPropertyExist = this.checkProperty(this.newProperty.address, this.newProperty.town, 
+    //     const doesPropertyExist = this.checkProperty(this.newProperty.address, this.newProperty.town,
     //       this.newProperty.pid, this.newProperty.pin)
     //     if (doesClientExist === 0) {
     //       this.addClient(this.newClient)
@@ -1600,7 +1600,7 @@ export default {
     //     }
     //     // second set
     //     const doesClient2Exist = this.checkClient(this.newClient2.firstName, this.newClient2.lastName)
-    //     const doesProperty2Exist = this.checkProperty(this.newProperty2.address, this.newProperty2.town, 
+    //     const doesProperty2Exist = this.checkProperty(this.newProperty2.address, this.newProperty2.town,
     //       this.newProperty2.pid, this.newProperty2.pin)
     //     if (doesClient2Exist === 0) {
     //       this.addSecondClient(this.newClient2)
@@ -1614,7 +1614,7 @@ export default {
     //     }
     //     // third set
     //     const doesClient3Exist = this.checkClient(this.newClient3.firstName, this.newClient3.lastName)
-    //     const doesProperty3Exist = this.checkProperty(this.newProperty3.address, this.newProperty3.town, 
+    //     const doesProperty3Exist = this.checkProperty(this.newProperty3.address, this.newProperty3.town,
     //       this.newProperty3.pid, this.newProperty3.pin)
     //     if (doesClient3Exist === 0) {
     //       this.addThirdClient(this.newClient3)
@@ -1843,9 +1843,9 @@ export default {
       PropertyService.getPropertyByPin(pin, pid).then((response) => {
         response.data = propertyByPin;
       });
-      if (propertyByAddress != 0 && propertyByAddress != null) {
+      if (propertyByAddress !== 0 && propertyByAddress != null) {
         return propertyByAddress
-      } else if (propertyByPin != 0 && propertyByPin != null) {
+      } else if (propertyByPin !== 0 && propertyByPin != null) {
         return propertyByPin;
       } else {
         return "Something went wrong."
@@ -1919,7 +1919,7 @@ export default {
       this.newClient2.billingTown = null
       this.newClient2.billingState = null
       this.newClient2.billingZip = null
-      this.newClient2f.clientNotes = null
+      this.newClient2.clientNotes = null
     },
     clearNewClient3 () {
       this.newClient3.firstName = null
@@ -1960,7 +1960,7 @@ export default {
       this.newProperty.propNotes = null
     }
   }
-} 
+}
 
 </script>
 
