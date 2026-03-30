@@ -1365,11 +1365,13 @@
         type="submit"
         :disabled="isLoading"
       >
-        +Add Prospect
+        <span
+          v-if="isLoading"
+          class="spinner"
+        ></span>
+        {{ isLoading ? 'Saving...' : '+Add Prospect' }}
       </button>
-      <span v-if=this.isLoading="isLoadinng">
 
-      </span>
     </form>
   </div>
 </template>
@@ -1684,12 +1686,14 @@ export default {
         // -------------------------
         const clientRes = await ClientService.addClient(this.newClient);
         this.newClientId = clientRes.data.clientId;
+        console.log(this.newClientId);
 
         // -------------------------
         // 2. CREATE / GET PROPERTY 1
         // -------------------------
         const propRes = await PropertyService.addProperty(this.newProperty);
         this.newPropertyId = propRes.data.propId;
+        console.log(this.newPropertyId);
 
         // -------------------------
         // OPTIONAL CLIENT 2
@@ -1724,6 +1728,7 @@ export default {
         // -------------------------
         const jobRes = await JobCardService.addJobCard(this.newJob);
         this.newJobId = jobRes.data.jobId;
+        console.log(this.newJobId);
 
         // Attach jobId to related objects
         this.jobType.jobId = this.newJobId;
@@ -2134,6 +2139,23 @@ export default {
 
   .cancel-adding-property-btn {
     margin-top: 15px;
+  }
+
+  .spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    border: 2px solid #ccc;
+    border-top: 2px solid #333;
+    border-radius: 50%;
+    animation: spin 0.6s linear infiniite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg)
+    }
   }
 
 </style>

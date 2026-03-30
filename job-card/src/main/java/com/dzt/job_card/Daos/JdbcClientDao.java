@@ -25,7 +25,7 @@ public class JdbcClientDao implements ClientDao {
                 "billing_state, billing_zip, client_notes) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING client_id;";
         Integer newClientId = template.queryForObject(sql, Integer.class, client.getFirstName(), client.getLastName(),
-                client.getCellPhone(), client.getHomePhone(), client.getHomePhone(), client.getWorkPhone(),
+                client.getCellPhone(), client.getHomePhone(), client.getWorkPhone(),
                 client.getEmail(), client.getAltEmail(), client.getCompany(), client.getBillingAddress(),
                 client.getBillingTown(), client.getBillingState(), client.getBillingZip(), client.getClientNotes());
 

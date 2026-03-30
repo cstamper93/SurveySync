@@ -26,7 +26,7 @@ public class JdbcJobCardDao implements JobCardDao {
                 "marked_lines_length, job_description, house_plan_name, job_status, ready_date, complete_by_date, " +
                 "contract_sent_date, contract_signed, contract_signed_date, letters_sent, letters_sent_date, is_plotted, " +
                 "plotted_by) " +
-                "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) " +
+                "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) " +
                 "RETURNING job_id;";
         // include an insert for the lookup table(s)?
         // Probably, since jobCard is the "central" object - makes more sense to do that here
