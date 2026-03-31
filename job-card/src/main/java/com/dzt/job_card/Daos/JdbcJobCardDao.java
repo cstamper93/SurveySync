@@ -22,6 +22,7 @@ public class JdbcJobCardDao implements JobCardDao {
     @Override
     public JobCard createNewJobCard(JobCard jobCard) {
 
+
         String jobCardSql = "INSERT INTO job_card (prospect_id, active_job_id, billing_client_id, intake_date, intake_time, " +
                 "marked_lines_length, job_description, house_plan_name, job_status, ready_date, complete_by_date, " +
                 "contract_sent_date, contract_signed, contract_signed_date, letters_sent, letters_sent_date, is_plotted, " +
@@ -33,7 +34,7 @@ public class JdbcJobCardDao implements JobCardDao {
         Integer newJobId = template.queryForObject(jobCardSql, Integer.class, jobCard.getProspectId(),
                 jobCard.getActiveJobId(), jobCard.getBillingClientId(), jobCard.getIntakeDate(), jobCard.getIntakeTime(),
                 jobCard.getMarkLinesLength(), jobCard.getJobDescription(), jobCard.getHousePlanName(),
-                jobCard.getJobStatus(), jobCard.getReadyDate(), jobCard.getCompleteByDate(), jobCard.getContractSentDate(),
+                jobCard.getJobStatus().toLowerCase(), jobCard.getReadyDate(), jobCard.getCompleteByDate(), jobCard.getContractSentDate(),
                 jobCard.isContractSigned(), jobCard.getContractSignedDate(), jobCard.isLettersSent(), jobCard.getLettersSentDate(),
                 jobCard.isPlotted(), jobCard.getPlottedBy());
 

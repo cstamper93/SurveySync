@@ -21,6 +21,8 @@ public class JdbcProspectDisplayDTODao implements ProspectDisplayDTODao {
 
     @Override
     public ProspectDisplayDTO getProspectDisplayData(String jobStatus) {
+        String jobStatusToCompare = jobStatus.toLowerCase();
+        System.out.println(jobStatusToCompare);
         ProspectDisplayDTO prospect = new ProspectDisplayDTO();
         String sql = "SELECT jc.job_id, jc.prospect_id, jc.active_job_id, " +
                 "client.first_name, client.last_name " +
@@ -32,7 +34,7 @@ public class JdbcProspectDisplayDTODao implements ProspectDisplayDTODao {
                 "JOIN job_card_property jcp ON jc.job_id = jcp.job_id " +
                 "JOIN property p ON jcp.prop_id = p.prop_id " +
                 "WHERE job_status = ?;";
-        SqlRowSet results = template.queryForRowSet(sql, jobStatus);
+        SqlRowSet results = template.queryForRowSet(sql, jobStatusToCompare);
         if(results.next()) {
             prospect = mapRowToProspectObject(results);
         }

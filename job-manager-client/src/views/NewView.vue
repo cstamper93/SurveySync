@@ -1590,89 +1590,6 @@ export default {
     }
   },
   methods: {
-    // submitProspect () {
-    //   // what if second or third properties are specified but not first? CAN this happen?
-    //   if (this.newClient == null || this.newProperty == null) {
-    //     alert("A client and a property have to be specified.")
-    //     return;
-    //   } else {
-    //     // first set
-    //     // what if first or last names are missing? Or a town or pid/pin is missing?
-    //     const doesClientExist = this.checkClient(this.newClient.firstName, this.newClient.lastName)
-    //     const doesPropertyExist = this.checkProperty(this.newProperty.address, this.newProperty.town,
-    //       this.newProperty.pid, this.newProperty.pin)
-    //     if (doesClientExist === 0) {
-    //       this.addClient(this.newClient)
-    //     } else {
-    //       this.newClientId = doesClientExist
-    //     }
-    //     if (doesPropertyExist === 0) {
-    //       this.addProperty(this.newProperty)
-    //     } else {
-    //       this.newPropertyId = doesPropertyExist
-    //     }
-    //     // second set
-    //     const doesClient2Exist = this.checkClient(this.newClient2.firstName, this.newClient2.lastName)
-    //     const doesProperty2Exist = this.checkProperty(this.newProperty2.address, this.newProperty2.town,
-    //       this.newProperty2.pid, this.newProperty2.pin)
-    //     if (doesClient2Exist === 0) {
-    //       this.addSecondClient(this.newClient2)
-    //     } else {
-    //       this.newClientId2 = doesClient2Exist
-    //     }
-    //     if (doesProperty2Exist === 0) {
-    //       this.addSecondProperty(this.newProperty2)
-    //     } else {
-    //       this.newPropertyId2 = doesProperty2Exist
-    //     }
-    //     // third set
-    //     const doesClient3Exist = this.checkClient(this.newClient3.firstName, this.newClient3.lastName)
-    //     const doesProperty3Exist = this.checkProperty(this.newProperty3.address, this.newProperty3.town,
-    //       this.newProperty3.pid, this.newProperty3.pin)
-    //     if (doesClient3Exist === 0) {
-    //       this.addThirdClient(this.newClient3)
-    //     } else {
-    //       this.newClientId3 = doesClient3Exist
-    //     }
-    //     if (doesProperty3Exist === 0) {
-    //       this.addThirdProperty(this.newProperty3)
-    //     } else {
-    //       this.newPropertyId3 = doesProperty3Exist
-    //     }
-    //     // Now that these ids are set, let's create the new job
-    //     this.addJobCard(this.newJob)
-    //     this.addClientToJoinTable(this.newJobId, this.newClientId)
-    //     this.addPropertyToJoinTable(this.newJobId, this.newPropertyId)
-
-    //     if (this.newClientId2 != null) {
-    //       this.addClientToJoinTable(this.newJobId, this.newClientId2)
-    //     }
-    //     if (this.newPropertyId2 != null) {
-    //       this.addPropertyToJoinTable(this.newJobId, this.newPropertyId2)
-    //     }
-
-    //     if (this.newClientId3 != null) {
-    //       this.addClientToJoinTable(this.newJobId, this.newClientId3)
-    //     }
-    //     if (this.newPropertyId3 != null) {
-    //       this.addPropertyToJoinTable(this.newJobId, this.newPropertyId3)
-    //     }
-
-    //     if (this.jobType.jobType != null) {
-    //       this.addJobType(this.jobType)
-    //     }
-    //     if (this.jobType2.jobType != null) {
-    //       this.addJobType(this.jobType2)
-    //     }
-    //     if (this.jobType3.jobType != null) {
-    //       this.addJobType(this.jobType3)
-    //     }
-
-    //     if (this.jobNote.noteContent != null) {
-    //       this.createJobNote ()
-    //     }
-    //   }
-    // },
     async submitProspect() {
       try {
         // Basic validation
@@ -1785,6 +1702,12 @@ export default {
         // -------------------------
         alert("Prospect created successfully!");
 
+        // CLEAR FORM
+        this.clearNewClient()
+        this.clearNewClient2()
+        this.clearNewClient3()
+        this.clearNewProperty()
+
       } catch (error) {
         console.error("Error creating prospect:", error);
         alert("Something went wrong. Check console.");
@@ -1896,7 +1819,7 @@ export default {
     addJobType (jobType) {
       JobTypeService.addJobType(jobType).then((response) => {
         if (response.status === 201 || response.status === 200) {
-          //alert('job type added.')
+         v //alert('job type added.')
         }
       })
     },
@@ -1974,6 +1897,52 @@ export default {
       this.newProperty.pin = null
       this.newProperty.lotNum = null
       this.newProperty.propNotes = null
+    },
+    clearNewProperty2 () {
+      this.newProperty2.ownerFirstName = null
+      this.newProperty2.ownerLastName = null
+      this.newProperty2.address = null
+      this.newProperty2.town = null
+      this.newProperty2.state = null
+      this.newProperty2.zip = null
+      this.newProperty2.county = null
+      this.newProperty2.deed1 = null
+      this.newProperty2.deed2 = null
+      this.newProperty2.deed3 = null
+      this.newProperty2.map1 = null
+      this.newProperty2.map2 = null
+      this.newProperty2.map3 = null
+      this.newProperty2.perimeter = null
+      this.newProperty2.acreage = null
+      this.newProperty2.driveTime = null
+      this.newProperty2.subdivision = null
+      this.newProperty2.pid = null
+      this.newProperty2.pin = null
+      this.newProperty2.lotNum = null
+      this.newProperty2.propNotes = null
+    },
+    clearNewProperty3 () {
+      this.newProperty3.ownerFirstName = null
+      this.newProperty3.ownerLastName = null
+      this.newProperty3.address = null
+      this.newProperty3.town = null
+      this.newProperty3.state = null
+      this.newProperty3.zip = null
+      this.newProperty3.county = null
+      this.newProperty3.deed1 = null
+      this.newProperty3.deed2 = null
+      this.newProperty3.deed3 = null
+      this.newProperty3.map1 = null
+      this.newProperty3.map2 = null
+      this.newProperty3.map3 = null
+      this.newProperty3.perimeter = null
+      this.newProperty3.acreage = null
+      this.newProperty3.driveTime = null
+      this.newProperty3.subdivision = null
+      this.newProperty3.pid = null
+      this.newProperty3.pin = null
+      this.newProperty3.lotNum = null
+      this.newProperty3.propNotes = null
     }
   }
 }
