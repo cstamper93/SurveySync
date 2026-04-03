@@ -1,39 +1,41 @@
 <template>
   <div class="needs-research-container">
-      <div class="row">
-        <h4>Intake Date: </h4><p>{{ needsResearchProspect.intakeDate }}</p>
-      </div>
-      <div class="row">
-        <h4>Client Name: </h4><p>{{ needsResearchProspect.clientFirstName }} {{ needsResearchProspect.clientLastName }}</p>
-      </div>
-      <div class="row">
-        <h4>Job Address: </h4><p>{{ needsResearchProspect.jobAddress }}, {{ needsResearchProspect.jobTown }}</p>
-      </div>
-      <div class="row">
-        <h4>County: </h4><p>{{ needsResearchProspect.jobCounty }}</p>
-      </div>
-      <div class="row">
-        <h4>Job Types: </h4>
-        <div class="job-type-tags">
+    <div class="grid">
+      <span>{{ needsResearchProspect.prospectId }}</span>
+    </div>
+    <div class="grid">
+      <span>{{ needsResearchProspect.intakeDate }}</span>
+    </div>
+    <div class="grid">
+      <span>{{ needsResearchProspect.clientFirstName }} {{ needsResearchProspect.clientLastName }}</span>
+    </div>
+    <div class="grid">
+      <span>{{ needsResearchProspect.jobAddress }}, {{ needsResearchProspect.jobTown }}</span>
+    </div>
+    <div class="grid">
+      <span>{{ needsResearchProspect.jobCounty }}</span>
+    </div>
+    <div class="grid">
+      <div class="job-type-tags">
         <span
           v-for="(type, index) in needsResearchProspect.jobTypes"
           :key="index"
           :class="['job-tag', tagColor(type)]">
           {{ type }}
         </span>
-        </div>
       </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: 'NeedsResearchDisplay',
-  data () {
-    return {}
-  },
   props: {
     needsResearchProspect: Object
+  },
+  data () {
+    return {}
   },
   methods: {
     tagColor (type) {
@@ -89,17 +91,28 @@ export default {
   .tag-default {
     background-color: #6c757d;
   }
-  .needs-research-container {
+  /*.needs-research-container {
     display: flex;
     flex-direction: column;
     border: 2px solid black;
     border-radius: 5px;
-  }
-  .row {
+  } */
+  /* .row {
     display: flex;
     flex-direction: row;
     align-items: center;
     margin: 5px;
+  } */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr)
+  }
+  .grid > span {
+    padding: 8px 4px;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-top: 1px solid black;
   }
   h4 {
     margin-right: 5px;

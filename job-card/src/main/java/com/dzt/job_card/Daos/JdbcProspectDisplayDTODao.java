@@ -44,7 +44,6 @@ public class JdbcProspectDisplayDTODao implements ProspectDisplayDTODao {
 
     @Override
     public List<ProspectDisplayDTO> getProspectDisplayList(String jobStatus) {
-        // List<ProspectDisplayDTO> prospectList = new ArrayList<>();
         LinkedHashMap<Integer, ProspectDisplayDTO> prospectMap = new LinkedHashMap<>();
         String sql = "SELECT jc.job_id, jc.prospect_id, jc.active_job_id, " +
                 "c.first_name, c.last_name, " +

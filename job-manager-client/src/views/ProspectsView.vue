@@ -3,24 +3,116 @@
   <div class="container">
     <div class="needs-research-container">
       <h3>Needs Research</h3>
+      <div class="grid">
+        <span>
+          <strong>ID</strong>
+        </span>
+        <span>
+          <strong>Intake Date</strong>
+        </span>
+        <span>
+          <strong>Name</strong>
+        </span>
+        <span>
+          <strong>Address</strong>
+        </span>
+        <span>
+          <strong>Town</strong>
+        </span>
+        <span>
+          <strong>County</strong>
+        </span>
+        <span>
+          <strong>Job Types</strong>
+        </span>
+      </div>
       <NeedsResearchDisplay
         v-for="needsResearchProspect in needsResearchProspects"
-        v-bind:key="needsResearchProspect.jobId"
+        :key="needsResearchProspect.jobId"
         v-bind:needsResearchProspect="needsResearchProspect" />
     </div>
 
     <div class="needs-quote-container">
       <h3>Needs Quote</h3>
+      <div class="grid">
+        <span>
+          <strong>ID</strong>
+        </span>
+        <span>
+          <strong>Intake Date</strong>
+        </span>
+        <span>
+          <strong>Name</strong>
+        </span>
+        <span>
+          <strong>Address</strong>
+        </span>
+        <span>
+          <strong>Town</strong>
+        </span>
+        <span>
+          <strong>County</strong>
+        </span>
+        <span>
+          <strong>Job Types</strong>
+        </span>
+      </div>
       <NeedsQuoteDisplay v-for="needsQuoteProspect in needsQuoteJobCards" v-bind:key="needsQuoteProspect.jobId" v-bind:needsQuoteProspect="needsQuoteProspect" />
     </div>
 
     <div class="ready-to-call-container">
       <h3>Ready To Call</h3>
+      <div class="grid">
+        <span>
+          <strong>ID</strong>
+        </span>
+        <span>
+          <strong>Intake Date</strong>
+        </span>
+        <span>
+          <strong>Name</strong>
+        </span>
+        <span>
+          <strong>Address</strong>
+        </span>
+        <span>
+          <strong>Town</strong>
+        </span>
+        <span>
+          <strong>County</strong>
+        </span>
+        <span>
+          <strong>Job Types</strong>
+        </span>
+      </div>
       <ReadyToCallDisplay v-for="readyToCallProspect in readyToCallList" v-bind:key="readyToCallProspect.jobId" v-bind:readyToCallProspect="readyToCallProspect" />
     </div>
 
     <div class="ready-to-send-container">
       <h3>Send Contract</h3>
+      <div class="grid">
+        <span>
+          <strong>ID</strong>
+        </span>
+        <span>
+          <strong>Intake Date</strong>
+        </span>
+        <span>
+          <strong>Name</strong>
+        </span>
+        <span>
+          <strong>Address</strong>
+        </span>
+        <span>
+          <strong>Town</strong>
+        </span>
+        <span>
+          <strong>County</strong>
+        </span>
+        <span>
+          <strong>Job Types</strong>
+        </span>
+      </div>
       <ReadyToSendDisplay v-for="readyToSendProspect in readyToSendList" v-bind:key="readyToSendProspect.jobId" v-bind:readyToSendProspect="readyToSendProspect" />
     </div>
 
@@ -69,14 +161,28 @@ onMounted(() => {
 </script>
 
 <style scoped>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+  }
+  .grid > span {
+    padding: 8px 4px;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+  }
+
   .container {
     margin-left: 21%;
-    display: flex;
+    /*display: flex;
     flex-direction: column;
     align-items: center;
+     */
   }
+
   .needs-research-container {
-    width: 300px;
+    /* width: 300px; */
   }
 
   button {

@@ -1713,7 +1713,7 @@ export default {
         alert("Something went wrong. Check console.");
       }
     },
-    addClient (client) {
+    addClient(client) {
       ClientService.addClient(client).then((response) => {
         if (response.status === 201 || response.status === 200) {
           response.data.clientId = this.newClientId
@@ -1722,7 +1722,7 @@ export default {
         }
       })
     },
-    addSecondClient (client2) {
+    addSecondClient(client2) {
       ClientService.addClient(client2).then((response) => {
         if (response.status === 201 || response.status === 200) {
           response.data.clientId = this.newClientId2
@@ -1731,7 +1731,7 @@ export default {
         }
       })
     },
-    addThirdClient (client3) {
+    addThirdClient(client3) {
       ClientService.addClient(client3).then((response) => {
         if (response.status === 201 || response.status === 200) {
           response.data.clientId = this.newClientId3
@@ -1740,7 +1740,7 @@ export default {
         }
       })
     },
-    checkClient (firstName, lastName) {
+    checkClient(firstName, lastName) {
       ClientService.getClientByName(firstName, lastName).then((response) => {
         if (response.status === 201 || response.status === 200) {
           return response.data
@@ -1749,7 +1749,7 @@ export default {
         }
       })
     },
-    addProperty (property) {
+    addProperty(property) {
       PropertyService.addProperty(property).then((response) => {
         if (response.status === 201 || response.status === 200) {
           response.data.propId = this.newPropertyId
@@ -1757,7 +1757,7 @@ export default {
         }
       })
     },
-    addSecondProperty (property2) {
+    addSecondProperty(property2) {
       PropertyService.addProperty(property2).then((response) => {
         if (response.status === 201 || response.status === 200) {
           response.data.propId = this.newPropertyId2
@@ -1765,7 +1765,7 @@ export default {
         }
       })
     },
-    addThirdProperty (property3) {
+    addThirdProperty(property3) {
       PropertyService.addProperty(property3).then((response) => {
         if (response.status === 201 || response.status === 200) {
           response.data.propId = this.newPropertyId3
@@ -1773,7 +1773,7 @@ export default {
         }
       })
     },
-    checkProperty (address, town, pid, pin) {
+    checkProperty(address, town, pid, pin) {
       var propertyByAddress = null;
       PropertyService.getPropertyByAddress(address, town).then((response) => {
         response.data = propertyByAddress;
@@ -1790,7 +1790,7 @@ export default {
         return "Something went wrong."
       }
     },
-    addJobCard (jobDetails) {
+    addJobCard(jobDetails) {
       JobCardService.addJobCard(jobDetails).then((response) => {
         if (response.status === 201 || response.status === 200) {
           this.newJobId = response.data.jobId
@@ -1802,35 +1802,35 @@ export default {
         }
       })
     },
-    addClientToJoinTable (jobId, clientId) {
+    addClientToJoinTable(jobId, clientId) {
       JobCardService.addClientToJoinTable(jobId, clientId).then((response) => {
         if (response.status === 201 || response.status === 200) {
           alert("Adding client to join table successful!")
         }
       })
     },
-    addPropertyToJoinTable (jobId, propertyId) {
+    addPropertyToJoinTable(jobId, propertyId) {
       JobCardService.addPropertyToJoinTable(jobId, propertyId).then((response) => {
         if (response.status === 201 || response.status === 200) {
           alert("Adding property to join table successful!")
         }
       })
     },
-    addJobType (jobType) {
+    addJobType(jobType) {
       JobTypeService.addJobType(jobType).then((response) => {
         if (response.status === 201 || response.status === 200) {
-         v //alert('job type added.')
+          //alert('job type added.')
         }
       })
     },
-    createJobNote () {
+    createJobNote() {
       JobNoteService.createJobNote(this.jobNote).then((response) => {
         if (response.status === 201 || response.status === 200) {
           alert('Job note added.')
         }
       })
     },
-    clearNewClient () {
+    clearNewClient() {
       this.newClient.firstName = null
       this.newClient.lastName = null
       this.newClient.cellPhone = null
@@ -1845,7 +1845,7 @@ export default {
       this.newClient.billingZip = null
       this.newClient.clientNotes = null
     },
-    clearNewClient2 () {
+    clearNewClient2() {
       this.newClient2.firstName = null
       this.newClient2.lastName = null
       this.newClient2.cellPhone = null
@@ -1860,7 +1860,7 @@ export default {
       this.newClient2.billingZip = null
       this.newClient2.clientNotes = null
     },
-    clearNewClient3 () {
+    clearNewClient3() {
       this.newClient3.firstName = null
       this.newClient3.lastName = null
       this.newClient3.cellPhone = null
@@ -1875,7 +1875,7 @@ export default {
       this.newClient3.billingZip = null
       this.newClient3.clientNotes = null
     },
-    clearNewProperty () {
+    clearNewProperty() {
       this.newProperty.ownerFirstName = null
       this.newProperty.ownerLastName = null
       this.newProperty.address = null
@@ -1898,7 +1898,7 @@ export default {
       this.newProperty.lotNum = null
       this.newProperty.propNotes = null
     },
-    clearNewProperty2 () {
+    clearNewProperty2() {
       this.newProperty2.ownerFirstName = null
       this.newProperty2.ownerLastName = null
       this.newProperty2.address = null
@@ -1921,7 +1921,7 @@ export default {
       this.newProperty2.lotNum = null
       this.newProperty2.propNotes = null
     },
-    clearNewProperty3 () {
+    clearNewProperty3() {
       this.newProperty3.ownerFirstName = null
       this.newProperty3.ownerLastName = null
       this.newProperty3.address = null
@@ -1946,7 +1946,6 @@ export default {
     }
   }
 }
-
 </script>
 
 <style>
