@@ -10,7 +10,10 @@
       <span>{{ needsResearchProspect.clientFirstName }} {{ needsResearchProspect.clientLastName }}</span>
     </div>
     <div class="grid">
-      <span>{{ needsResearchProspect.jobAddress }}, {{ needsResearchProspect.jobTown }}</span>
+      <span>{{ needsResearchProspect.jobAddress }}</span>
+    </div>
+    <div class="grid">
+      <span>{{ needsResearchProspect.jobTown }}</span>
     </div>
     <div class="grid">
       <span>{{ needsResearchProspect.jobCounty }}</span>
@@ -103,11 +106,11 @@ export default {
     align-items: center;
     margin: 5px;
   } */
-  .grid {
+  .needs-research-container {
     display: grid;
     grid-template-columns: repeat(7, 1fr)
   }
-  .grid > span {
+  .needs-research-container > span {
     padding: 8px 4px;
     border-left: 1px solid black;
     border-bottom: 1px solid black;
