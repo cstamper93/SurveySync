@@ -1,28 +1,27 @@
 <template>
   <div class="needs-quote-container">
-      <div class="row">
-        <h4>Intake Date: </h4><p>{{ needsQuoteProspect.intakeDate }}</p>
-      </div>
-      <div class="row">
-        <h4>Client Name: </h4><p>{{ needsQuoteProspect.clientFirstName }} {{ needsQuoteProspect.clientLastName }}</p>
-      </div>
-      <div class="row">
-        <h4>Job Address: </h4><p>{{ needsQuoteProspect.jobAddress }}, {{ needsQuoteProspect.jobTown }}</p>
-      </div>
-      <div class="row">
-        <h4>County: </h4><p>{{ needsQuoteProspect.jobCounty }}</p>
-      </div>
-      <div class="row">
-        <h4>Job Types: </h4>
-        <div class="job-type-tags">
+    <div class="grid">
+      <span>{{ needsQuoteProspect.intakeDate }}</span>
+    </div>
+    <div class="grid">
+      <span>{{ needsQuoteProspect.clientFirstName }} {{ needsQuoteProspect.clientLastName }}</span>
+    </div>
+    <div class="grid">
+      <span>{{ needsQuoteProspect.jobAddress }}, {{ needsQuoteProspect.jobTown }}</span>
+    </div>
+    <div class="grid">
+      <span>{{ needsQuoteProspect.jobCounty }}</span>
+    </div>
+    <div class="grid">
+      <div class="job-type-tags">
         <span
           v-for="(type, index) in needsQuoteProspect.jobTypes"
           :key="index"
           :class="['job-tag', tagColor(type)]">
           {{ type }}
         </span>
-        </div>
       </div>
+    </div>
   </div>
 </template>
 
@@ -65,7 +64,7 @@ export default {
   .job-type-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 5px;
   }
   .job-tag {
     background-color: #2c7be5;
@@ -94,16 +93,11 @@ export default {
     background-color: #6c757d;
   }
   .needs-quote-container {
-    display: flex;
-    flex-direction: column;
-    border: 2px solid black;
-    border-radius: 5px;
-  }
-  .row {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin: 5px;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr)
+  }.
+     {
+
   }
   h4 {
     margin-right: 5px;

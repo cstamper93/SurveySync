@@ -66,7 +66,7 @@ export default {
   .job-type-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 5px;
   }
   .job-tag {
     background-color: #2c7be5;
@@ -110,7 +110,7 @@ export default {
     display: grid;
     grid-template-columns: repeat(7, 1fr)
   }
-  .needs-research-container > span {
+  .needs-research-container > .grid {
     padding: 8px 4px;
     border-left: 1px solid black;
     border-bottom: 1px solid black;
