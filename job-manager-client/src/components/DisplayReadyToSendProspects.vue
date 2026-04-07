@@ -1,28 +1,33 @@
 <template>
   <div class="ready-to-send-container">
-      <div class="row">
-        <h4>Intake Date: </h4><p>{{ readyToSendProspect.intakeDate }}</p>
-      </div>
-      <div class="row">
-        <h4>Client Name: </h4><p>{{ readyToSendProspect.clientFirstName }} {{ readyToSendProspect.clientLastName }}</p>
-      </div>
-      <div class="row">
-        <h4>Job Address: </h4><p>{{ readyToSendProspect.jobAddress }}, {{ readyToSendProspect.jobTown }}</p>
-      </div>
-      <div class="row">
-        <h4>County: </h4><p>{{ readyToSendProspect.jobCounty }}</p>
-      </div>
-      <div class="row">
-        <h4>Job Types: </h4>
-        <div class="job-type-tags">
+    <div class="grid">
+      <span>{{ readyToSendProspect.prospectId }}</span>
+    </div>
+    <div class="grid">
+      <span>{{ readyToSendProspect.intakeDate }}</span>
+    </div>
+    <div class="grid">
+      <span>{{ readyToSendProspect.clientFirstName }} {{ readyToSendProspect.clientLastName }}</span>
+    </div>
+    <div class="grid">
+      <span>{{ readyToSendProspect.jobAddress }}</span>
+    </div>
+    <div class="grid">
+      <span>{{ readyToSendProspect.jobTown }}</span>
+    </div>
+    <div class="grid">
+      <span>{{ readyToSendProspect.jobCounty }}</span>
+    </div>
+    <div class="grid">
+      <div class="job-type-tags">
         <span
           v-for="(type, index) in readyToSendProspect.jobTypes"
           :key="index"
           :class="['job-tag', tagColor(type)]">
           {{ type }}
         </span>
-        </div>
       </div>
+    </div>
   </div>
 </template>
 
@@ -89,16 +94,15 @@ export default {
     background-color: #6c757d;
   }
   .ready-to-send-container {
-    display: flex;
-    flex-direction: column;
-    border: 2px solid black;
-    border-radius: 5px;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr)
   }
-  .row {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin: 5px;
+  .ready-to-send-container > .grid {
+    padding: 8px 4px;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-top: 1px solid black;
   }
   h4 {
     margin-right: 5px;

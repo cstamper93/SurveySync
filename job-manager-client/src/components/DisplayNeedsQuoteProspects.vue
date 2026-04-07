@@ -1,13 +1,19 @@
 <template>
   <div class="needs-quote-container">
     <div class="grid">
+      <span>{{ needsQuoteProspect.prospectId }}</span>
+    </div>
+    <div class="grid">
       <span>{{ needsQuoteProspect.intakeDate }}</span>
     </div>
     <div class="grid">
       <span>{{ needsQuoteProspect.clientFirstName }} {{ needsQuoteProspect.clientLastName }}</span>
     </div>
     <div class="grid">
-      <span>{{ needsQuoteProspect.jobAddress }}, {{ needsQuoteProspect.jobTown }}</span>
+      <span>{{ needsQuoteProspect.jobAddress }}</span>
+    </div>
+    <div class="grid">
+      <span>{{ needsQuoteProspect.jobTown }}</span>
     </div>
     <div class="grid">
       <span>{{ needsQuoteProspect.jobCounty }}</span>
@@ -95,9 +101,13 @@ export default {
   .needs-quote-container {
     display: grid;
     grid-template-columns: repeat(7, 1fr)
-  }.
-     {
-
+  }
+  .needs-quote-container > .grid {
+    padding: 8px 4px;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-top: 1px solid black;
   }
   h4 {
     margin-right: 5px;
