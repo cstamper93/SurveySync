@@ -1240,7 +1240,7 @@
           cols="30"
           rows="10"
           placeholder="Put job description here"
-          v-model="newJob.description"
+          v-model="newJob.jobDescription"
           ></textarea>
         </div>
 
@@ -1542,7 +1542,7 @@ export default {
         intakeDate: null,
         intakeTime: null,
         markLinesLength: null,
-        description: null,
+        jobDescription: null,
         housePlanName: null,
         jobStatus: 'Needs Research',
         readyDate: null,

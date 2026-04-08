@@ -1,7 +1,7 @@
 <template>
   <div class="needs-research-container">
     <div class="grid">
-      <span>{{ needsResearchProspect.prospectId }}</span>
+      <span>{{ needsResearchProspect.jobId }}</span>
     </div>
     <div class="grid">
       <span>{{ needsResearchProspect.intakeDate }}</span>

@@ -1,7 +1,7 @@
 <template>
   <div class="needs-quote-container">
     <div class="grid">
-      <span>{{ needsQuoteProspect.prospectId }}</span>
+      <span>{{ needsQuoteProspect.jobId }}</span>
     </div>
     <div class="grid">
       <span>{{ needsQuoteProspect.intakeDate }}</span>

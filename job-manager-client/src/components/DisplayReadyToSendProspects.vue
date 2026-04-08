@@ -1,7 +1,7 @@
 <template>
   <div class="ready-to-send-container">
     <div class="grid">
-      <span>{{ readyToSendProspect.prospectId }}</span>
+      <span>{{ readyToSendProspect.jobId }}</span>
     </div>
     <div class="grid">
       <span>{{ readyToSendProspect.intakeDate }}</span>
