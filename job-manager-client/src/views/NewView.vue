@@ -1245,9 +1245,11 @@
         </div>
 
         <div class="house-plans">
-          <label for="housePlanName"
-          class="input-label"
-          >House Plan Name: </label>
+          <label
+            for="housePlanName"
+            class="input-label"
+          >House Plan Name:
+          </label>
           <input type="text"
           id="housePlanName"
           class="input-box"

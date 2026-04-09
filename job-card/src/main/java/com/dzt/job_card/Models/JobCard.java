@@ -1,6 +1,7 @@
 package com.dzt.job_card.Models;
 
 import java.sql.Time;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class JobCard {
@@ -9,8 +10,7 @@ public class JobCard {
     private int prospectId;
     private String activeJobId;
     private int billingClientId;
-    private Date intakeDate;
-    private Time intakeTime;
+    private LocalDateTime createdAt;
     private int markLinesLength;
     private String jobDescription;
     private String housePlanName;
@@ -64,21 +64,13 @@ public class JobCard {
         this.billingClientId = billingClientId;
     }
 
-    public Date getIntakeDate() {
-        return intakeDate;
-    }
+   public LocalDateTime getCreatedAt() {
+        return this.createdAt;
+   }
 
-    public void setIntakeDate(Date intakeDate) {
-        this.intakeDate = intakeDate;
-    }
-
-    public Time getIntakeTime() {
-        return intakeTime;
-    }
-
-    public void setIntakeTime(Time intakeTime) {
-        this.intakeTime = intakeTime;
-    }
+   public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+   }
 
     public int getMarkLinesLength() {
         return markLinesLength;

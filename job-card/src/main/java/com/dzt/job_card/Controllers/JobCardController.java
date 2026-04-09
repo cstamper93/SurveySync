@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class JobCardController {
         if(newCard == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to create new card");
         } else {
+            card.setCreatedAt(LocalDateTime.now());
             return newCard;
         }
     }

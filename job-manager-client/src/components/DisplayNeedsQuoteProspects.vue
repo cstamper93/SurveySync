@@ -4,7 +4,7 @@
       <span>{{ needsQuoteProspect.jobId }}</span>
     </div>
     <div class="grid">
-      <span>{{ needsQuoteProspect.intakeDate }}</span>
+      <span>{{ needsQuoteProspect.createdAt }}</span>
     </div>
     <div class="grid">
       <span>{{ needsQuoteProspect.clientFirstName }} {{ needsQuoteProspect.clientLastName }}</span>
