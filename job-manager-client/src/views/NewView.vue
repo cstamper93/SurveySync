@@ -32,27 +32,28 @@
           <div class="company">
             <label
               for="company"
-            class="input-label"
+              class="input-label"
             >Company: </label>
             <input
-            type="text"
-            id="company"
-            class="input-box"
-            placeholder="Company"
-            v-model="newClient.company"
+              id="company"
+              v-model="newClient.company"
+              type="text"
+              class="input-box"
+              placeholder="Company"
             />
-            </div>
+          </div>
 
-            <div class="phone-numbers">
-            <label for="cellPhoneNumber"
-            class="input-label"
+          <div class="phone-numbers">
+            <label
+              for="cellPhoneNumber"
+              class="input-label"
             >Phone #: </label>
             <input
-            type="text"
-            id="cellPhoneNumber"
-            class="input-box"
-            placeholder="Cell Phone"
-            v-model="newClient.cellPhone"
+              id="cellPhoneNumber"
+              v-model="newClient.cellPhone"
+              type="text"
+              class="input-box"
+              placeholder="Cell Phone"
             />
 
             <input

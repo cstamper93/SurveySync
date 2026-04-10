@@ -23,7 +23,7 @@ public class JdbcJobCardDao implements JobCardDao {
     public JobCard createNewJobCard(JobCard jobCard) {
 
 
-        String jobCardSql = "INSERT INTO job_card (prospect_id, active_job_id, billing_client_id, createdAt, " +
+        String jobCardSql = "INSERT INTO job_card (prospect_id, active_job_id, billing_client_id, created_At, " +
                 "marked_lines_length, job_description, house_plan_name, job_status, ready_date, complete_by_date, " +
                 "contract_sent_date, contract_signed, contract_signed_date, letters_sent, letters_sent_date, is_plotted, " +
                 "plotted_by) " +
