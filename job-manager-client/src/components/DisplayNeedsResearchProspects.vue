@@ -4,7 +4,7 @@
       <span>{{ needsResearchProspect.jobId }}</span>
     </div>
     <div class="grid">
-      <span>{{ needsResearchProspect.intakeDate }}</span>
+      <span>{{ formatDate(needsResearchProspect.createdAt) }}</span>
     </div>
     <div class="grid">
       <span>{{ needsResearchProspect.clientFirstName }} {{ needsResearchProspect.clientLastName }}</span>
@@ -56,6 +56,16 @@ export default {
         default:
           return 'tag-default'
       }
+    },
+    formatDate (dateString) {
+      if (!dateString) return ''
+      const date = new Date(dateString)
+
+      const month = String(date.getMonth() + 1).padStart(2, '0')
+      const day = String(date.getDate()).padStart(2, '0')
+      const year = date.getFullYear()
+
+      return `${month}/${day}/${year}`
     }
   }
 }

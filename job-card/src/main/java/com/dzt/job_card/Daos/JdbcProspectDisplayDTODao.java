@@ -48,7 +48,7 @@ public class JdbcProspectDisplayDTODao implements ProspectDisplayDTODao {
         String sql = "SELECT jc.job_id, jc.prospect_id, jc.active_job_id, " +
                 "c.first_name, c.last_name, " +
                 "p.address, p.town, p.county, " +
-                "jc.intake_date, jt.job_type " +
+                "jc.created_at, jt.job_type " +
                 "FROM job_card AS jc " +
                 "JOIN job_card_client jcc ON jc.job_id = jcc.job_id " +
                 "JOIN client c ON jcc.client_id = c.client_id " +
@@ -80,7 +80,7 @@ public class JdbcProspectDisplayDTODao implements ProspectDisplayDTODao {
         prospect.setJobAddress(rs.getString("address"));
         prospect.setJobTown(rs.getString("town"));
         prospect.setJobCounty(rs.getString("county"));
-        prospect.setIntakeDate(rs.getDate("intake_date"));
+        prospect.setIntakeDate(rs.getTimestamp("created_at"));
         // prospect.setJobType(rs.getString("job_type")); ==> put this logic within method
         return prospect;
     }

@@ -1,7 +1,7 @@
 BEGIN TRANSACTION;
 
 INSERT INTO job_card (created_at, marked_lines_length,
-job_description, job_status, complete_by_date) VALUES ("2025-07-23-12-00-00-00", 500, 'Mark boundary for fence',
+job_description, job_status, complete_by_date) VALUES ('2025-07-23 12:00:00-00', 500, 'Mark boundary for fence',
 'needs research', '2025-08-15');
 INSERT INTO client (first_name, last_name, cell_phone, email, client_notes) VALUES ('Kelly',
 'Mooris', '910-111-2222', 'nobody@url.com', 'Client is smelly');
@@ -18,7 +18,7 @@ INSERT INTO contact (date, time, job_id, client_id, method, description) VALUES 
 1, 'phone', 'Asked why we havent finished the job yet');
 
 INSERT INTO job_card (created_at, marked_lines_length,
-job_description, job_status, complete_by_date) VALUES ("2025-09-20-12-30-12-47", 500, 'Mark boundary for fence',
+job_description, job_status, complete_by_date) VALUES ('2025-09-20 12:30:12-00', 500, 'Mark boundary for fence',
 'needs quote', '2025-10-15');
 INSERT INTO client (first_name, last_name, cell_phone, email, client_notes) VALUES ('Ibrahim',
 'Moizoos', '111-222-3333', 'moizoosy@url.com', 'East west bowl competitor');
@@ -31,7 +31,7 @@ INSERT INTO job_type (job_id, job_type, estimated_field_hours) VALUES (2, 'Divis
 INSERT INTO job_type (job_id, job_type, estimated_field_hours) VALUES (2, 'Recombination', 10);
 
 INSERT INTO job_card (created_at, marked_lines_length,
-job_description, job_status, complete_by_date) VALUES ("2025-09-20-08-56-03-17",500, 'Mark boundary for fence',
+job_description, job_status, complete_by_date) VALUES ('2025-09-20 08:56:03',500, 'Mark boundary for fence',
 'ready to call', '2025-10-20');
 INSERT INTO client (first_name, last_name, cell_phone, email, client_notes) VALUES ('TJ',
 'Juckson', '123-456-7890', 'juckson@moogle.com', 'East west bowl competitor');
@@ -44,7 +44,7 @@ INSERT INTO job_type (job_id, job_type, estimated_field_hours) VALUES (3, 'EPS',
 INSERT INTO job_type (job_id, job_type, estimated_field_hours) VALUES (3, 'Site Plan', 0);
 
 INSERT INTO job_card (created_at, marked_lines_length,
-job_description, job_status, complete_by_date) VALUES ("2025-09-20-10-17-33-00", 500, 'Mark boundary for fence',
+job_description, job_status, complete_by_date) VALUES ('2025-09-20  10:17:33', 500, 'Mark boundary for fence',
 'ready to send', '2025-10-15');
 INSERT INTO client (first_name, last_name, cell_phone, email, client_notes) VALUES ('Dmarcus',
 'Jilliums', '311-511-6111', 'dmarc@gahoo.com', 'East west bowl competitor');
