@@ -3,7 +3,7 @@
   <div class="container">
     <div class="needs-research-container">
       <h3>Needs Research</h3>
-      <div class="grid">
+      <router-link to="/prospect-details"><div class="grid">
         <span>
           <strong>ID</strong>
         </span>
@@ -25,7 +25,7 @@
         <span>
           <strong>Job Types</strong>
         </span>
-      </div>
+      </div></router-link>
       <NeedsResearchDisplay
         v-for="needsResearchProspect in needsResearchProspects"
         :key="needsResearchProspect.jobId"

@@ -4,7 +4,7 @@
       <span>{{ readyToSendProspect.jobId }}</span>
     </div>
     <div class="grid">
-      <span>{{ readyToSendProspect.intakeDate }}</span>
+      <span>{{ formatDate(readyToSendProspect.createdAt) }}</span>
     </div>
     <div class="grid">
       <span>{{ readyToSendProspect.clientFirstName }} {{ readyToSendProspect.clientLastName }}</span>
@@ -56,6 +56,16 @@ export default {
         default:
           return 'tag-default'
       }
+    },
+    formatDate (dateString) {
+      if (!dateString) return ''
+      const date = new Date(dateString)
+
+      const month = String(date.getMonth() + 1).padStart(2, '0')
+      const day = String(date.getDate()).padStart(2, '0')
+      const year = date.getFullYear()
+
+      return `${month}/${day}/${year}`
     }
   }
 }

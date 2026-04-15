@@ -1,5 +1,6 @@
 package com.dzt.job_card.Models;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,7 +15,7 @@ public class ProspectDisplayDTO {
     private String jobAddress;
     private String jobTown;
     private String jobCounty;
-    private Date intakeDate;
+    private LocalDateTime createdAt;
     private List<String> jobTypes = new ArrayList<>();
 
     public ProspectDisplayDTO() {}
@@ -83,12 +84,12 @@ public class ProspectDisplayDTO {
         this.jobCounty = jobCounty;
     }
 
-    public Date getIntakeDate() {
-        return intakeDate;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setIntakeDate(Date intakeDate) {
-        this.intakeDate = intakeDate;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     public List<String> getJobTypes() {

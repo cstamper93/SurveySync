@@ -57,21 +57,21 @@
             />
 
             <input
-            type="text"
-            id="workPhone"
-            class="input-box"
-            placeholder="Home Phone"
-            v-model="newClient.homePhone"
+              id="workPhone"
+              v-model="newClient.homePhone"
+              type="text"
+              class="input-box"
+              placeholder="Home Phone"
             />
 
             <input
-            type="text"
-            id="workPhone"
-            class="input-box"
-            placeholder="Work Phone"
-            v-model="newClient.workPhone"
+              id="workPhone"
+              type="text"
+              class="input-box"
+              placeholder="Work Phone"
+              v-model="newClient.workPhone"
             />
-            </div>
+          </div>
 
             <div class="email">
             <label for="clientEmail"
@@ -1193,15 +1193,16 @@
           <button class="add-note-btn" v-if="addPropNote3" @click.prevent="addPropNote3 = !addPropNote3">Cancel
           </button>
 
-          <textarea v-if="addPropNote" class="property-notes"
-          id="propNotes"
-          cols="30"
-          rows="10"
-          placeholder="Put property notes here"
-          v-model="newProperty3.propNotes"
-          ></textarea>
+          <textarea
+            v-if="addPropNote"
+            id="propNotes"
+            v-model="newProperty3.propNotes"
+            class="property-notes"
+            cols="30"
+            rows="10"
+            placeholder="Put property notes here"
+          />
         </div>
-
         </div>
 
         <button class="cancel-adding-property-btn" v-if="addProperty3"

@@ -21,11 +21,11 @@ public class JobCardController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/add-card")
     public JobCard addJobCard(@RequestBody JobCard card) {
+        card.setCreatedAt(LocalDateTime.now());
         JobCard newCard = jobCardDao.createNewJobCard(card);
         if(newCard == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to create new card");
         } else {
-            card.setCreatedAt(LocalDateTime.now());
             return newCard;
         }
     }

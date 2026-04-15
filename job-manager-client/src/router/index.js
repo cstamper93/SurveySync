@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import ProspectsView from '../views/ProspectsView.vue'
 import NewView from '../views/NewView.vue'
 import ClientView from '../views/ClientView.vue'
+import ProspectDetailsView from '../views/ProspectDetailsView.vue'
 
 const routes = [
   {
@@ -18,6 +19,11 @@ const routes = [
     path: '/clients',
     name: 'clients',
     component: ClientView
+  },
+  {
+    path: '/prospect-details',
+    name: 'prospect-details',
+    component: ProspectDetailsView
   },
   {
     // path: '/about',
