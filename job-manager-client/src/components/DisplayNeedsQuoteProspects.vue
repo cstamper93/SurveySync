@@ -1,5 +1,11 @@
 <template>
-  <div class="needs-quote-container">
+  <div
+    class="needs-quote-container"
+    role="link"
+    tabIndex="0"
+    @click="goToDetails"
+    @keydown.enter="goToDetails"
+  >
     <div class="grid">
       <span>{{ needsQuoteProspect.jobId }}</span>
     </div>
@@ -66,6 +72,9 @@ export default {
       const year = date.getFullYear()
 
       return `${month}/${day}/${year}`
+    },
+    goToDetails () {
+      this.$router.push(`/prospect-details/${this.needsQuoteProspect.jobId}`)
     }
   }
   }
@@ -105,7 +114,11 @@ export default {
   }
   .needs-quote-container {
     display: grid;
-    grid-template-columns: repeat(7, 1fr)
+    grid-template-columns: repeat(7, 1fr);
+    cursor: pointer;
+  }
+  .needs-quote-container:hover {
+    background-color: #f5f5f5;
   }
   .needs-quote-container > .grid {
     padding: 8px 4px;

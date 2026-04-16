@@ -21,7 +21,7 @@ const routes = [
     component: ClientView
   },
   {
-    path: '/prospect-details',
+    path: '/prospect-details/:id',
     name: 'prospect-details',
     component: ProspectDetailsView
   },
