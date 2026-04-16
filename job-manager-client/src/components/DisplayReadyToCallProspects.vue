@@ -1,5 +1,11 @@
 <template>
-  <div class="ready-to-call-container">
+  <div
+    class="ready-to-call-container"
+    role="link"
+    tabindex="0"
+    @click="goToDetails"
+    @keydown.enter="goToDetails"
+  >
     <div class="grid">
       <span>{{ readyToCallProspect.jobId }}</span>
     </div>
@@ -66,6 +72,9 @@ export default {
       const year = date.getFullYear()
 
       return `${month}/${day}/${year}`
+    },
+    goToDetails () {
+      this.$router.push(`/prospect-details/${this.readyToCallProspect.jobId}`)
     }
   }
 }
@@ -106,6 +115,10 @@ export default {
   .ready-to-call-container {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
+    cursor: pointer;
+  }
+  .ready-to-call-container:hover {
+    background-color: #f5f5f5;
   }
   .ready-to-call-container > .grid {
     padding: 8px 4px;

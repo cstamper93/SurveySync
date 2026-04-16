@@ -1,5 +1,11 @@
 <template>
-  <div class="needs-research-container">
+  <div
+    class="needs-research-container"
+    role="link"
+    tabIndex="0"
+    @click="goToDetails"
+    @kedown.enter="goToDetails"
+  >
     <div class="grid">
       <span>{{ needsResearchProspect.jobId }}</span>
     </div>
@@ -66,6 +72,9 @@ export default {
       const year = date.getFullYear()
 
       return `${month}/${day}/${year}`
+    },
+    goToDetails () {
+      this.$router.push(`/prospect-details/${this.needsResearchProspect.jobId}`)
     }
   }
 }
@@ -118,7 +127,11 @@ export default {
   } */
   .needs-research-container {
     display: grid;
-    grid-template-columns: repeat(7, 1fr)
+    grid-template-columns: repeat(7, 1fr);
+    cursor: pointer
+  }
+  .needs-research-container:hover {
+    background-color: #f5f5f5;
   }
   .needs-research-container > .grid {
     padding: 8px 4px;

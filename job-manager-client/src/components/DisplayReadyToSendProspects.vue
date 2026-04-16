@@ -1,5 +1,11 @@
 <template>
-  <div class="ready-to-send-container">
+  <div
+    class="ready-to-send-container"
+    role="link"
+    tabindex="0"
+    @click="goToDetails"
+    @keydown.enter="goToDetails"
+  >
     <div class="grid">
       <span>{{ readyToSendProspect.jobId }}</span>
     </div>
@@ -66,6 +72,9 @@ export default {
       const year = date.getFullYear()
 
       return `${month}/${day}/${year}`
+    },
+    goToDetails () {
+      this.$router.push(`/prospect-details/${this.readyToSendProspect.jobId}`)
     }
   }
 }
@@ -105,7 +114,11 @@ export default {
   }
   .ready-to-send-container {
     display: grid;
-    grid-template-columns: repeat(7, 1fr)
+    grid-template-columns: repeat(7, 1fr);
+    cursor: pointer;
+  }
+  .ready-to-send-container:hover {
+    background-color: #f5f5f5;
   }
   .ready-to-send-container > .grid {
     padding: 8px 4px;
