@@ -37,6 +37,11 @@ public class ClientController {
         return clientDao.getClientByName(first, last);
     }
 
+    @GetMapping("/client-name/{jobId}")
+    public List<Client> getClientByJobId(@PathVariable int jobId) {
+        return clientDao.getClientsByJobId(jobId);
+    }
+
     @GetMapping("/clients")
     public List<Client> getAllClients() {
         return clientDao.getAllClients();
