@@ -1,7 +1,8 @@
 <template>
   <div>
-    <p>This is the prospect details page!</p>
+    <h1>Client</h1>
     <p>{{ jobDetails.jobStatus }}</p>
+    <h1>Property</h1>
   </div>
 </template>
 

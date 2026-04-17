@@ -13,6 +13,8 @@ public interface ClientDao {
 
     int getClientByName(String firstName, String lastName);
 
+    List<Client> getClientsByJobId(int jobId);
+
     List<Client> getAllClients();
 
     Client editClient(Client updatedClient);

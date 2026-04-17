@@ -41,7 +41,6 @@ public class JdbcProspectDisplayDTODao implements ProspectDisplayDTODao {
         return prospect;
     }
 
-
     @Override
     public List<ProspectDisplayDTO> getProspectDisplayList(String jobStatus) {
         LinkedHashMap<Integer, ProspectDisplayDTO> prospectMap = new LinkedHashMap<>();

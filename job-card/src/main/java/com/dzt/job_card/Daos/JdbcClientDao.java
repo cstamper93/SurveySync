@@ -57,6 +57,19 @@ public class JdbcClientDao implements ClientDao {
     }
 
     @Override
+    public List<Client> getClientsByJobId(int jobId) {
+        List<Client> clients = new ArrayList<>();
+        String sql = "SELECT * FROM client " +
+                "JOIN job_card_client jcc ON jcc.client_id = client.client_id " +
+                "WHERE job_id = ?;";
+        SqlRowSet results = template.queryForRowSet(sql, jobId);
+        while(results.next()) {
+           clients.add(mapRowToClient(results));
+        }
+        return clients;
+    }
+
+    @Override
     public List<Client> getAllClients() {
         List<Client> clients = new ArrayList<>();
         String sql = "SELECT * FROM client ORDER BY last_name;";
