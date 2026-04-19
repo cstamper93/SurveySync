@@ -18,6 +18,10 @@ export default {
     return http.get(`/client/name/${first}/${last}`)
   },
 
+  getClientsByJobId (jobId) {
+    return http.get(`client-name/${jobId}`)
+  },
+
   getAllClients () {
     return http.get('/clients')
   },

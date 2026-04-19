@@ -1,14 +1,22 @@
 <template>
   <div>
+
+    <h2>{{ jobDetails.jobStatus }}</h2>
     <h1>Client</h1>
-    <p>{{ jobDetails.jobStatus }}</p>
-    <h1>Property</h1>
+    <div
+      v-for="client in clients"
+      :key="client.clientid"
+      v-bind:client="client">
+    </div>
+    <h1>Properties</h1>
+    <p>Property</p>
   </div>
 </template>
 
 <script>
 import JobCardService from "@/Services/JobCardService";
-// import ClientService from "@/Services/ClientService";
+import ClientService from "@/Services/ClientService";
+import PropertyService from "@/Services/PropertyService";
 
   export default {
     name: 'ProspectDetails',
@@ -48,6 +56,7 @@ import JobCardService from "@/Services/JobCardService";
           billingZip: null,
           clientNotes: null
         },
+        clients: [],
         property: {
           ownerFirstName: null,
           ownerLastName: null,
@@ -71,12 +80,19 @@ import JobCardService from "@/Services/JobCardService";
           township: null,
           lotNum: null,
           propNotes: null
-        }
+        },
+        properties: []
       }
     },
     created() {
       JobCardService.getCardById(this.$route.params.id).then((response) => {
         this.jobDetails = response.data;
+      })
+      ClientService.getClientsByJobId(this.$route.params.id).then((response) => {
+        this.clients = response.data;
+      })
+      PropertyService.getPropertiesByJob(this.$route.params.id).then((response) => {
+        this.properties = response.data;
       })
     }
   }

@@ -80,6 +80,8 @@ public class JdbcClientDao implements ClientDao {
         return clients;
     }
 
+
+
     @Override
     public Client editClient(Client updatedClient) {
         String sql = "UPDATE client SET first_name = ?, last_name = ?, cell_phone = ?, home_phone = ?, work_phone = ?, " +
