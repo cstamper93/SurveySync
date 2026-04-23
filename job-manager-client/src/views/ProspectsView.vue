@@ -85,7 +85,11 @@
           <strong>Job Types</strong>
         </span>
       </div>
-      <ReadyToCallDisplay v-for="readyToCallProspect in readyToCallList" v-bind:key="readyToCallProspect.jobId" v-bind:readyToCallProspect="readyToCallProspect" />
+      <ReadyToCallDisplay
+        v-for="readyToCallProspect in readyToCallList"
+        v-bind:key="readyToCallProspect.jobId"
+        v-bind:readyToCallProspect="readyToCallProspect"
+      />
     </div>
 
     <div class="ready-to-send-container">

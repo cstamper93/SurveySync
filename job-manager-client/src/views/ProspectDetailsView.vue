@@ -1,13 +1,12 @@
 <template>
-  <div>
-
+  <div class="page-container">
     <h2>{{ jobDetails.jobStatus }}</h2>
     <h1>Client</h1>
-    <div
+    <client-details
       v-for="client in clients"
-      :key="client.clientid"
-      v-bind:client="client">
-    </div>
+      :key="client.clientId"
+      v-bind:client="client"
+    />
     <h1>Properties</h1>
     <p>Property</p>
   </div>
@@ -42,6 +41,7 @@ import PropertyService from "@/Services/PropertyService";
           plottedBy: null
         },
         client: {
+          clientId: null,
           firstName: null,
           lastName: null,
           cellPhone: null,
@@ -99,7 +99,7 @@ import PropertyService from "@/Services/PropertyService";
 </script>
 
 <style scoped>
-  p {
+  .page-container {
     text-align: center;
   }
 </style>

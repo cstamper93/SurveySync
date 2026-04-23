@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: 'clientDetails',
+  name: 'ClientDetails',
   props: ['client'],
   data() {
     return {}
@@ -16,5 +16,7 @@ export default {
 </script>
 
 <style scoped>
-
+  div {
+    text-align: center;
+  }
 </style>
