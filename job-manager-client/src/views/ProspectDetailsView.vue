@@ -5,10 +5,14 @@
     <client-details
       v-for="client in clients"
       :key="client.clientId"
-      v-bind:client="client"
+      :client="client"
     />
     <h1>Properties</h1>
-    <p>Property</p>
+    <property-details
+      v-for="property in properties"
+      :key="property.propId"
+      :property="property"
+    />
   </div>
 </template>
 
@@ -16,9 +20,15 @@
 import JobCardService from "@/Services/JobCardService";
 import ClientService from "@/Services/ClientService";
 import PropertyService from "@/Services/PropertyService";
+import ClientDetails from "@/components/ClientDetails";
+import PropertyDetails from "@/components/PropertyDetails";
 
   export default {
     name: 'ProspectDetails',
+    components: {
+      ClientDetails,
+      PropertyDetails
+    },
     data() {
       return {
         jobDetails: {
@@ -85,6 +95,7 @@ import PropertyService from "@/Services/PropertyService";
       }
     },
     created() {
+      console.log(this.$route.params.id)
       JobCardService.getCardById(this.$route.params.id).then((response) => {
         this.jobDetails = response.data;
       })
