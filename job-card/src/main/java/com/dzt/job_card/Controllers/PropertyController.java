@@ -36,7 +36,7 @@ public class PropertyController {
         return propertyDao.getPropertyByPidOrPin(pin, pid);
     }
 
-    @GetMapping("/properties/{id}")
+    @GetMapping("/properties/{jobId}")
     public List<Property> getPropertiesByJob(@PathVariable int jobId) {
         return propertyDao.getPropertiesByJob(jobId);
     }
