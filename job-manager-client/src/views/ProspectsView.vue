@@ -117,11 +117,13 @@
           <strong>Job Types</strong>
         </span>
       </div>
-      <ReadyToSendDisplay v-for="readyToSendProspect in readyToSendList" v-bind:key="readyToSendProspect.jobId" v-bind:readyToSendProspect="readyToSendProspect" />
+      <ReadyToSendDisplay
+        v-for="readyToSendProspect in readyToSendList"
+        v-bind:key="readyToSendProspect.jobId"
+        v-bind:readyToSendProspect="readyToSendProspect"
+      />
     </div>
-
   </div>
-
 </template>
 
 <script setup>

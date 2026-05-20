@@ -88,7 +88,10 @@ public class JdbcPropertyDao implements PropertyDao {
                 "JOIN job_card_property ON property.prop_id = job_card_property.prop_id " +
                 "WHERE job_id = ?;";
         SqlRowSet results = template.queryForRowSet(sql, jobId);
-        return null;
+        while (results.next()) {
+            properties.add(mapRowToProperty(results));
+        }
+        return properties;
     }
 
     @Override
