@@ -1,12 +1,14 @@
 <template>
   <div class="page-container">
-    <h2>{{ jobDetails.jobStatus }}</h2>
-    <h1>Client</h1>
-    <client-details
-      v-for="client in clients"
-      :key="client.clientId"
-      :client="client"
-    />
+    <h2>Status: {{ jobDetails.jobStatus }}</h2>
+    <div class="client-list">
+      <h2>Client:</h2>
+      <client-details
+        v-for="client in clients"
+        :key="client.clientId"
+        :client="client"
+      />
+    </div>
     <h1>Properties</h1>
     <property-details
       v-for="property in properties"
@@ -112,5 +114,10 @@ import PropertyDetails from "@/components/PropertyDetails";
 <style scoped>
   .page-container {
     text-align: center;
+  }
+  .client-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 </style>

@@ -1,6 +1,5 @@
 <template>
   <div>
-    <p>This is the property details component</p>
     <span>{{ property.address}},</span>
     <span>{{ property.town }}</span>
   </div>
