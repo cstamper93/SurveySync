@@ -9,12 +9,16 @@
         :client="client"
       />
     </div>
-    <h1>Properties</h1>
+    <h2>Properties</h2>
     <property-details
       v-for="property in properties"
       :key="property.propId"
       :property="property"
     />
+    <h2>Description</h2>
+    <p>{{ jobDetails.jobDescription }}</p>
+
+
   </div>
 </template>
 
@@ -24,6 +28,7 @@ import ClientService from "@/Services/ClientService";
 import PropertyService from "@/Services/PropertyService";
 import ClientDetails from "@/components/ClientDetails";
 import PropertyDetails from "@/components/PropertyDetails";
+import JobTypeService from "@/Services/JobTypeService";
 
   export default {
     name: 'ProspectDetails',
@@ -93,7 +98,8 @@ import PropertyDetails from "@/components/PropertyDetails";
           lotNum: null,
           propNotes: null
         },
-        properties: []
+        properties: [],
+        jobTypes: []
       }
     },
     created() {
@@ -107,6 +113,9 @@ import PropertyDetails from "@/components/PropertyDetails";
       PropertyService.getPropertiesByJob(this.$route.params.id).then((response) => {
         this.properties = response.data;
       })
+      JobTypeService.getJobTypesByJob(this.$route.params.id).then((response) => {
+        this.jobTypes = response.data;
+        })
     }
   }
 </script>
