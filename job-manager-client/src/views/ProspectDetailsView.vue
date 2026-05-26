@@ -17,7 +17,11 @@
     />
     <h2>Description</h2>
     <p>{{ jobDetails.jobDescription }}</p>
-
+    <job-type-details
+      v-for="jobType in jobTypes"
+      :key="jobType.jobTypeId"
+      :jobType="jobType"
+    />
 
   </div>
 </template>
@@ -29,12 +33,14 @@ import PropertyService from "@/Services/PropertyService";
 import ClientDetails from "@/components/ClientDetails";
 import PropertyDetails from "@/components/PropertyDetails";
 import JobTypeService from "@/Services/JobTypeService";
+import JobTypeDetails from "@/components/JobTypeDetails";
 
   export default {
     name: 'ProspectDetails',
     components: {
       ClientDetails,
-      PropertyDetails
+      PropertyDetails,
+      JobTypeDetails
     },
     data() {
       return {
